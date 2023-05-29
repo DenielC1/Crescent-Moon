@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4pegr8ebrs8g"]
+[gd_scene load_steps=15 format=3 uid="uid://ctc3x5vnxldps"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Texture2D" uid="uid://cq478eg010urc" path="res://objects/Basic Grass Biom things 1.png" id="2_5ymae"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dsfv7ph0bmh41" path="res://scenes/player.tscn" id="3_ta1jp"]
 [ext_resource type="PackedScene" uid="uid://dngqdj5ukqhni" path="res://scenes/cow.tscn" id="4_qiuef"]
 [ext_resource type="Texture2D" uid="uid://fiftx8dx0guj" path="res://objects/Wood Bridge.png" id="4_s2rk8"]
+[ext_resource type="PackedScene" uid="uid://b4nosuxd5i46c" path="res://scenes/GUI.tscn" id="7_myxnv"]
+[ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
+[ext_resource type="Script" path="res://scenes/AudioStreamPlayer2D.gd" id="9_t14m2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -478,3 +481,12 @@ position = Vector2(302, 341)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(591, 400)
+
+[node name="GUI" parent="." instance=ExtResource("7_myxnv")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_v5ge6")
+autoplay = true
+script = ExtResource("9_t14m2")
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
