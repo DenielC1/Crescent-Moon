@@ -7,6 +7,7 @@ var starting_pos = Vector2(0,1)
 @onready var State_Machine = Animation_Tree.get("parameters/playback")
 
 var click : bool = false
+var equipped : bool = false
 
 func _ready():
 	Animation_Tree.set_active(true)
@@ -45,8 +46,17 @@ func pick_new_state():
 		else:
 			State_Machine.travel("idle")
 
+#use dictionary for slots?
 func _input(event):
-	if event.is_action_pressed("click") and click != true:
+	if event.is_action_pressed("slot1"):
+		if !equipped: 
+			print("equipped slot1")
+			equipped = true
+		else: 
+			print("unequipped slot1")
+			equipped = false
+
+	if event.is_action_pressed("click") and click != true and equipped:
 		click = true
 
 func anim_ended():

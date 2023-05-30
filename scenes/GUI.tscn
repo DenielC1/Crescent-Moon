@@ -76,6 +76,32 @@ offset_top = -5.0
 offset_right = -69.0
 offset_bottom = 35.0
 
+[node name="empty_icon" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_n616d")
+texture_pressed = ExtResource("2_n616d")
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer/HBoxContainer2/HBoxContainer/empty_icon"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = -5.0
+offset_right = -69.0
+offset_bottom = 35.0
+
+[node name="empty_icon2" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_n616d")
+texture_pressed = ExtResource("2_n616d")
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer/HBoxContainer2/HBoxContainer/empty_icon2"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = -5.0
+offset_right = -69.0
+offset_bottom = 35.0
+
 [node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
