@@ -46,7 +46,7 @@ func pick_new_state():
 			State_Machine.travel("idle")
 
 func _input(event):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and click != true:
 		click = true
 
 func anim_ended():

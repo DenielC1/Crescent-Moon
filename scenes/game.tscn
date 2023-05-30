@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctc3x5vnxldps"]
+[gd_scene load_steps=17 format=3 uid="uid://c8bul38oq02q"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Texture2D" uid="uid://cq478eg010urc" path="res://objects/Basic Grass Biom things 1.png" id="2_5ymae"]
 [ext_resource type="Texture2D" uid="uid://2vesdv1o07cj" path="res://tileset/Water.png" id="2_dnibq"]
-[ext_resource type="PackedScene" uid="uid://dsfv7ph0bmh41" path="res://scenes/player.tscn" id="3_ta1jp"]
-[ext_resource type="PackedScene" uid="uid://dngqdj5ukqhni" path="res://scenes/cow.tscn" id="4_qiuef"]
+[ext_resource type="PackedScene" uid="uid://cvxyo20aomelv" path="res://scenes/player.tscn" id="3_ta1jp"]
+[ext_resource type="PackedScene" uid="uid://bvodoiexvp2co" path="res://entity/cow/cow.tscn" id="4_qiuef"]
 [ext_resource type="Texture2D" uid="uid://fiftx8dx0guj" path="res://objects/Wood Bridge.png" id="4_s2rk8"]
 [ext_resource type="PackedScene" uid="uid://b4nosuxd5i46c" path="res://scenes/GUI.tscn" id="7_myxnv"]
+[ext_resource type="PackedScene" uid="uid://yskfgw68pou6" path="res://entity/big_tree/big_tree.tscn" id="8_5itha"]
 [ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
-[ext_resource type="Script" path="res://scenes/AudioStreamPlayer2D.gd" id="9_t14m2"]
+[ext_resource type="PackedScene" uid="uid://jm3m4vvkiynk" path="res://entity/tree/tree.tscn" id="10_ctqjt"]
+[ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -465,7 +467,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(851973, 1, 0, 917509, 1, 1, 1114119, 1, 0, 1179655, 1, 1, 786442, 1, 0, 851978, 1, 1, 917526, 1, 0, 983062, 1, 1, 1376283, 1, 0, 1441819, 1, 1, 1572876, 1, 0, 1638412, 1, 1, 1769496, 1, 0, 1835032, 1, 1, 458777, 1, 0, 524313, 1, 1, 1900576, 1, 0, 1966112, 1, 1, 2031630, 3, 0, 2097166, 3, 1, 2162702, 3, 1, 2228238, 3, 1, 2293774, 3, 1, 2359310, 3, 2)
+layer_2/tile_data = PackedInt32Array(2031630, 3, 0, 2097166, 3, 1, 2162702, 3, 1, 2228238, 3, 1, 2293774, 3, 1, 2359310, 3, 2)
 
 [node name="player" parent="TileMap" instance=ExtResource("3_ta1jp")]
 position = Vector2(356, 288)
@@ -479,6 +481,52 @@ position = Vector2(264, 286)
 [node name="cow2" parent="TileMap" instance=ExtResource("4_qiuef")]
 position = Vector2(302, 341)
 
+[node name="Trees" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
+position = Vector2(-235, -112)
+
+[node name="Tree" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(515, 284)
+
+[node name="Tree7" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(475, 394)
+
+[node name="Tree8" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(757, 589)
+
+[node name="Tree2" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(689, 482)
+
+[node name="Tree3" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(605, 342)
+
+[node name="Tree4" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(515, 561)
+
+[node name="Tree5" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(379, 502)
+
+[node name="Tree6" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(371, 342)
+
+[node name="Tree9" parent="TileMap/Trees" instance=ExtResource("10_ctqjt")]
+position = Vector2(575, 495)
+
+[node name="Big_Trees" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
+
+[node name="Big_Tree" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+position = Vector2(217, 352)
+
+[node name="Big_Tree2" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+position = Vector2(420, 302)
+
+[node name="Big_Tree3" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+position = Vector2(393, 449)
+
+[node name="Big_Tree4" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+position = Vector2(293, 228)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(591, 400)
 
@@ -487,6 +535,6 @@ position = Vector2(591, 400)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_v5ge6")
 autoplay = true
-script = ExtResource("9_t14m2")
+script = ExtResource("11_istap")
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

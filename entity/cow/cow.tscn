@@ -1,12 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dngqdj5ukqhni"]
+[gd_scene load_steps=16 format=3 uid="uid://bvodoiexvp2co"]
 
 [ext_resource type="Script" path="res://scripts/cow.gd" id="1_kw7or"]
-[ext_resource type="Texture2D" uid="uid://btwbdvfoime66" path="res://entity/cow.png" id="2_2ig0u"]
-[ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://scenes/hurtbox.tscn" id="3_t5vwy"]
-[ext_resource type="PackedScene" uid="uid://dyg0jbsryofkx" path="res://scenes/detection_area.tscn" id="4_k0v6w"]
+[ext_resource type="Texture2D" uid="uid://btwbdvfoime66" path="res://entity/cow/cow.png" id="2_s1rmo"]
+[ext_resource type="PackedScene" uid="uid://dyg0jbsryofkx" path="res://components/detection_area.tscn" id="4_k0v6w"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywfut"]
-size = Vector2(4, 17)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psrwj"]
+size = Vector2(5.00001, 21)
 
 [sub_resource type="Animation" id="Animation_0dt42"]
 length = 0.001
@@ -84,9 +83,6 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_re6n7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_psrwj"]
-size = Vector2(18, 7)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_7scgb"]
 radius = 18.0
 
@@ -96,14 +92,14 @@ script = ExtResource("1_kw7or")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(-1.5, 11)
+position = Vector2(-1.50001, 10.5)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_ywfut")
+shape = SubResource("RectangleShape2D_psrwj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 12)
-texture = ExtResource("2_2ig0u")
+texture = ExtResource("2_s1rmo")
 offset = Vector2(0, -13)
 hframes = 3
 vframes = 2
@@ -120,14 +116,6 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_re6n7")
 
 [node name="WanderTimer" type="Timer" parent="."]
 
-[node name="Hurtbox" parent="." instance=ExtResource("3_t5vwy")]
-visible = false
-position = Vector2(-38, -4)
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(36, 14.5)
-shape = SubResource("RectangleShape2D_psrwj")
-
 [node name="detection_area" parent="." instance=ExtResource("4_k0v6w")]
 visible = false
 position = Vector2(-11, -3)
@@ -142,5 +130,4 @@ shape = SubResource("CircleShape2D_7scgb")
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 
-[editable path="Hurtbox"]
 [editable path="detection_area"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://jm3m4vvkiynk"]
+
+[ext_resource type="Script" path="res://entity/tree/Tree.gd" id="1_w47wl"]
+[ext_resource type="Texture2D" uid="uid://cdogj0igijqne" path="res://objects/trees/tree.png" id="2_88ewj"]
+[ext_resource type="PackedScene" path="res://components/health/health.tscn" id="3_jv7sf"]
+[ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox.tscn" id="4_1f5vh"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="5_4r7tb"]
+[ext_resource type="Texture2D" uid="uid://bh0ai7jxupi7h" path="res://objects/trees/trunk.png" id="6_g52wn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwa4b"]
+size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oryya"]
+size = Vector2(8, 9)
+
+[node name="Tree" type="StaticBody2D"]
+script = ExtResource("1_w47wl")
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("2_88ewj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nwa4b")
+
+[node name="Health" parent="." instance=ExtResource("3_jv7sf")]
+position = Vector2(-20, -10)
+health = 3
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("Health") instance=ExtResource("4_1f5vh")]
+position = Vector2(-22, -20)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("5_4r7tb")
+Health = NodePath("../Health")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(22, 12)
+shape = SubResource("RectangleShape2D_oryya")
+
+[node name="Trunk" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -4)
+texture = ExtResource("6_g52wn")
+
+[connection signal="no_health" from="Health" to="." method="_on_health_no_health"]
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
+
+[editable path="Hurtbox"]

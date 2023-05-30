@@ -57,6 +57,7 @@ texture_pressed = ExtResource("2_n616d")
 stretch_mode = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer/HBoxContainer2/HBoxContainer/hoe_icon"]
+layout_mode = 0
 offset_left = -33.0
 offset_top = -5.0
 offset_right = -33.0
@@ -69,6 +70,7 @@ texture_pressed = ExtResource("2_n616d")
 stretch_mode = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer/HBoxContainer2/HBoxContainer/watering_can_icon"]
+layout_mode = 0
 offset_left = -69.0
 offset_top = -5.0
 offset_right = -69.0
