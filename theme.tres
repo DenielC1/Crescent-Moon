@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ccaj2sh0ljln2"]
+
+[ext_resource type="FontFile" uid="uid://cejttvu5l02ln" path="res://font/MatchupPro.ttf" id="1_vd7qx"]
+
+[resource]
+default_font = ExtResource("1_vd7qx")

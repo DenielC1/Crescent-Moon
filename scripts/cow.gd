@@ -3,12 +3,14 @@ extends CharacterBody2D
 @onready var Animation_Tree = $AnimationTree
 @onready var State_Machine = Animation_Tree.get("parameters/playback")
 @onready var Wander_Timer = $WanderTimer
+@onready var Detection_Timer = $DetectionTimer
 @onready var Sprite = $Sprite2D
 
 const SPEED = 25
 
 var rng = RandomNumberGenerator.new()
 var wander_time : int
+var detection_time : int
 
 var direction : Vector2
 var old_direction : Vector2
@@ -66,8 +68,14 @@ func _on_detection_area_body_entered(_body):
 	entity_collided = true
 	old_direction.x = direction.x
 	direction = Vector2.ZERO
-
+	detection_time = rng.randi_range(3,3)
+	Detection_Timer.set_wait_time(detection_time)
+	Detection_Timer.start()
+	
 func _on_detection_area_body_exited(_body):
 	entity_collided = false
 	wander_time = rng.randi_range(1, 3)
 	Wander_Timer.set_wait_time(wander_time)
+	
+func _on_detection_timer_timeout():
+	entity_collided = false

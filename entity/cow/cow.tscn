@@ -126,8 +126,11 @@ collision_mask = 2
 position = Vector2(12, 7)
 shape = SubResource("CircleShape2D_7scgb")
 
+[node name="DetectionTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="DetectionTimer" to="." method="_on_detection_timer_timeout"]
 
 [editable path="detection_area"]

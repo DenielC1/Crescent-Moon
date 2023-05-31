@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck83hfgpc2fha"]
+
+[ext_resource type="Script" path="res://inventory/slot.gd" id="1_3ild8"]
+[ext_resource type="Texture2D" uid="uid://cp6v840ymmlkw" path="res://item/Slot.png" id="1_ckynb"]
+[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://theme.tres" id="1_ovqht"]
+[ext_resource type="FontFile" uid="uid://cejttvu5l02ln" path="res://font/MatchupPro.ttf" id="2_vmo8c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5uie"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pjrh"]
+line_spacing = 0.0
+font = ExtResource("2_vmo8c")
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+theme = ExtResource("1_ovqht")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y5uie")
+script = ExtResource("1_3ild8")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_ckynb")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+expand_mode = 1
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_ovqht")
+theme_override_fonts/font = ExtResource("2_vmo8c")
+text = "99x
+"
+label_settings = SubResource("LabelSettings_5pjrh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

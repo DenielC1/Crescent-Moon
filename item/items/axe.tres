@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://clo4pfko2u8xu"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_57pm5"]
+[ext_resource type="Texture2D" uid="uid://bu10pxf3kcpnm" path="res://item/Items.png" id="2_mkexc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8u6b"]
+atlas = ExtResource("2_mkexc")
+region = Rect2(0, 32, 32, 32)
+
+[resource]
+script = ExtResource("1_57pm5")
+name = "Axe"
+description = "A tool to mine trees."
+stackable = false
+texture = SubResource("AtlasTexture_l8u6b")

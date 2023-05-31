@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b6dtcitr2ic5f"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_pjyv8"]
+[ext_resource type="Texture2D" uid="uid://bu10pxf3kcpnm" path="res://item/Items.png" id="2_of5vi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmstr"]
+atlas = ExtResource("2_of5vi")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_pjyv8")
+name = "Hoe"
+description = "A tool to tilt the soil."
+stackable = false
+texture = SubResource("AtlasTexture_qmstr")

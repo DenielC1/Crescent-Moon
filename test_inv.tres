@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=14 format=3 uid="uid://bkuwr8j81rfri"]
+
+[ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_rqmjv"]
+[ext_resource type="Resource" uid="uid://clo4pfko2u8xu" path="res://item/items/axe.tres" id="2_prdtv"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_ooali"]
+[ext_resource type="Resource" uid="uid://b6dtcitr2ic5f" path="res://item/items/hoe.tres" id="4_8ejj2"]
+[ext_resource type="Resource" uid="uid://dyoeb3yvbeul1" path="res://item/items/watering_can.tres" id="5_7vs2q"]
+[ext_resource type="Resource" uid="uid://cxgtll8kh5l0o" path="res://item/items/pickaxe.tres" id="6_7bvoa"]
+[ext_resource type="Resource" uid="uid://b48dvxgwogmeu" path="res://item/items/fishing_rod.tres" id="7_kqttb"]
+
+[sub_resource type="Resource" id="Resource_qnlup"]
+script = ExtResource("3_ooali")
+item_data = ExtResource("6_7bvoa")
+quantity = 94
+
+[sub_resource type="Resource" id="Resource_buw26"]
+script = ExtResource("3_ooali")
+item_data = ExtResource("2_prdtv")
+quantity = 3
+
+[sub_resource type="Resource" id="Resource_e8rgv"]
+script = ExtResource("3_ooali")
+item_data = ExtResource("5_7vs2q")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_0hakw"]
+script = ExtResource("3_ooali")
+item_data = ExtResource("6_7bvoa")
+quantity = 7
+
+[sub_resource type="Resource" id="Resource_ywjn6"]
+script = ExtResource("3_ooali")
+item_data = ExtResource("4_8ejj2")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_6ra34"]
+script = ExtResource("3_ooali")
+item_data = ExtResource("7_kqttb")
+quantity = 1
+
+[resource]
+script = ExtResource("1_rqmjv")
+slot_datas = Array[ExtResource("3_ooali")]([SubResource("Resource_qnlup"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_buw26"), SubResource("Resource_e8rgv"), SubResource("Resource_0hakw"), SubResource("Resource_ywjn6"), SubResource("Resource_6ra34")])

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var inventory_data: InventoryData
+
 const SPEED = 75
 var starting_pos = Vector2(0,1)
 
@@ -8,6 +10,9 @@ var starting_pos = Vector2(0,1)
 
 var click : bool = false
 var equipped : bool = false
+var tabbed : bool = false
+
+signal toggle_inventory
 
 func _ready():
 	Animation_Tree.set_active(true)
@@ -48,16 +53,14 @@ func pick_new_state():
 
 #use dictionary for slots?
 func _input(event):
-	if event.is_action_pressed("slot1"):
-		if !equipped: 
-			print("equipped slot1")
-			equipped = true
-		else: 
-			print("unequipped slot1")
-			equipped = false
-
-	if event.is_action_pressed("click") and click != true and equipped:
-		click = true
-
+	if event.is_action_pressed("inventory"):
+		toggle_inventory.emit()
+		tabbed = not tabbed
+	if !tabbed:
+		if event.is_action_pressed("slot1"):
+			equipped = not equipped
+		if event.is_action_pressed("click") and click != true and equipped:
+			click = true
+			
 func anim_ended():
 	click = false
