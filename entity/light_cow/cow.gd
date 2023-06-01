@@ -6,8 +6,6 @@ extends CharacterBody2D
 @onready var Detection_Timer = $DetectionTimer
 @onready var Sprite = $Sprite2D
 
-signal sleep 
-
 const SPEED = 25
 
 var rng = RandomNumberGenerator.new()
@@ -21,7 +19,8 @@ var pos_y : float
 
 var sleeping = false
 var getting_up = false
-var getting_down
+var getting_down = false
+
 var tileset_collided = false
 var entity_collided = false
 
@@ -37,9 +36,7 @@ func random_direction():
 	old_direction = direction
 	
 func _ready():
-	
 	add_to_group("cows")
-	
 	Animation_Tree.set_active(true)
 	wander_time = rng.randi_range(1, 8)
 	Wander_Timer.set_wait_time(wander_time)
@@ -59,10 +56,12 @@ func _physics_process(_delta):
 				tileset_collided = false
 		Sprite.flip_h = old_direction.x < 0
 		velocity = direction.normalized() * SPEED
-	pick_new_state()
-	move_and_slide()
-	
-
+		pick_new_state()
+		move_and_slide()
+	else:
+		velocity = Vector2.ZERO
+		pick_new_state()
+		
 func pick_new_state():
 	if velocity != Vector2.ZERO:
 		State_Machine.travel("walk")
@@ -70,7 +69,6 @@ func pick_new_state():
 		if getting_down:
 			State_Machine.travel("get_down")
 		elif getting_up:
-			print("a")
 			State_Machine.travel("get_up")
 		elif sleeping:
 			State_Machine.travel("sleep")
@@ -107,15 +105,18 @@ func _on_test_area_entered(_area):
 	wander_time = rng.randi_range(1, 8)
 	Wander_Timer.set_wait_time(wander_time)
 
-func sleep_time():
+func is_sleeping():
+	sleeping = true
+	
+func go_sleep():
 	if not sleeping:
 		getting_down = true
 		sleeping = true
-	velocity = Vector2.ZERO
 	
 func wake_up():
-	sleeping = false
-	getting_up = true
+	if sleeping:
+		sleeping = false
+		getting_up = true
 
 func anim_ended():
 	if getting_up:

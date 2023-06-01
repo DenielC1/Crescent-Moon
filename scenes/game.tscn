@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_ofrt2"]
 [ext_resource type="Texture2D" uid="uid://cq478eg010urc" path="res://objects/Basic Grass Biom things 1.png" id="2_5ymae"]
 [ext_resource type="PackedScene" uid="uid://cvxyo20aomelv" path="res://scenes/player.tscn" id="3_ta1jp"]
-[ext_resource type="PackedScene" uid="uid://bvodoiexvp2co" path="res://entity/cow/light_cow.tscn" id="4_qiuef"]
 [ext_resource type="Texture2D" uid="uid://fiftx8dx0guj" path="res://objects/Wood Bridge.png" id="4_s2rk8"]
 [ext_resource type="Texture2D" uid="uid://dgl48ii3bfw53" path="res://tileset/Ground tiles/new tiles/Grass tiles with animates water-export.png" id="4_x5cd0"]
 [ext_resource type="Texture2D" uid="uid://3sjjt65qo8rn" path="res://tileset/water frames/Water.png" id="5_ilcpp"]
@@ -12,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://btcxi46wkip55" path="res://scenes/GUI.tscn" id="7_myxnv"]
 [ext_resource type="PackedScene" uid="uid://dsrblcgj33ina" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
 [ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
+[ext_resource type="PackedScene" uid="uid://dmqoake8gd86m" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
 [ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
 [ext_resource type="Script" path="res://scenes/DayNightCycle.gd" id="12_glpoe"]
 [ext_resource type="PackedScene" uid="uid://ck83hfgpc2fha" path="res://inventory/slot.tscn" id="12_rg03j"]
@@ -1255,47 +1255,50 @@ position = Vector2(324.081, 282.907)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="TileMap/player"]
 remote_path = NodePath("../../../Camera2D")
 
-[node name="cow" parent="TileMap" instance=ExtResource("4_qiuef")]
-position = Vector2(356.092, 234.861)
-
-[node name="cow2" parent="TileMap" instance=ExtResource("4_qiuef")]
-position = Vector2(194.104, 265.924)
-
-[node name="cow3" parent="TileMap" instance=ExtResource("4_qiuef")]
-position = Vector2(292.13, 332.886)
-
-[node name="Big_Trees" type="Node2D" parent="TileMap"]
+[node name="apple_trees" type="Node2D" parent="TileMap"]
 y_sort_enabled = true
 
-[node name="Big_Tree" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(117, 313)
 
-[node name="Big_Tree5" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree5" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(212, 404)
 
-[node name="Big_Tree6" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree6" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(155, 227)
 
-[node name="Big_Tree7" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree7" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(158, 458)
 
-[node name="Big_Tree8" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree8" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(479, 393)
 
-[node name="Big_Tree9" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree9" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(391, 159)
 
-[node name="Big_Tree10" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree10" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(391, 159)
 
-[node name="Big_Tree2" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree2" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(420, 302)
 
-[node name="Big_Tree3" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree3" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(393, 449)
 
-[node name="Big_Tree4" parent="TileMap/Big_Trees" instance=ExtResource("8_5itha")]
+[node name="Big_Tree4" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(293, 228)
+
+[node name="light_cow" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
+position = Vector2(199.131, 333.922)
+rotation = -0.00039148
+
+[node name="light_cow2" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
+position = Vector2(220.11, 280.914)
+rotation = -0.00039148
+
+[node name="light_cow3" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
+position = Vector2(299.13, 330.883)
+rotation = -0.00039148
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(828.97, 529.034)

@@ -18,7 +18,6 @@ config/features=PackedStringArray("4.0", "Mobile")
 
 window/size/viewport_width=400
 window/size/viewport_height=224
-window/size/initial_position_type=2
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/stretch/mode="canvas_items"
