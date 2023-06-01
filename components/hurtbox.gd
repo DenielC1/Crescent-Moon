@@ -2,7 +2,9 @@ extends Area2D
 
 @export var Health : Health
 
+signal hit 
+
 func _on_area_entered(area):
-	print("hit")
+	hit.emit()
 	Health.damaged(area.damage)
 

@@ -1,0 +1,144 @@
+[gd_scene load_steps=20 format=3 uid="uid://dsrblcgj33ina"]
+
+[ext_resource type="Script" path="res://entity/apple_tree/apple_tree.gd" id="1_nxnro"]
+[ext_resource type="PackedScene" path="res://components/health/health.tscn" id="3_43hpj"]
+[ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox.tscn" id="4_57txs"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="5_hlayt"]
+[ext_resource type="Texture2D" uid="uid://veut501ak144" path="res://objects/trees/trunk2.png" id="6_3g1te"]
+[ext_resource type="Texture2D" uid="uid://c0x13v51ggxxu" path="res://entity/apple_tree/tree apple sprites.png" id="6_7d3sl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v74gg"]
+size = Vector2(14, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqgbq"]
+size = Vector2(16, 8)
+
+[sub_resource type="Animation" id="Animation_18avm"]
+resource_name = "hit"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_t67w1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_tvwnv"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aw8qp"]
+_data = {
+"RESET": SubResource("Animation_t67w1"),
+"hit": SubResource("Animation_18avm"),
+"idle": SubResource("Animation_tvwnv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4r5b"]
+animation = &"hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pu0iu"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3cy4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_akt88"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4xa48"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mp5vb"]
+states/Start/position = Vector2(149, 100)
+states/hit/node = SubResource("AnimationNodeAnimation_r4r5b")
+states/hit/position = Vector2(373, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_pu0iu")
+states/idle/position = Vector2(257, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_c3cy4"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_akt88"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_4xa48")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_oc3xb"]
+
+[node name="apple_tree" type="StaticBody2D"]
+script = ExtResource("1_nxnro")
+metadata/_edit_horizontal_guides_ = [-42.0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v74gg")
+
+[node name="Health" parent="." instance=ExtResource("3_43hpj")]
+position = Vector2(-25, -10)
+health = 5
+
+[node name="MainBodyHurtbox" parent="." node_paths=PackedStringArray("Health") instance=ExtResource("4_57txs")]
+position = Vector2(-21, 3)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("5_hlayt")
+Health = NodePath("../Health")
+
+[node name="CollisionShape2D" parent="MainBodyHurtbox" index="0"]
+position = Vector2(21, -11)
+shape = SubResource("RectangleShape2D_lqgbq")
+
+[node name="TreeAppleSprites" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = ExtResource("6_7d3sl")
+hframes = 12
+vframes = 5
+frame = 24
+
+[node name="apple_trunk" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -4)
+texture = ExtResource("6_3g1te")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TreeAppleSprites")
+libraries = {
+"": SubResource("AnimationLibrary_aw8qp")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_mp5vb")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_oc3xb")
+
+[connection signal="no_health" from="Health" to="." method="_on_health_no_health"]
+[connection signal="area_entered" from="MainBodyHurtbox" to="MainBodyHurtbox" method="_on_area_entered"]
+[connection signal="hit" from="MainBodyHurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="MainBodyHurtbox"]
