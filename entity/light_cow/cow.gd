@@ -69,6 +69,9 @@ func pick_new_state():
 	else:
 		if getting_down:
 			State_Machine.travel("get_down")
+		elif getting_up:
+			print("a")
+			State_Machine.travel("get_up")
 		elif sleeping:
 			State_Machine.travel("sleep")
 		else:
@@ -116,7 +119,6 @@ func wake_up():
 
 func anim_ended():
 	if getting_up:
-		print("A")
 		getting_up = false
 	if getting_down:
 		getting_down = false
