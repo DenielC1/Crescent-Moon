@@ -56,11 +56,16 @@ func _input(event):
 	if event.is_action_pressed("inventory"):
 		toggle_inventory.emit()
 		tabbed = not tabbed
+		if tabbed:
+			equipped = false
 	if !tabbed:
 		if event.is_action_pressed("slot1"):
+			
 			equipped = not equipped
 		if event.is_action_pressed("click") and click != true and equipped:
 			click = true
 			
 func anim_ended():
 	click = false
+
+

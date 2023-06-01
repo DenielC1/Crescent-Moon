@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@onready var quantity_label = $QuantityLabel
+@onready var quantity_label = $Background/QuantityLabel
 @onready var icon =  $Icon
 
 signal slot_clicked(index: int, button: int)
@@ -8,11 +8,11 @@ signal slot_clicked(index: int, button: int)
 func set_slot_data(slot_data: SlotData):
 	var item_data = slot_data.item_data
 	icon.texture = item_data.texture
-	tooltip_text = "%s\n%s" % [item_data.name, item_data.description]
+	#tooltip_text = "%s\n%s" % [item_data.name, item_data.description]
 	
 	
 	if slot_data.quantity > 1 and item_data.stackable:
-		quantity_label.text = "%sx" % slot_data.quantity
+		quantity_label.text = "%s" % slot_data.quantity
 		quantity_label.show()
 	else:
 		quantity_label.hide()

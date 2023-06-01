@@ -1,7 +1,7 @@
 extends Control
 
-@onready var player_inventory = $PlayerInventory
-@onready var item_grid = $PlayerInventory/ItemGrid
+@onready var player_inventory = $HBoxContainer/VBoxContainer/PlayerInventory
+@onready var item_grid = $HBoxContainer/VBoxContainer/PlayerInventory/ItemGrid
 @onready var grabbed_slot = $GrabbedSlot
 var grabbed_slot_data: SlotData
 

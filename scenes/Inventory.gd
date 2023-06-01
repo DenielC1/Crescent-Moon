@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends PanelContainer
 
 const Slot = preload("res://inventory/slot.tscn")
 

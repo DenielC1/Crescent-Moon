@@ -39,6 +39,8 @@ func _ready():
 	random_direction()
 	
 func _physics_process(_delta):
+	if direction.x == 0 and direction.y != 0:
+		direction.y = 0
 	if !entity_collided:
 		if is_on_wall() and tileset_collided != true:
 			tileset_collided = true
@@ -46,11 +48,11 @@ func _physics_process(_delta):
 			direction = Vector2.ZERO
 		elif not is_on_wall():
 			tileset_collided = false
-		if tileset_collided == false:
-			Sprite.flip_h = old_direction.x < 0
+	Sprite.flip_h = old_direction.x < 0
 	velocity = direction.normalized() * SPEED
 	pick_new_state()
 	move_and_slide()
+	
 
 func pick_new_state():
 	if velocity != Vector2.ZERO:
@@ -79,3 +81,11 @@ func _on_detection_area_body_exited(_body):
 	
 func _on_detection_timer_timeout():
 	entity_collided = false
+
+func _on_test_area_entered(_area):
+	direction.x *= -1
+	direction.y *= -1
+	old_direction *= -1
+	Sprite.flip_h = old_direction.x < 0
+	wander_time = rng.randi_range(1, 8)
+	Wander_Timer.set_wait_time(wander_time)
