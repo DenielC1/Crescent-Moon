@@ -4,6 +4,7 @@ class_name InventoryData
 
 signal inventory_interact(inventory_data: InventoryData, index: int, button: int)
 signal update_inventory(inventory_data: InventoryData)
+signal inventory_key_interact(inventory_data: InventoryData, index: int)
 
 @export var slot_datas: Array[SlotData]
 
@@ -41,7 +42,12 @@ func drop_single_slot_data(grabbed_slot_data, index):
 		return grabbed_slot_data
 	else:
 		return null
-		
+func update_key(index):
+	pass
 func on_slot_clicked(index: int, button: int):
 	inventory_interact.emit(self, index, button)
 	
+func on_hotbar_key_clicked(index: int):
+	inventory_key_interact.emit(self, index)
+
+

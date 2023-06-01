@@ -1,8 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmqoake8gd86m"]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://entity/light_cow/cow.gd" id="1_rm0s4"]
 [ext_resource type="Texture2D" uid="uid://c10e8w0f1ikri" path="res://entity/light_cow/Light cow animations.png" id="2_3deei"]
-[ext_resource type="PackedScene" uid="uid://dyg0jbsryofkx" path="res://components/detection_area.tscn" id="3_ajo2j"]
+[ext_resource type="PackedScene" uid="uid://dyg0jbsryofkx" path="res://components/detection_area/detection_area.tscn" id="3_ajo2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psrwj"]
 size = Vector2(4.00001, 21)
