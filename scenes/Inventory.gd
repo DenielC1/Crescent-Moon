@@ -17,7 +17,6 @@ func populate_item_grid(inventory_data : InventoryData):
 		item_grid.add_child(slot)
 		
 		slot.slot_clicked.connect(inventory_data.on_slot_clicked)
-		slot.hotbar_key_clicked.connect(inventory_data.on_hotbar_key_clicked)
 		
 		if slot_data:
 			slot.set_slot_data(slot_data)

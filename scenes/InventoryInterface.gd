@@ -13,7 +13,6 @@ func _physics_process(_delta):
 		
 func set_player_inventory_data(inventory_data : InventoryData):
 		inventory_data.inventory_interact.connect(on_inventory_interact)
-		inventory_data.inventory_key_interact.connect(on_inventory_key_interact)
 		player_inventory.set_inventory_data(inventory_data)
 	
 		
@@ -28,9 +27,6 @@ func on_inventory_interact(inventory_data: InventoryData, index: int, button: in
 		[_, MOUSE_BUTTON_RIGHT]:
 			grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
 	update_grabbed_slot()
-	
-func on_inventory_key_interact(inventory_data: InventoryData, index: int):
-	inventory_data.update_key(index)
 	
 func update_grabbed_slot():
 	if grabbed_slot_data:

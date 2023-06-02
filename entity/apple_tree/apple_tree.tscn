@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=20 format=3 uid="uid://dsrblcgj33ina"]
 
 [ext_resource type="Script" path="res://entity/apple_tree/apple_tree.gd" id="1_nxnro"]
 [ext_resource type="PackedScene" path="res://components/health/health.tscn" id="3_43hpj"]
-[ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox/hurtbox.tscn" id="4_57txs"]
-[ext_resource type="Script" path="res://components/hurtbox/hurtbox.gd" id="5_hlayt"]
-[ext_resource type="Texture2D" uid="uid://veut501ak144" path="res://entity/apple_tree/trunk.png" id="6_3g1te"]
+[ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox.tscn" id="4_57txs"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="5_hlayt"]
+[ext_resource type="Texture2D" uid="uid://veut501ak144" path="res://objects/trees/trunk2.png" id="6_3g1te"]
 [ext_resource type="Texture2D" uid="uid://c0x13v51ggxxu" path="res://entity/apple_tree/tree apple sprites.png" id="6_7d3sl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v74gg"]

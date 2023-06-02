@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://veut501ak144"
-path="res://.godot/imported/trunk.png-d82e3196d5171c4a44c9b997e3203b79.ctex"
+uid="uid://bdndpdwhqd2gp"
+path="res://.godot/imported/Basic tools and meterials.png-3f11a57a073a687928c8c630f819d11b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entity/apple_tree/trunk.png"
-dest_files=["res://.godot/imported/trunk.png-d82e3196d5171c4a44c9b997e3203b79.ctex"]
+source_file="res://objects/Basic tools and meterials.png"
+dest_files=["res://.godot/imported/Basic tools and meterials.png-3f11a57a073a687928c8c630f819d11b.ctex"]
 
 [params]
 

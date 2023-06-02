@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmgsxxwkqm3t7"]
+[gd_scene load_steps=7 format=3 uid="uid://ck83hfgpc2fha"]
 
 [ext_resource type="Script" path="res://inventory/slot.gd" id="1_3ild8"]
-[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="1_hlwey"]
+[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://theme.tres" id="1_ovqht"]
 [ext_resource type="FontFile" uid="uid://d17xnmmgtioxm" path="res://font/FutilePro.ttf" id="3_t8krw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5uie"]
@@ -16,7 +16,7 @@ region = Rect2(0, 0, 20, 21)
 [node name="PanelContainer" type="PanelContainer"]
 offset_right = 20.0
 offset_bottom = 21.0
-theme = ExtResource("1_hlwey")
+theme = ExtResource("1_ovqht")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_y5uie")
 script = ExtResource("1_3ild8")
 
@@ -39,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme = ExtResource("1_hlwey")
+theme = ExtResource("1_ovqht")
 theme_override_fonts/font = ExtResource("3_t8krw")
 theme_override_font_sizes/font_size = 5
 horizontal_alignment = 1
