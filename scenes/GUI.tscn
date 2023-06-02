@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://btcxi46wkip55"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scenes/InventoryInterface.gd" id="1_fo0u0"]
 [ext_resource type="Script" path="res://scenes/Inventory.gd" id="1_wsnw5"]
-[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://theme.tres" id="2_a34tv"]
+[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="2_a34tv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c8h1e"]
 

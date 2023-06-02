@@ -1,20 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://cscot3g6iliij"]
+[gd_scene load_steps=25 format=3 uid="uid://dyacvo4eaumql"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
-[ext_resource type="Script" path="res://scenes/game.gd" id="1_ofrt2"]
-[ext_resource type="Texture2D" uid="uid://cq478eg010urc" path="res://objects/Basic Grass Biom things 1.png" id="2_5ymae"]
-[ext_resource type="PackedScene" uid="uid://cvxyo20aomelv" path="res://scenes/player.tscn" id="3_ta1jp"]
-[ext_resource type="Texture2D" uid="uid://fiftx8dx0guj" path="res://objects/Wood Bridge.png" id="4_s2rk8"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_ta1jp"]
 [ext_resource type="Texture2D" uid="uid://dgl48ii3bfw53" path="res://tileset/Ground tiles/new tiles/Grass tiles with animates water-export.png" id="4_x5cd0"]
 [ext_resource type="Texture2D" uid="uid://3sjjt65qo8rn" path="res://tileset/water frames/Water.png" id="5_ilcpp"]
 [ext_resource type="Texture2D" uid="uid://6jvqhh4v62mg" path="res://tileset/Ground tiles/new tiles/Grass hill tiles v.2.png" id="6_bc5ae"]
-[ext_resource type="PackedScene" uid="uid://btcxi46wkip55" path="res://scenes/GUI.tscn" id="7_myxnv"]
-[ext_resource type="PackedScene" uid="uid://dsrblcgj33ina" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
+[ext_resource type="PackedScene" path="res://scenes/GUI.tscn" id="7_myxnv"]
+[ext_resource type="PackedScene" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
 [ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
-[ext_resource type="PackedScene" uid="uid://dmqoake8gd86m" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
+[ext_resource type="PackedScene" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
 [ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
-[ext_resource type="Script" path="res://scenes/DayNightCycle.gd" id="12_glpoe"]
-[ext_resource type="PackedScene" uid="uid://ck83hfgpc2fha" path="res://inventory/slot.tscn" id="12_rg03j"]
+[ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="13_aisdf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -279,8 +276,10 @@ texture = ExtResource("1_ijxfi")
 5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:6/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0vw5q"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2xqx"]
-texture = ExtResource("2_5ymae")
+texture = SubResource("CompressedTexture2D_0vw5q")
 0:0/0 = 0
 0:0/0/z_index = 1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -766,8 +765,10 @@ texture = ExtResource("4_x5cd0")
 4:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:7/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owjk1"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nwvou"]
-texture = ExtResource("4_s2rk8")
+texture = SubResource("CompressedTexture2D_owjk1")
 0:0/0 = 0
 0:0/0/z_index = -1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1223,7 +1224,7 @@ _data = {
 [node name="game" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-363, -45)
-script = ExtResource("1_ofrt2")
+script = ExtResource("1_jfmux")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -1306,26 +1307,18 @@ rotation = 0.00039148
 
 [node name="GUI" parent="." instance=ExtResource("7_myxnv")]
 
-[node name="GrabbedSlot" parent="GUI/InventoryInterface" index="1" instance=ExtResource("12_rg03j")]
-visible = false
-modulate = Color(1, 1, 1, 0.490196)
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 0
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="InventoryInterface" parent="GUI" index="0"]
+script = null
 
-[node name="Background" parent="GUI/InventoryInterface/GrabbedSlot" index="0"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
+[node name="PlayerInventory" parent="GUI/InventoryInterface/HBoxContainer/VBoxContainer" index="1"]
+script = null
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_v5ge6")
 script = ExtResource("11_istap")
 
 [node name="DayNightCycle" type="CanvasModulate" parent="." node_paths=PackedStringArray("time_anim")]
-script = ExtResource("12_glpoe")
+script = ExtResource("13_aisdf")
 time_anim = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1336,4 +1329,3 @@ libraries = {
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
 
 [editable path="GUI"]
-[editable path="GUI/InventoryInterface/GrabbedSlot"]
