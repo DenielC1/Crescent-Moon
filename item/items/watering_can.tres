@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dyoeb3yvbeul1"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dotfhcwal5gsr"]
 
 [ext_resource type="Script" path="res://item/item_data.gd" id="1_smiqb"]
-[ext_resource type="Texture2D" uid="uid://bxr4v0u3wxrhk" path="res://item/Items.png" id="2_te7ht"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/All items.png" id="2_olysf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tth1"]
-atlas = ExtResource("2_te7ht")
-region = Rect2(40, 0, 20, 21)
+[sub_resource type="AtlasTexture" id="AtlasTexture_74733"]
+atlas = ExtResource("2_olysf")
+region = Rect2(32, 16, 16, 16)
 
 [resource]
 script = ExtResource("1_smiqb")
 name = "Watering Can"
-description = "A tool used to water crops."
+description = "A tool used to water the soil."
 stackable = false
-texture = SubResource("AtlasTexture_5tth1")
+texture = SubResource("AtlasTexture_74733")
+type = "Tool"

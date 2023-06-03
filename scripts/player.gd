@@ -8,16 +8,19 @@ var starting_pos = Vector2(0,1)
 @onready var Animation_Tree = $AnimationTree
 @onready var State_Machine = Animation_Tree.get("parameters/playback")
 
+var current_slot : String
+var prev_key : int = -1
+var key : int = -1
 var click : bool = false
 var equipped : bool = false
 var tabbed : bool = false
 
-signal toggle_inventory
-
 func _ready():
 	Animation_Tree.set_active(true)
-	Animation_Tree.set("parameters/idle/blend_position", starting_pos)
-	Animation_Tree.set("parameters/axe/blend_position", starting_pos)
+	Animation_Tree.set("parameters/Idle/blend_position", starting_pos)
+	Animation_Tree.set("parameters/Axe/blend_position", starting_pos)
+	Animation_Tree.set("parameters/Hoe/blend_position", starting_pos)
+	Animation_Tree.set("parameters/Watering Can/blend_position", starting_pos)
 
 func _physics_process(_delta):
 	
@@ -38,34 +41,38 @@ func _physics_process(_delta):
 
 func update_animations (input_direction):
 	if input_direction != Vector2.ZERO:
-		Animation_Tree.set("parameters/idle/blend_position", input_direction)
-		Animation_Tree.set("parameters/move/blend_position", input_direction)
-		Animation_Tree.set("parameters/axe/blend_position", input_direction)
-
+		Animation_Tree.set("parameters/Idle/blend_position", input_direction)
+		Animation_Tree.set("parameters/Move/blend_position", input_direction)
+		Animation_Tree.set("parameters/Axe/blend_position", input_direction)
+		Animation_Tree.set("parameters/Hoe/blend_position", input_direction)
+		Animation_Tree.set("parameters/Watering Can/blend_position", input_direction)
 func pick_new_state():
 	if click:
-		State_Machine.travel("axe")
+		State_Machine.travel(current_slot)
+
 	else:
 		if velocity != Vector2.ZERO:
-			State_Machine.travel("move")
+			State_Machine.travel("Move")
 		else:
-			State_Machine.travel("idle")
-
-#use dictionary for slots?
-func _input(event):
-	if event.is_action_pressed("inventory"):
-		toggle_inventory.emit()
-		tabbed = not tabbed
-		if tabbed:
-			equipped = false
-	if !tabbed:
-		if event.is_action_pressed("slot1"):
-			
-			equipped = not equipped
-		if event.is_action_pressed("click") and click != true and equipped:
-			click = true
+			State_Machine.travel("Idle")
 			
 func anim_ended():
 	click = false
 
-
+func _input(event):
+	if !click:
+		if event is InputEventKey and event.pressed:
+			key = event.keycode-49
+			if key >= 0 and key <= 4:
+				if event.is_action_pressed("slot%s" % (key+1) ):
+					if current_slot == inventory_data.slot_datas[key].item_data.name:
+						equipped = false
+						current_slot = ""
+					else:
+						equipped = true
+						current_slot = inventory_data.slot_datas[key].item_data.name
+					
+	if equipped:
+		if event.is_action_pressed("click"):
+			if inventory_data.slot_datas[0].item_data.type == "Tool":
+					click = true

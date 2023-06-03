@@ -1,17 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://dyacvo4eaumql"]
+[gd_scene load_steps=24 format=3 uid="uid://dyacvo4eaumql"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_ta1jp"]
+[ext_resource type="PackedScene" uid="uid://c7whbve6evllp" path="res://scenes/player.tscn" id="3_ta1jp"]
 [ext_resource type="Texture2D" uid="uid://dgl48ii3bfw53" path="res://tileset/Ground tiles/new tiles/Grass tiles with animates water-export.png" id="4_x5cd0"]
 [ext_resource type="Texture2D" uid="uid://3sjjt65qo8rn" path="res://tileset/water frames/Water.png" id="5_ilcpp"]
+[ext_resource type="Texture2D" uid="uid://bgbbvxen0lfep" path="res://tileset/Building parts/Wood Bridge v.2 .png" id="5_onvmw"]
 [ext_resource type="Texture2D" uid="uid://6jvqhh4v62mg" path="res://tileset/Ground tiles/new tiles/Grass hill tiles v.2.png" id="6_bc5ae"]
-[ext_resource type="PackedScene" path="res://scenes/GUI.tscn" id="7_myxnv"]
 [ext_resource type="PackedScene" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
 [ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
 [ext_resource type="PackedScene" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
 [ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
 [ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="13_aisdf"]
+[ext_resource type="Texture2D" uid="uid://41muxlbxldfy" path="res://inventory/inventory_background.png" id="14_4ktho"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -275,151 +276,6 @@ texture = ExtResource("1_ijxfi")
 5:6/0/terrain_set = 0
 5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:6/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0vw5q"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2xqx"]
-texture = SubResource("CompressedTexture2D_0vw5q")
-0:0/0 = 0
-0:0/0/z_index = 1
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0 = 0
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0 = 0
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0 = 0
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-4:0/0 = 0
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
-5:0/0 = 0
-5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:0/0/physics_layer_0/angular_velocity = 0.0
-6:0/0 = 0
-6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:0/0/physics_layer_0/angular_velocity = 0.0
-7:0/0 = 0
-7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-7:0/0/physics_layer_0/angular_velocity = 0.0
-8:0/0 = 0
-8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-8:0/0/physics_layer_0/angular_velocity = 0.0
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, -1.5, 5, 5, -5.5, 5, -5.5, -1.5)
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0 = 0
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0 = 0
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
-4:1/0 = 0
-4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:1/0/physics_layer_0/angular_velocity = 0.0
-5:1/0 = 0
-5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:1/0/physics_layer_0/angular_velocity = 0.0
-6:1/0 = 0
-6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:1/0/physics_layer_0/angular_velocity = 0.0
-7:1/0 = 0
-7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-7:1/0/physics_layer_0/angular_velocity = 0.0
-8:1/0 = 0
-8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-8:1/0/physics_layer_0/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/y_sort_origin = 1
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0 = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0 = 0
-2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0 = 0
-3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:2/0/physics_layer_0/angular_velocity = 0.0
-4:2/0 = 0
-4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:2/0/physics_layer_0/angular_velocity = 0.0
-5:2/0 = 0
-5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:2/0/physics_layer_0/angular_velocity = 0.0
-6:2/0 = 0
-6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:2/0/physics_layer_0/angular_velocity = 0.0
-7:2/0 = 0
-7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-7:2/0/physics_layer_0/angular_velocity = 0.0
-8:2/0 = 0
-8:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-8:2/0/physics_layer_0/angular_velocity = 0.0
-0:3/0 = 0
-0:3/0/y_sort_origin = 1
-0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:3/0/physics_layer_0/angular_velocity = 0.0
-1:3/0 = 0
-1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0 = 0
-2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0 = 0
-3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:3/0/physics_layer_0/angular_velocity = 0.0
-4:3/0 = 0
-4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:3/0/physics_layer_0/angular_velocity = 0.0
-5:3/0 = 0
-5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:3/0/physics_layer_0/angular_velocity = 0.0
-6:3/0 = 0
-6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:3/0/physics_layer_0/angular_velocity = 0.0
-7:3/0 = 0
-7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-7:3/0/physics_layer_0/angular_velocity = 0.0
-8:3/0 = 0
-8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-8:3/0/physics_layer_0/angular_velocity = 0.0
-0:4/0 = 0
-0:4/0/y_sort_origin = 1
-0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:4/0/physics_layer_0/angular_velocity = 0.0
-1:4/0 = 0
-1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:4/0/physics_layer_0/angular_velocity = 0.0
-2:4/0 = 0
-2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:4/0/physics_layer_0/angular_velocity = 0.0
-3:4/0 = 0
-3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:4/0/physics_layer_0/angular_velocity = 0.0
-4:4/0 = 0
-4:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:4/0/physics_layer_0/angular_velocity = 0.0
-5:4/0 = 0
-5:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-5:4/0/physics_layer_0/angular_velocity = 0.0
-6:4/0 = 0
-6:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-6:4/0/physics_layer_0/angular_velocity = 0.0
-7:4/0 = 0
-7:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-7:4/0/physics_layer_0/angular_velocity = 0.0
-8:4/0 = 0
-8:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-8:4/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g5kpw"]
 texture = ExtResource("4_x5cd0")
@@ -765,59 +621,6 @@ texture = ExtResource("4_x5cd0")
 4:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:7/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owjk1"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nwvou"]
-texture = SubResource("CompressedTexture2D_owjk1")
-0:0/0 = 0
-0:0/0/z_index = -1
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0 = 0
-1:0/0/z_index = -1
-1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0 = 0
-2:0/0/z_index = -1
-2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0 = 0
-3:0/0/z_index = -1
-3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:0/0/physics_layer_0/angular_velocity = 0.0
-4:0/0 = 0
-4:0/0/z_index = -1
-4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:0/0/physics_layer_0/angular_velocity = 0.0
-0:1/0 = 0
-0:1/0/z_index = -1
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0 = 0
-1:1/0/z_index = -1
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-2:1/0 = 0
-2:1/0/z_index = -1
-2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0 = 0
-3:1/0/z_index = -1
-3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:1/0/physics_layer_0/angular_velocity = 0.0
-4:1/0 = 0
-4:1/0/z_index = -1
-4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-4:1/0/physics_layer_0/angular_velocity = 0.0
-0:2/0 = 0
-0:2/0/z_index = -1
-0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0 = 0
-1:2/0/z_index = -1
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2j77y"]
 texture = ExtResource("6_bc5ae")
 0:0/0 = 0
@@ -1148,6 +951,57 @@ texture = ExtResource("6_bc5ae")
 5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:6/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1vayj"]
+texture = ExtResource("5_onvmw")
+0:0/0 = 0
+0:0/0/z_index = -1
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/z_index = -1
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/z_index = -1
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/z_index = -1
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/z_index = -1
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/z_index = -1
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/z_index = -1
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/z_index = -1
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/z_index = -1
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0 = 0
+4:1/0/z_index = -1
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/z_index = -1
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/z_index = -1
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dcgst"]
 texture = ExtResource("5_ilcpp")
 0:0/next_alternative_id = 2
@@ -1178,11 +1032,10 @@ terrain_set_1/terrain_0/color = Color(0.266667, 0.443137, 0.709804, 1)
 terrain_set_1/terrain_1/name = "grass"
 terrain_set_1/terrain_1/color = Color(0.682353, 0.0470588, 0.435294, 1)
 sources/0 = SubResource("TileSetAtlasSource_iu0ch")
-sources/3 = SubResource("TileSetAtlasSource_nwvou")
-sources/1 = SubResource("TileSetAtlasSource_f2xqx")
 sources/8 = SubResource("TileSetAtlasSource_dcgst")
 sources/2 = SubResource("TileSetAtlasSource_g5kpw")
 sources/4 = SubResource("TileSetAtlasSource_2j77y")
+sources/5 = SubResource("TileSetAtlasSource_1vayj")
 
 [sub_resource type="Animation" id="Animation_jt6yu"]
 resource_name = "DayNightCycle"
@@ -1221,6 +1074,13 @@ _data = {
 "RESET": SubResource("Animation_qlhvk")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_urri2"]
+texture = ExtResource("14_4ktho")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
 [node name="game" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-363, -45)
@@ -1248,12 +1108,15 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(2162702, 3, 1, 2228238, 3, 1, 2293774, 3, 1, 2359310, 3, 2, 2097166, 65539, 1, 2031630, 65539, 0)
+layer_2/tile_data = PackedInt32Array(2162702, 65541, 1, 2228238, 65541, 1, 2293774, 65541, 1, 2359310, 5, 2, 2097166, 65541, 1, 2031630, 65541, 0)
 
 [node name="player" parent="TileMap" instance=ExtResource("3_ta1jp")]
-position = Vector2(324.081, 282.907)
+position = Vector2(294.149, 380.885)
+rotation = -0.00039148
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="TileMap/player"]
+position = Vector2(0, 8.00006)
+rotation = 0.00039148
 remote_path = NodePath("../../../Camera2D")
 
 [node name="apple_trees" type="Node2D" parent="TileMap"]
@@ -1302,16 +1165,8 @@ position = Vector2(299.13, 330.883)
 rotation = -0.00039148
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(828.97, 529.034)
+position = Vector2(799, 635)
 rotation = 0.00039148
-
-[node name="GUI" parent="." instance=ExtResource("7_myxnv")]
-
-[node name="InventoryInterface" parent="GUI" index="0"]
-script = null
-
-[node name="PlayerInventory" parent="GUI/InventoryInterface/HBoxContainer/VBoxContainer" index="1"]
-script = null
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_v5ge6")
@@ -1326,6 +1181,17 @@ libraries = {
 "": SubResource("AnimationLibrary_wx6f4")
 }
 
-[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[editable path="GUI"]
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_urri2")
+
+[node name="hotbar_grid" type="GridContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 5
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
