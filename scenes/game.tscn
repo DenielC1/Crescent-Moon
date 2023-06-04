@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dyacvo4eaumql"]
+[gd_scene load_steps=28 format=3 uid="uid://dyacvo4eaumql"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
@@ -1084,6 +1084,8 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhekf"]
+
 [node name="game" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-363, -45)
@@ -1227,6 +1229,7 @@ text = "not tabbed"
 horizontal_alignment = 2
 
 [node name="GrabbedSlot" parent="UI" instance=ExtResource("16_x6uoj")]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -1238,6 +1241,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_yhekf")
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
 

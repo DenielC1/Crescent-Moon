@@ -6,6 +6,7 @@ extends Node2D
 @onready var label = $UI/Label
 
 const Slot = preload("res://item/slot.tscn")
+var temp = -1
 
 func _ready():
 	load_inventory()
@@ -44,10 +45,12 @@ func _physics_process(_delta):
 		
 func select_slot():
 	if player.key >= 0 and player.key <= 4:
-		if player.key != player.prev_key:
-			hotbar_grid.get_child(player.key).modulate = Color(1, 1, 1, 0.27450981736183)
-			hotbar_grid.get_child(player.prev_key).modulate = Color(1, 1, 1)
-			player.prev_key = player.key
+		hotbar_grid.get_child(player.key).modulate = Color(1, .5, 1, 0.27450981736183)
+		if temp != -1 and temp != player.key:
+			hotbar_grid.get_child(temp).modulate = Color(1, 1, 1, 1)
+		temp = player.key
 		if !player.equipped:
-			hotbar_grid.get_child(player.prev_key).modulate = Color(1, 1, 1)
-			player.prev_key = -1
+			hotbar_grid.get_child(temp).modulate = Color(1, 1, 1)
+	if player.tabbed: 
+		hotbar_grid.get_child(temp).modulate = Color(1, 1, 1)
+		

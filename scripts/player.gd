@@ -8,9 +8,11 @@ var starting_pos = Vector2(0,1)
 @onready var Animation_Tree = $AnimationTree
 @onready var State_Machine = Animation_Tree.get("parameters/playback")
 
+var current_tool_slot : String
 var current_slot : String
 var prev_key : int = -1
 var key : int = -1
+var index: int = -1
 var click : bool = false
 var equipped : bool = false
 var tabbed : bool = false
@@ -48,8 +50,7 @@ func update_animations (input_direction):
 		Animation_Tree.set("parameters/Watering Can/blend_position", input_direction)
 func pick_new_state():
 	if click:
-		State_Machine.travel(current_slot)
-
+		State_Machine.travel(current_tool_slot)
 	else:
 		if velocity != Vector2.ZERO:
 			State_Machine.travel("Move")
@@ -62,19 +63,38 @@ func anim_ended():
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		tabbed = not tabbed
-	if !tabbed:
-		if !click:
-			if event is InputEventKey and event.pressed:
-				key = event.keycode-49
-				if key >= 0 and key <= 4:
+		index = -1
+		equipped = false
+		current_tool_slot = ""
+		current_slot = ""
+		prev_key = -1
+		key = -1
+	if !tabbed and !click:
+		if current_tool_slot != "" and inventory_data.slot_datas[index] and event.is_action_pressed("click"):
+			click = true
+		if event is InputEventKey and event.pressed:
+			key = event.keycode-49
+			if key >= 0 and key <= 4:
+				
+				if prev_key != key:
 					if event.is_action_pressed("slot%s" % (key+1) ):
-						if current_slot == inventory_data.slot_datas[key].item_data.name:
-							equipped = false
-							current_slot = ""
+						equipped = true
+						if inventory_data.slot_datas[key]:
+							var slot = inventory_data.slot_datas[key].item_data
+							if slot.type == "Tool":
+								current_tool_slot = slot.name
+								current_slot = slot.name
+								index = key
+							else:
+								current_tool_slot = ""
+								current_slot = slot.name
 						else:
-							equipped = true
-							current_slot = inventory_data.slot_datas[key].item_data.name
-		if equipped:
-			if event.is_action_pressed("click"):
-				if inventory_data.slot_datas[0].item_data.type == "Tool":
-						click = true
+							current_tool_slot = ""
+							current_slot = ""
+					prev_key = key
+				else:
+					index = -1
+					equipped = false
+					current_tool_slot = ""
+					current_slot = ""
+	

@@ -19,5 +19,5 @@ TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 0)
 TooltipLabel/constants/outline_size = 0
 TooltipLabel/constants/shadow_offset_x = 0
 TooltipLabel/constants/shadow_offset_y = 0
-TooltipLabel/font_sizes/font_size = 16
+TooltipLabel/font_sizes/font_size = 6
 TooltipLabel/fonts/font = ExtResource("1_ij5e7")
