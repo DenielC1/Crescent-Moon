@@ -4,6 +4,7 @@ signal item_clicked (index : int, button : int, type: String)
 
 const toolip_box_theme = preload("res://themes/tooltip_box.tres")
 
+var temp : String
 func _ready():
 	if get_parent().name != "UI":
 		item_clicked.connect(get_parent().get_parent().get_parent().on_item_clicked)
@@ -21,9 +22,8 @@ func import_item_data(slot_data : SlotData):
 	else:
 		$Icon.texture = null
 		tooltip_text = ""
-		
 		$QuantityLabel.text = ""
-		
+
 func _gui_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		var type = get_parent().get_parent().name

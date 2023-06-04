@@ -99,6 +99,16 @@ libraries = {
 "": SubResource("AnimationLibrary_lr8m1")
 }
 
+[node name="Item" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Quantity" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -0.0942478
 shape = SubResource("CapsuleShape2D_q5f3t")

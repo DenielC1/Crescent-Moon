@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-class_name PlayerClass
 @export var inventory_data: InventoryData
 
 const SPEED = 75
@@ -11,7 +10,7 @@ var starting_pos = Vector2(0,1)
 
 signal item_swapped
 
-var current_state : String = "null"
+var current_state : String 
 var current_tool_slot : String  = "null"
 var current_slot : String = "null"
 var prev_key : int = -1

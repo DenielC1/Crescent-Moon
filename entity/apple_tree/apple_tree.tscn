@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0aa3ffachqca"]
+[gd_scene load_steps=23 format=3 uid="uid://b0aa3ffachqca"]
 
 [ext_resource type="Script" path="res://entity/apple_tree/apple_tree.gd" id="1_nxnro"]
+[ext_resource type="Resource" uid="uid://bjeiq6luqbve7" path="res://item/items/wood.tres" id="2_ythu6"]
 [ext_resource type="PackedScene" path="res://components/health/health.tscn" id="3_43hpj"]
 [ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox/hurtbox.tscn" id="4_57txs"]
 [ext_resource type="Script" path="res://components/hurtbox/hurtbox.gd" id="5_hlayt"]
@@ -99,6 +100,7 @@ region = Rect2(32, 48, 16, 16)
 
 [node name="apple_tree" type="StaticBody2D"]
 script = ExtResource("1_nxnro")
+item_data = ExtResource("2_ythu6")
 metadata/_edit_horizontal_guides_ = [-42.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

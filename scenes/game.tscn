@@ -1252,6 +1252,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_yhekf")
 [node name="EscapedUI" type="CanvasLayer" parent="."]
 
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Container" type="PanelContainer" parent="Debug"]
 anchors_preset = 3

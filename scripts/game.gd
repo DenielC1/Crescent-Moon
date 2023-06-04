@@ -69,17 +69,15 @@ func _input(event):
 			get_tree().paused = true
 			$UI.hide()
 		
-func create_drop_items(drop_count : int, sprite : Texture, item_position : Vector2):
+func create_drop_items(drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int):
 	while drop_count > 0:
 		var item = ItemDrop.instantiate()
-		var item_sprite = item.get_child(1)
-		var anim_sprite = item.get_child(2)
-		item_sprite.set_deferred("texture", sprite)
+		var item_quantity = item.get_child(4)
+		item.item_data = item_data
+		item_quantity.set_deferred("text", quantity)
 		item.set_deferred("position", generate_item_position(item_position))
-		anim_sprite.play("item_idle")
 		dropped_items.call_deferred("add_child", item)
 		drop_count -= 1
-		
 		
 func generate_item_position(item_position : Vector2):
 	rng.randomize()
@@ -96,3 +94,5 @@ func generate_item_position(item_position : Vector2):
 		item_position_y = rng.randf_range(item_position.y-20, item_position.y-10)
 	return Vector2(item_position_x, item_position_y)
 	
+func on_item_pick_up(item_data : ItemData, quantity : int):
+	$UI.pick_up_item(item_data, quantity)

@@ -7,8 +7,11 @@ extends StaticBody2D
 @onready var State_Machine = animation_tree.get("parameters/playback")
 @onready var main_body_hurtbox = $MainBodyHurtbox
 
-signal drop_items (drop_count : int, sprite : Texture, position : Vector2)
+@export var item_data : ItemData
 
+signal drop_items (drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int)
+
+const item_name : String = "Wood"
 var rng = RandomNumberGenerator.new() 
 
 func _ready():
@@ -29,10 +32,9 @@ func _on_health_no_health():
 	else: 
 		drop_count = 5
 		
-
-	drop_items.emit(drop_count, $DroppedItemSprite.texture, position)
-	
+	drop_items.emit(drop_count, position, item_data, 1)
 	
 func _on_hurtbox_hit():
 	State_Machine.travel("hit")
+
 
