@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://dyacvo4eaumql"]
+[gd_scene load_steps=27 format=3 uid="uid://dyacvo4eaumql"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
-[ext_resource type="PackedScene" uid="uid://c7whbve6evllp" path="res://scenes/player.tscn" id="3_ta1jp"]
+[ext_resource type="PackedScene" uid="uid://txqc322ifagl" path="res://scenes/player.tscn" id="3_ta1jp"]
 [ext_resource type="Texture2D" uid="uid://dgl48ii3bfw53" path="res://tileset/Ground tiles/new tiles/Grass tiles with animates water-export.png" id="4_x5cd0"]
 [ext_resource type="Texture2D" uid="uid://3sjjt65qo8rn" path="res://tileset/water frames/Water.png" id="5_ilcpp"]
 [ext_resource type="Texture2D" uid="uid://bgbbvxen0lfep" path="res://tileset/Building parts/Wood Bridge v.2 .png" id="5_onvmw"]
@@ -11,8 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
 [ext_resource type="PackedScene" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
 [ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
+[ext_resource type="Script" path="res://scenes/UI.gd" id="13_325pf"]
 [ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="13_aisdf"]
 [ext_resource type="Texture2D" uid="uid://41muxlbxldfy" path="res://inventory/inventory_background.png" id="14_4ktho"]
+[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="14_6xt2c"]
+[ext_resource type="PackedScene" uid="uid://c023401md4070" path="res://item/slot.tscn" id="16_x6uoj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -1182,16 +1185,60 @@ libraries = {
 }
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("13_325pf")
 
-[node name="PanelContainer" type="PanelContainer" parent="UI"]
+[node name="Hotbar" type="PanelContainer" parent="UI"]
 offset_right = 16.0
 offset_bottom = 16.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_urri2")
 
-[node name="hotbar_grid" type="GridContainer" parent="UI/PanelContainer"]
+[node name="hotbar_grid" type="GridContainer" parent="UI/Hotbar"]
 layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 5
 
+[node name="Inventory" type="PanelContainer" parent="UI"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 16.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_urri2")
+
+[node name="inventory_grid" type="GridContainer" parent="UI/Inventory"]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 5
+
+[node name="Label" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_bottom = 14.0
+grow_horizontal = 0
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 9
+text = "not tabbed"
+horizontal_alignment = 2
+
+[node name="GrabbedSlot" parent="UI" instance=ExtResource("16_x6uoj")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
+
+[editable path="UI/GrabbedSlot"]

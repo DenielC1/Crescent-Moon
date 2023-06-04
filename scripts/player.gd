@@ -60,19 +60,21 @@ func anim_ended():
 	click = false
 
 func _input(event):
-	if !click:
-		if event is InputEventKey and event.pressed:
-			key = event.keycode-49
-			if key >= 0 and key <= 4:
-				if event.is_action_pressed("slot%s" % (key+1) ):
-					if current_slot == inventory_data.slot_datas[key].item_data.name:
-						equipped = false
-						current_slot = ""
-					else:
-						equipped = true
-						current_slot = inventory_data.slot_datas[key].item_data.name
-					
-	if equipped:
-		if event.is_action_pressed("click"):
-			if inventory_data.slot_datas[0].item_data.type == "Tool":
-					click = true
+	if event.is_action_pressed("inventory"):
+		tabbed = not tabbed
+	if !tabbed:
+		if !click:
+			if event is InputEventKey and event.pressed:
+				key = event.keycode-49
+				if key >= 0 and key <= 4:
+					if event.is_action_pressed("slot%s" % (key+1) ):
+						if current_slot == inventory_data.slot_datas[key].item_data.name:
+							equipped = false
+							current_slot = ""
+						else:
+							equipped = true
+							current_slot = inventory_data.slot_datas[key].item_data.name
+		if equipped:
+			if event.is_action_pressed("click"):
+				if inventory_data.slot_datas[0].item_data.type == "Tool":
+						click = true
