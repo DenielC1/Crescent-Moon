@@ -8,6 +8,6 @@ signal no_health
 
 func damaged (damage):
 	health -= damage
-	if health <= 0:
+	if health == 0:
 		no_health.emit()
 	

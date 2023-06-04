@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3]
+[gd_scene load_steps=27 format=3 uid="uid://3u1yqm6tcm0g"]
 
 [ext_resource type="Script" path="res://entity/light_cow/cow.gd" id="1_rm0s4"]
 [ext_resource type="Texture2D" uid="uid://c10e8w0f1ikri" path="res://entity/light_cow/Light cow animations.png" id="2_3deei"]
@@ -196,7 +196,6 @@ motion_mode = 1
 script = ExtResource("1_rm0s4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 y_sort_enabled = true
 position = Vector2(-1.50001, 11)
 rotation = 1.5708
@@ -235,7 +234,6 @@ shape = SubResource("CircleShape2D_7scgb")
 [node name="DetectionTimer" type="Timer" parent="."]
 
 [node name="EntityCollision" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntityCollision"]
 position = Vector2(-1.5, 11)

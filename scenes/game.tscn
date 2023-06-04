@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dyacvo4eaumql"]
+[gd_scene load_steps=30 format=3 uid="uid://dyacvo4eaumql"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
@@ -7,15 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://3sjjt65qo8rn" path="res://tileset/water frames/Water.png" id="5_ilcpp"]
 [ext_resource type="Texture2D" uid="uid://bgbbvxen0lfep" path="res://tileset/Building parts/Wood Bridge v.2 .png" id="5_onvmw"]
 [ext_resource type="Texture2D" uid="uid://6jvqhh4v62mg" path="res://tileset/Ground tiles/new tiles/Grass hill tiles v.2.png" id="6_bc5ae"]
-[ext_resource type="PackedScene" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
+[ext_resource type="PackedScene" uid="uid://b0aa3ffachqca" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
 [ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
-[ext_resource type="PackedScene" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
+[ext_resource type="PackedScene" uid="uid://3u1yqm6tcm0g" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
 [ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
 [ext_resource type="Script" path="res://scenes/UI.gd" id="13_325pf"]
 [ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="13_aisdf"]
 [ext_resource type="Texture2D" uid="uid://41muxlbxldfy" path="res://inventory/inventory_background.png" id="14_4ktho"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="14_6xt2c"]
-[ext_resource type="PackedScene" uid="uid://c023401md4070" path="res://item/slot.tscn" id="16_x6uoj"]
+[ext_resource type="PackedScene" uid="uid://cortve4u87jrq" path="res://item/slot.tscn" id="16_x6uoj"]
+[ext_resource type="Script" path="res://scenes/DebugLabel.gd" id="17_iyqqa"]
+[ext_resource type="Theme" uid="uid://dxd74pfqgylgv" path="res://themes/tooltip_box.tres" id="17_sll8x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -1087,6 +1089,7 @@ texture_margin_bottom = 8.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhekf"]
 
 [node name="game" type="Node2D"]
+process_mode = 3
 y_sort_enabled = true
 position = Vector2(-363, -45)
 script = ExtResource("1_jfmux")
@@ -1131,22 +1134,22 @@ y_sort_enabled = true
 position = Vector2(117, 313)
 
 [node name="Big_Tree5" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
-position = Vector2(212, 404)
+position = Vector2(269.167, 426.895)
 
 [node name="Big_Tree6" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
-position = Vector2(155, 227)
+position = Vector2(236.099, 252.908)
 
 [node name="Big_Tree7" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
-position = Vector2(158, 458)
+position = Vector2(126.166, 423.951)
 
 [node name="Big_Tree8" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(479, 393)
 
 [node name="Big_Tree9" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
-position = Vector2(391, 159)
+position = Vector2(386.073, 186.849)
 
 [node name="Big_Tree10" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
-position = Vector2(391, 159)
+position = Vector2(53.0951, 242.979)
 
 [node name="Big_Tree2" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
 position = Vector2(420, 302)
@@ -1155,7 +1158,7 @@ position = Vector2(420, 302)
 position = Vector2(393, 449)
 
 [node name="Big_Tree4" parent="TileMap/apple_trees" instance=ExtResource("8_5itha")]
-position = Vector2(293, 228)
+position = Vector2(273.075, 190.893)
 
 [node name="light_cow" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
 position = Vector2(199.131, 333.922)
@@ -1168,6 +1171,9 @@ rotation = -0.00039148
 [node name="light_cow3" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
 position = Vector2(299.13, 330.883)
 rotation = -0.00039148
+
+[node name="DroppedItems" type="Node2D" parent="TileMap"]
+y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(799, 635)
@@ -1242,6 +1248,29 @@ offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_yhekf")
+
+[node name="EscapedUI" type="CanvasLayer" parent="."]
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Container" type="PanelContainer" parent="Debug"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("17_sll8x")
+
+[node name="DebugLabel" type="RichTextLabel" parent="Debug/Container"]
+layout_mode = 2
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/normal_font_size = 5
+scroll_active = false
+script = ExtResource("17_iyqqa")
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
 

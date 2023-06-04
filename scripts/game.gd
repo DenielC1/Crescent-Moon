@@ -4,9 +4,15 @@ extends Node2D
 @onready var hotbar_grid = $UI/Hotbar/hotbar_grid
 @onready var inventory_grid = $UI/Inventory/inventory_grid
 @onready var label = $UI/Label
+@onready var dropped_items = $TileMap/DroppedItems
 
 const Slot = preload("res://item/slot.tscn")
+const ItemDrop = preload("res://item_drop.tscn")
 var temp = -1
+var is_escaped : bool = false
+var rng = RandomNumberGenerator.new() 
+var item_position_x : float
+var item_position_y : float
 
 func _ready():
 	load_inventory()
@@ -54,3 +60,39 @@ func select_slot():
 	if player.tabbed: 
 		hotbar_grid.get_child(temp).modulate = Color(1, 1, 1)
 		
+func _input(event):
+	if event.is_action_pressed("escape"):
+		is_escaped = not is_escaped
+		print(is_escaped)
+		if is_escaped:
+			modulate = Color(0.22745098173618, 0.22745098173618, 0.22745098173618)
+			get_tree().paused = true
+			$UI.hide()
+		
+func create_drop_items(drop_count : int, sprite : Texture, item_position : Vector2):
+	while drop_count > 0:
+		var item = ItemDrop.instantiate()
+		var item_sprite = item.get_child(1)
+		var anim_sprite = item.get_child(2)
+		item_sprite.set_deferred("texture", sprite)
+		item.set_deferred("position", generate_item_position(item_position))
+		anim_sprite.play("item_idle")
+		dropped_items.call_deferred("add_child", item)
+		drop_count -= 1
+		
+		
+func generate_item_position(item_position : Vector2):
+	rng.randomize()
+	var chance = rng.randf()
+	if chance >= 0.5:
+		item_position_x = rng.randf_range(item_position.x-20, item_position.x-10)
+	else:
+		item_position_x = rng.randf_range(item_position.x+10, item_position.x+20)
+	rng.randomize()
+	chance = rng.randf()
+	if chance > 0.5:
+		item_position_y = rng.randf_range(item_position.y+10, item_position.y+20)
+	else:
+		item_position_y = rng.randf_range(item_position.y-20, item_position.y-10)
+	return Vector2(item_position_x, item_position_y)
+	

@@ -25,6 +25,7 @@ var tileset_collided = false
 var entity_collided = false
 
 func random_direction():
+	rng.randomize()
 	pos_x = rng.randi_range(-1, 1)
 	pos_y = rng.randi_range(-1, 1)
 	while pos_x == 0 and pos_y != 0:
@@ -38,6 +39,7 @@ func random_direction():
 func _ready():
 	add_to_group("cows")
 	Animation_Tree.set_active(true)
+	rng.randomize()
 	wander_time = rng.randi_range(1, 8)
 	Wander_Timer.set_wait_time(wander_time)
 	Wander_Timer.start()
@@ -78,6 +80,7 @@ func pick_new_state():
 func _on_wander_timer_timeout():
 	if !entity_collided:
 		random_direction()
+		rng.randomize()
 		wander_time = rng.randi_range(1, 8)
 		Wander_Timer.set_wait_time(wander_time)
 
@@ -85,12 +88,14 @@ func _on_detection_area_body_entered(_body):
 	entity_collided = true
 	old_direction.x = direction.x
 	direction = Vector2.ZERO
-	detection_time = rng.randi_range(3,3)
+	rng.randomize()
+	detection_time = rng.randi_range(3,5)
 	Detection_Timer.set_wait_time(detection_time)
 	Detection_Timer.start()
 	
 func _on_detection_area_body_exited(_body):
 	entity_collided = false
+	rng.randomize()
 	wander_time = rng.randi_range(1, 3)
 	Wander_Timer.set_wait_time(wander_time)
 	
@@ -102,6 +107,7 @@ func _on_test_area_entered(_area):
 	direction.y *= -1
 	old_direction *= -1
 	Sprite.flip_h = old_direction.x < 0
+	rng.randomize()
 	wander_time = rng.randi_range(1, 8)
 	Wander_Timer.set_wait_time(wander_time)
 

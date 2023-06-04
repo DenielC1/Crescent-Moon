@@ -5,6 +5,7 @@ extends Area2D
 signal hit 
 
 func _on_area_entered(area):
-	hit.emit()
-	Health.damaged(area.damage)
+	if area.tool_type == "Axe":
+		hit.emit()
+		Health.damaged(area.damage)
 

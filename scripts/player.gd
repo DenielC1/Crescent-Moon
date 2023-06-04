@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name PlayerClass
 @export var inventory_data: InventoryData
 
 const SPEED = 75
@@ -8,8 +9,11 @@ var starting_pos = Vector2(0,1)
 @onready var Animation_Tree = $AnimationTree
 @onready var State_Machine = Animation_Tree.get("parameters/playback")
 
-var current_tool_slot : String
-var current_slot : String
+signal item_swapped
+
+var current_state : String = "null"
+var current_tool_slot : String  = "null"
+var current_slot : String = "null"
 var prev_key : int = -1
 var key : int = -1
 var index: int = -1
@@ -50,12 +54,15 @@ func update_animations (input_direction):
 		Animation_Tree.set("parameters/Watering Can/blend_position", input_direction)
 func pick_new_state():
 	if click:
-		State_Machine.travel(current_tool_slot)
+		current_state = current_tool_slot
+		State_Machine.travel(current_state)
 	else:
 		if velocity != Vector2.ZERO:
-			State_Machine.travel("Move")
+			current_state = "Move"
+			State_Machine.travel(current_state)
 		else:
-			State_Machine.travel("Idle")
+			current_state = "Idle"
+			State_Machine.travel(current_state)
 			
 func anim_ended():
 	click = false
@@ -65,8 +72,8 @@ func _input(event):
 		tabbed = not tabbed
 		index = -1
 		equipped = false
-		current_tool_slot = ""
-		current_slot = ""
+		current_tool_slot = "null"
+		current_slot = "null"
 		prev_key = -1
 		key = -1
 	if !tabbed and !click:
@@ -75,7 +82,6 @@ func _input(event):
 		if event is InputEventKey and event.pressed:
 			key = event.keycode-49
 			if key >= 0 and key <= 4:
-				
 				if prev_key != key:
 					if event.is_action_pressed("slot%s" % (key+1) ):
 						equipped = true
@@ -86,15 +92,18 @@ func _input(event):
 								current_slot = slot.name
 								index = key
 							else:
-								current_tool_slot = ""
+								current_tool_slot = "null"
 								current_slot = slot.name
+							item_swapped.emit()
 						else:
 							current_tool_slot = ""
-							current_slot = ""
+							current_slot = "null"
+							item_swapped.emit()
 					prev_key = key
 				else:
+					prev_key = -1
 					index = -1
 					equipped = false
-					current_tool_slot = ""
-					current_slot = ""
+					current_tool_slot = "null"
+					current_slot = "null"
 	
