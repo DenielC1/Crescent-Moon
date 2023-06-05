@@ -67,11 +67,15 @@ func pick_up_item(item_data : ItemData, quantity : int):
 				slot_data.quantity += quantity
 				get_parent().load_inventory()
 				break
-		elif !slot_data:
-				var new_slot_data = test.new()
-				new_slot_data.item_data = item_data
-				new_slot_data.quantity = 1
-				player.inventory_data.slot_datas[index] = new_slot_data
-				get_parent().load_inventory()
-				break
 		index += 1
+	if index > 20:
+		index = 0
+		for slot_data in player.inventory_data.slot_datas:
+			if !slot_data:
+					var new_slot_data = test.new()
+					new_slot_data.item_data = item_data
+					new_slot_data.quantity = 1
+					player.inventory_data.slot_datas[index] = new_slot_data
+					get_parent().load_inventory()
+					break
+			index += 1

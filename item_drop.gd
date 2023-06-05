@@ -16,7 +16,6 @@ func _ready():
 	animation_player.play("item_idle")
 	
 func _on_hurtbox_area_entered(_area):
-	print("picked")
 	queue_free()
 	item_pick_up.emit(item_data, int($Quantity.text))
 	
