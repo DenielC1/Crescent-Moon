@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dyacvo4eaumql"]
+[gd_scene load_steps=33 format=3 uid="uid://dyacvo4eaumql"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
@@ -15,9 +15,11 @@
 [ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="13_aisdf"]
 [ext_resource type="Texture2D" uid="uid://41muxlbxldfy" path="res://inventory/inventory_background.png" id="14_4ktho"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="14_6xt2c"]
+[ext_resource type="Texture2D" uid="uid://bv0c5rxfogg1u" path="res://item/selection.png" id="15_6k6cr"]
 [ext_resource type="PackedScene" uid="uid://cortve4u87jrq" path="res://item/slot.tscn" id="16_x6uoj"]
 [ext_resource type="Script" path="res://scenes/DebugLabel.gd" id="17_iyqqa"]
 [ext_resource type="Theme" uid="uid://dxd74pfqgylgv" path="res://themes/tooltip_box.tres" id="17_sll8x"]
+[ext_resource type="Texture2D" uid="uid://b5f7h5iagwmx0" path="res://item/hotbar.png" id="20_dqncr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -1079,11 +1081,18 @@ _data = {
 "RESET": SubResource("Animation_qlhvk")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkmqr"]
+texture = ExtResource("20_dqncr")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_urri2"]
 texture = ExtResource("14_4ktho")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
-texture_margin_right = 8.0
+texture_margin_right = 7.0
 texture_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhekf"]
@@ -1196,15 +1205,18 @@ libraries = {
 script = ExtResource("13_325pf")
 
 [node name="Hotbar" type="PanelContainer" parent="UI"]
-offset_right = 16.0
-offset_bottom = 16.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_urri2")
+offset_right = 114.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wkmqr")
 
-[node name="hotbar_grid" type="GridContainer" parent="UI/Hotbar"]
+[node name="hotbar_grid" type="HBoxContainer" parent="UI/Hotbar"]
 layout_mode = 2
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 2
-columns = 5
+theme_override_constants/separation = 5
+
+[node name="Selection" type="Sprite2D" parent="UI/Hotbar"]
+position = Vector2(15, 15)
+texture = ExtResource("15_6k6cr")
+offset = Vector2(42, 0)
 
 [node name="Inventory" type="PanelContainer" parent="UI"]
 visible = false

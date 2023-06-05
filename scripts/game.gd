@@ -5,11 +5,14 @@ extends Node2D
 @onready var inventory_grid = $UI/Inventory/inventory_grid
 @onready var label = $UI/Label
 @onready var dropped_items = $TileMap/DroppedItems
+@onready var selection = $UI/Hotbar/Selection
 
 const Slot = preload("res://item/slot.tscn")
 const ItemDrop = preload("res://item_drop.tscn")
-var temp = -1
+
+var temp : int = -1
 var is_escaped : bool = false
+
 var rng = RandomNumberGenerator.new() 
 var item_position_x : float
 var item_position_y : float
@@ -50,15 +53,14 @@ func _physics_process(_delta):
 		$UI/Inventory.hide()
 		
 func select_slot():
-	if player.key >= 0 and player.key <= 4:
-		hotbar_grid.get_child(player.key).modulate = Color(1, .5, 1, 0.27450981736183)
-		if temp != -1 and temp != player.key:
-			hotbar_grid.get_child(temp).modulate = Color(1, 1, 1, 1)
-		temp = player.key
-		if !player.equipped:
-			hotbar_grid.get_child(temp).modulate = Color(1, 1, 1)
-	if player.tabbed: 
-		hotbar_grid.get_child(temp).modulate = Color(1, 1, 1)
+	if player.index != -1:
+		selection.offset.x = 21 * player.index
+		selection.show()
+		if temp != player.index:
+			selection.hide()
+		temp = player.index
+	else:
+		selection.hide()
 		
 func _input(event):
 	if event.is_action_pressed("escape"):

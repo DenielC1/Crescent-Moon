@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var hotbar_grid = $Hotbar/hotbar_grid
 @onready var inventory_grid = $Inventory/inventory_grid
 @onready var grabbed_slot = $GrabbedSlot
 @onready var player = $"../TileMap/player"

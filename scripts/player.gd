@@ -13,11 +13,11 @@ signal item_swapped
 var current_state : String 
 var current_tool_slot : String  = "null"
 var current_slot : String = "null"
-var prev_key : int = -1
+
 var key : int = -1
 var index: int = -1
+
 var click : bool = false
-var equipped : bool = false
 var tabbed : bool = false
 
 func _ready():
@@ -67,13 +67,11 @@ func anim_ended():
 	click = false
 
 func _input(event):
-	if event.is_action_pressed("inventory"):
+	if event.is_action_pressed("inventory") and !click:
 		tabbed = not tabbed
 		index = -1
-		equipped = false
 		current_tool_slot = "null"
 		current_slot = "null"
-		prev_key = -1
 		key = -1
 	if !tabbed and !click:
 		if current_tool_slot != "" and inventory_data.slot_datas[index] and event.is_action_pressed("click"):
@@ -81,28 +79,23 @@ func _input(event):
 		if event is InputEventKey and event.pressed:
 			key = event.keycode-49
 			if key >= 0 and key <= 4:
-				if prev_key != key:
+				if index != key:
 					if event.is_action_pressed("slot%s" % (key+1) ):
-						equipped = true
 						if inventory_data.slot_datas[key]:
 							var slot = inventory_data.slot_datas[key].item_data
 							if slot.type == "Tool":
 								current_tool_slot = slot.name
-								current_slot = slot.name
-								index = key
 							else:
 								current_tool_slot = "null"
-								current_slot = slot.name
+							current_slot = slot.name
 							item_swapped.emit()
 						else:
 							current_tool_slot = ""
 							current_slot = "null"
 							item_swapped.emit()
-					prev_key = key
+					index = key
 				else:
-					prev_key = -1
 					index = -1
-					equipped = false
 					current_tool_slot = "null"
 					current_slot = "null"
 	
