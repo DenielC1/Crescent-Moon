@@ -3,7 +3,8 @@ extends CharacterBody2D
 @export var inventory_data: InventoryData
 
 const SPEED = 75
-var starting_pos = Vector2(0,1)
+var starting_pos : Vector2 = Vector2(0,1)
+var direction : Vector2 = Vector2(0,1)
 
 @onready var Animation_Tree = $AnimationTree
 @onready var State_Machine = Animation_Tree.get("parameters/playback")
@@ -32,6 +33,8 @@ func _physics_process(_delta):
 	var input_direction = Vector2(Input.get_action_strength("move_right")-Input.get_action_strength("move_left"),
 	Input.get_action_strength("move_down")-Input.get_action_strength("move_up"))
 	
+	if input_direction != Vector2.ZERO:
+		direction = input_direction
 	if click:
 		velocity = Vector2.ZERO
 		input_direction = Vector2.ZERO
@@ -74,7 +77,7 @@ func _input(event):
 		current_slot = "null"
 		key = -1
 	if !tabbed and !click:
-		if current_tool_slot != "" and inventory_data.slot_datas[index] and event.is_action_pressed("click"):
+		if current_tool_slot != "null" and inventory_data.slot_datas[index] and event.is_action_pressed("click"):
 			click = true
 		if event is InputEventKey and event.pressed:
 			key = event.keycode-49

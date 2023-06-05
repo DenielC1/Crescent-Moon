@@ -9,7 +9,7 @@ extends StaticBody2D
 
 @export var item_data : ItemData
 
-signal drop_items (drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int)
+signal drop_items (drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int, random_pos : bool)
 
 const item_name : String = "Wood"
 var rng = RandomNumberGenerator.new() 
@@ -32,8 +32,8 @@ func _on_health_no_health():
 	else: 
 		drop_count = 5
 		
-	drop_items.emit(drop_count, position, item_data, 1)
-	
+	drop_items.emit(drop_count, position, item_data, 1, true)
+
 func _on_hurtbox_hit():
 	State_Machine.travel("hit")
 

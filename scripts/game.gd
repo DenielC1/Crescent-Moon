@@ -10,12 +10,15 @@ extends Node2D
 const Slot = preload("res://item/slot.tscn")
 const ItemDrop = preload("res://item_drop.tscn")
 
+var set_item_id = 0
 var temp : int = -1
 var is_escaped : bool = false
 
 var rng = RandomNumberGenerator.new() 
 var item_position_x : float
 var item_position_y : float
+
+var is_inventory_full : bool = false
 
 func _ready():
 	load_inventory()
@@ -71,15 +74,20 @@ func _input(event):
 			get_tree().paused = true
 			$UI.hide()
 		
-func create_drop_items(drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int):
+func create_drop_items(drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int, random_pos : bool):
 	while drop_count > 0:
 		var item = ItemDrop.instantiate()
 		var item_quantity = item.get_child(4)
 		item.item_data = item_data
+		item.item_id = set_item_id
 		item_quantity.set_deferred("text", quantity)
-		item.set_deferred("position", generate_item_position(item_position))
+		if random_pos:
+			item.set_deferred("position", generate_item_position(item_position))
+		else: 
+			item.set_deferred("position", item_position)
 		dropped_items.call_deferred("add_child", item)
 		drop_count -= 1
+		set_item_id += 1
 		
 func generate_item_position(item_position : Vector2):
 	rng.randomize()
@@ -98,3 +106,19 @@ func generate_item_position(item_position : Vector2):
 	
 func on_item_pick_up(item_data : ItemData, quantity : int):
 	$UI.pick_up_item(item_data, quantity)
+
+func inventory_full():
+	is_inventory_full = true
+
+func inventory_not_full(item_id : int):
+	is_inventory_full = false
+	for child in dropped_items.get_children():
+		if child.item_id == item_id :
+			child.item_returned = false
+			break
+func return_dropped_items(quantity : int, item_id : int):
+	for child in dropped_items.get_children():
+		if child.item_id == item_id :
+			child.quantity_label.text = str(quantity)
+			child.item_returned = true
+			break

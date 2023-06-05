@@ -20,7 +20,6 @@ func import_item_data(slot_data : SlotData):
 		$Icon/TextureRect.set_theme(toolip_box_theme)
 		$Icon/TextureRect/VBoxContainer/item_name.text = item_data.name
 		$Icon/TextureRect/VBoxContainer/Tooltip.text = item_data.description
-		
 		if slot_data.quantity > 1:
 			$QuantityLabel.text = "%s" % slot_data.quantity
 	else:

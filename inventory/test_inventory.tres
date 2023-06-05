@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SlotData" load_steps=3 format=3 uid="uid://3y8pmixi5euq"]
+
+[ext_resource type="Resource" uid="uid://bjeiq6luqbve7" path="res://item/items/wood.tres" id="1_6k2l0"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="2_wunwf"]
+
+[resource]
+script = ExtResource("2_wunwf")
+item_data = ExtResource("1_6k2l0")
+quantity = 99
