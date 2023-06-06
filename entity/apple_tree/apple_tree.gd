@@ -14,6 +14,7 @@ signal drop_items (drop_count : int, item_position : Vector2, item_data : ItemDa
 const item_name : String = "Wood"
 var rng = RandomNumberGenerator.new() 
 
+
 func _ready():
 	animation_tree.set_active(true)
 	drop_items.connect(get_parent().get_parent().get_parent().create_drop_items)
@@ -36,5 +37,5 @@ func _on_health_no_health():
 
 func _on_hurtbox_hit():
 	State_Machine.travel("hit")
-
+	
 

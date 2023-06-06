@@ -6,9 +6,10 @@ extends Node2D
 @onready var label = $UI/Label
 @onready var dropped_items = $TileMap/DroppedItems
 @onready var selection = $UI/Hotbar/Selection
+@onready var pick_up = $Audio/Pick_up
 
-const Slot = preload("res://item/slot.tscn")
-const ItemDrop = preload("res://item_drop.tscn")
+const Slot = preload("res://item/slot/slot.tscn")
+const ItemDrop = preload("res://item/item_drop/item_drop.tscn")
 
 var set_item_id = 0
 var temp : int = -1
@@ -106,7 +107,7 @@ func generate_item_position(item_position : Vector2):
 	
 func on_item_pick_up(item_data : ItemData, quantity : int):
 	$UI.pick_up_item(item_data, quantity)
-
+	pick_up.play()
 func inventory_full():
 	is_inventory_full = true
 
@@ -122,3 +123,4 @@ func return_dropped_items(quantity : int, item_id : int):
 			child.quantity_label.text = str(quantity)
 			child.item_returned = true
 			break
+

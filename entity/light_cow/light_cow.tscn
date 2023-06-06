@@ -188,7 +188,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 radius = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdiv0"]
-size = Vector2(21, 4)
+size = Vector2(23, 6)
 
 [node name="light_cow" type="CharacterBody2D"]
 y_sort_enabled = true

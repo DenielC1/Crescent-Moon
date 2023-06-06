@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dyacvo4eaumql"]
+[gd_scene load_steps=38 format=3 uid="uid://c21gpfvqyk23t"]
 
 [ext_resource type="Texture2D" uid="uid://buo4stauvt5eu" path="res://tileset/Grass tiles v.2.png" id="1_ijxfi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
@@ -7,19 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://3sjjt65qo8rn" path="res://tileset/water frames/Water.png" id="5_ilcpp"]
 [ext_resource type="Texture2D" uid="uid://bgbbvxen0lfep" path="res://tileset/Building parts/Wood Bridge v.2 .png" id="5_onvmw"]
 [ext_resource type="Texture2D" uid="uid://6jvqhh4v62mg" path="res://tileset/Ground tiles/new tiles/Grass hill tiles v.2.png" id="6_bc5ae"]
-[ext_resource type="PackedScene" uid="uid://b0aa3ffachqca" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
-[ext_resource type="AudioStream" uid="uid://b4jrigxkbtdvs" path="res://music/VGMA Challenge - July 29th - Copy.wav" id="8_v5ge6"]
+[ext_resource type="PackedScene" uid="uid://ccu7o0gdc3br8" path="res://entity/apple_tree/apple_tree.tscn" id="8_5itha"]
 [ext_resource type="PackedScene" uid="uid://3u1yqm6tcm0g" path="res://entity/light_cow/light_cow.tscn" id="10_cravh"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="11_gsmp5"]
 [ext_resource type="Script" path="res://scripts/AudioStreamPlayer2D.gd" id="11_istap"]
-[ext_resource type="Script" path="res://scenes/UI.gd" id="13_325pf"]
 [ext_resource type="Script" path="res://scripts/DayNightCycle.gd" id="13_aisdf"]
+[ext_resource type="Texture2D" uid="uid://bv0c5rxfogg1u" path="res://item/item_sprites/selection.png" id="13_xkdly"]
 [ext_resource type="Texture2D" uid="uid://41muxlbxldfy" path="res://inventory/inventory_background.png" id="14_4ktho"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="14_6xt2c"]
-[ext_resource type="Texture2D" uid="uid://bv0c5rxfogg1u" path="res://item/selection.png" id="15_6k6cr"]
-[ext_resource type="PackedScene" uid="uid://cortve4u87jrq" path="res://item/slot.tscn" id="16_x6uoj"]
-[ext_resource type="Script" path="res://scenes/DebugLabel.gd" id="17_iyqqa"]
-[ext_resource type="Theme" uid="uid://dxd74pfqgylgv" path="res://themes/tooltip_box.tres" id="17_sll8x"]
-[ext_resource type="Texture2D" uid="uid://b5f7h5iagwmx0" path="res://item/hotbar.png" id="20_dqncr"]
+[ext_resource type="PackedScene" uid="uid://dt20gcy6nhxlf" path="res://item/slot/slot.tscn" id="16_x6uoj"]
+[ext_resource type="Theme" path="res://themes/tooltip_box.tres" id="17_sll8x"]
+[ext_resource type="Script" path="res://scripts/DebugLabel.gd" id="18_apab1"]
+[ext_resource type="AudioStream" uid="uid://fi1qy5weq3ci" path="res://sfx/world/14_Wind_loop.wav" id="20_0s2wl"]
+[ext_resource type="Texture2D" uid="uid://b5f7h5iagwmx0" path="res://item/item_sprites/hotbar.png" id="20_dqncr"]
+[ext_resource type="AudioStream" uid="uid://4lr58wfdf6d4" path="res://sfx/world/13_Birds_loop.wav" id="21_nhey3"]
+[ext_resource type="AudioStream" uid="uid://mmrfx71l48py" path="res://sfx/music/Ambient Music.wav" id="22_t6cvf"]
+[ext_resource type="AudioStream" uid="uid://c2521aov88lmv" path="res://sfx/item/pick_up.wav" id="23_x4wue"]
+[ext_resource type="AudioStream" uid="uid://d4asqpu1xx3pd" path="res://sfx/item/left_click.wav" id="24_ebtwq"]
+[ext_resource type="AudioStream" uid="uid://cealgh32vwpx4" path="res://sfx/item/right_click.wav" id="25_tyxxq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu0ch"]
 texture = ExtResource("1_ijxfi")
@@ -1188,10 +1193,6 @@ y_sort_enabled = true
 position = Vector2(799, 635)
 rotation = 0.00039148
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_v5ge6")
-script = ExtResource("11_istap")
-
 [node name="DayNightCycle" type="CanvasModulate" parent="." node_paths=PackedStringArray("time_anim")]
 script = ExtResource("13_aisdf")
 time_anim = NodePath("../AnimationPlayer")
@@ -1202,7 +1203,7 @@ libraries = {
 }
 
 [node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("13_325pf")
+script = ExtResource("11_gsmp5")
 
 [node name="Hotbar" type="PanelContainer" parent="UI"]
 offset_right = 114.0
@@ -1215,7 +1216,7 @@ theme_override_constants/separation = 5
 
 [node name="Selection" type="Sprite2D" parent="UI/Hotbar"]
 position = Vector2(15, 15)
-texture = ExtResource("15_6k6cr")
+texture = ExtResource("13_xkdly")
 offset = Vector2(42, 0)
 
 [node name="Inventory" type="PanelContainer" parent="UI"]
@@ -1283,8 +1284,35 @@ layout_mode = 2
 theme = ExtResource("14_6xt2c")
 theme_override_font_sizes/normal_font_size = 5
 scroll_active = false
-script = ExtResource("17_iyqqa")
+script = ExtResource("18_apab1")
 
-[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("11_istap")
+
+[node name="Wind" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("20_0s2wl")
+autoplay = true
+
+[node name="Birds" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("21_nhey3")
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("22_t6cvf")
+volume_db = -15.0
+autoplay = true
+
+[node name="Pick_up" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("23_x4wue")
+
+[node name="Inventory_left_click" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("24_ebtwq")
+
+[node name="Inventory_right_click" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("25_tyxxq")
+
+[connection signal="finished" from="Audio/Wind" to="Audio" method="_on_wind_finished"]
+[connection signal="finished" from="Audio/Birds" to="Audio" method="_on_birds_finished"]
+[connection signal="finished" from="Audio/Music" to="Audio" method="_on_music_finished"]
 
 [editable path="UI/GrabbedSlot"]
