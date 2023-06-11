@@ -222,7 +222,6 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_re6n7")
 [node name="WanderTimer" type="Timer" parent="."]
 
 [node name="detection_area" parent="." instance=ExtResource("3_ajo2j")]
-visible = false
 position = Vector2(-11, -3)
 collision_layer = 0
 collision_mask = 2

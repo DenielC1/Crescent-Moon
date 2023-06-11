@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://ccu7o0gdc3br8"]
 
 [ext_resource type="Script" path="res://entity/apple_tree/apple_tree.gd" id="1_nxnro"]
-[ext_resource type="Resource" path="res://item/items/wood.tres" id="2_ythu6"]
+[ext_resource type="Resource" uid="uid://c6phnejueetu0" path="res://item/items/wood.tres" id="2_ythu6"]
 [ext_resource type="PackedScene" path="res://components/health/health.tscn" id="3_43hpj"]
 [ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox/hurtbox.tscn" id="4_57txs"]
 [ext_resource type="Script" path="res://components/hurtbox/hurtbox.gd" id="5_hlayt"]
@@ -256,6 +256,7 @@ atlas = ExtResource("10_4toy6")
 region = Rect2(32, 48, 16, 16)
 
 [node name="apple_tree" type="StaticBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_nxnro")
 item_data = ExtResource("2_ythu6")
 metadata/_edit_horizontal_guides_ = [-42.0]
@@ -279,8 +280,8 @@ position = Vector2(21, -11)
 shape = SubResource("RectangleShape2D_lqgbq")
 
 [node name="TreeAppleSprites" type="Sprite2D" parent="."]
-position = Vector2(0, -17)
 texture = ExtResource("6_7d3sl")
+offset = Vector2(0, -17)
 hframes = 12
 vframes = 5
 frame = 24

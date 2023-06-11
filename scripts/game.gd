@@ -7,13 +7,14 @@ extends Node2D
 @onready var dropped_items = $TileMap/DroppedItems
 @onready var selection = $UI/Hotbar/Selection
 @onready var pick_up = $Audio/Pick_up
+@onready var tile_map = $TileMap
 
 const Slot = preload("res://item/slot/slot.tscn")
 const ItemDrop = preload("res://item/item_drop/item_drop.tscn")
 
 var set_item_id = 0
 var temp : int = -1
-var is_escaped : bool = false
+var is_escaped : bool = false 
 
 var rng = RandomNumberGenerator.new() 
 var item_position_x : float
@@ -123,4 +124,3 @@ func return_dropped_items(quantity : int, item_id : int):
 			child.quantity_label.text = str(quantity)
 			child.item_returned = true
 			break
-

@@ -17,7 +17,7 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	animation_tree.set_active(true)
-	drop_items.connect(get_parent().get_parent().get_parent().create_drop_items)
+	drop_items.connect(get_parent().get_parent().create_drop_items)
 func _on_health_no_health():
 	tree_apple_sprites.set_visible(false)
 	apple_trunk.set_visible(true)

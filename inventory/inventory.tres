@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="InventoryData" load_steps=9 format=3 uid="uid://ccqmd6n1vowyu"]
 
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_6ovw0"]
-[ext_resource type="Resource" uid="uid://moi7rt8lmkfa" path="res://item/items/axe.tres" id="2_l6frb"]
+[ext_resource type="Resource" uid="uid://p4pjkchrs288" path="res://item/items/axe.tres" id="2_l6frb"]
 [ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_pb0v7"]
-[ext_resource type="Resource" uid="uid://y7p4soitaori" path="res://item/items/hoe.tres" id="4_788m3"]
-[ext_resource type="Resource" uid="uid://dotfhcwal5gsr" path="res://item/items/watering_can.tres" id="5_f2fp3"]
+[ext_resource type="Resource" uid="uid://dv3123vp5fof0" path="res://item/items/hoe.tres" id="4_788m3"]
+[ext_resource type="Resource" uid="uid://c7mmf00jbav1y" path="res://item/items/watering_can.tres" id="5_f2fp3"]
 
 [sub_resource type="Resource" id="Resource_iwyop"]
 script = ExtResource("3_pb0v7")
