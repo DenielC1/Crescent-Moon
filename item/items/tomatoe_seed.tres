@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bjmamlguk8pjh"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_i0jja"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="2_53xlf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dq5y"]
+atlas = ExtResource("2_53xlf")
+region = Rect2(0, 64, 16, 16)
+
+[resource]
+script = ExtResource("1_i0jja")
+name = "Tomatoe Seed"
+description = "A packet of tomatoe seeds."
+stackable = true
+texture = SubResource("AtlasTexture_8dq5y")
+type = "Seeds"

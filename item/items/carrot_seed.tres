@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://3ljqiq56kwkl"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_bejqn"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="2_etbt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7inns"]
+atlas = ExtResource("2_etbt1")
+region = Rect2(0, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_bejqn")
+name = "Carrot Seed"
+description = "A packet of carrot seeds."
+stackable = true
+texture = SubResource("AtlasTexture_7inns")
+type = "Seeds"

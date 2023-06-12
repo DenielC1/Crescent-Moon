@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://nmqn7yjqxpq"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_g5bm2"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="2_os7xh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmo5i"]
+atlas = ExtResource("2_os7xh")
+region = Rect2(16, 64, 16, 16)
+
+[resource]
+script = ExtResource("1_g5bm2")
+name = "Tomatoe"
+description = "To be added.	"
+stackable = true
+texture = SubResource("AtlasTexture_kmo5i")
+type = "Crop"

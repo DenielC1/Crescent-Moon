@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://dwcl15uufkw06"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_xfatk"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="2_yk7xn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riwkg"]
+atlas = ExtResource("2_yk7xn")
+region = Rect2(16, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_xfatk")
+name = "Carrot"
+description = "To be added.	"
+stackable = true
+texture = SubResource("AtlasTexture_riwkg")
+type = "Crop"

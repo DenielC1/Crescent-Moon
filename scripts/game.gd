@@ -30,7 +30,6 @@ func load_inventory():
 		child.queue_free()
 	for child in inventory_grid.get_children():
 		child.queue_free()
-		
 	var inventory = player.inventory_data
 	var index = 0
 	while index <5:
@@ -105,7 +104,12 @@ func generate_item_position(item_position : Vector2):
 	else:
 		item_position_y = rng.randf_range(item_position.y-20, item_position.y-10)
 	return Vector2(item_position_x, item_position_y)
-	
+
+func use_item_slot(slot_data : SlotData):
+	slot_data.quantity -= 1
+	if slot_data.quantity <= 0:
+		player.inventory_data.slot_datas[player.index] = null
+	load_inventory()
 func on_item_pick_up(item_data : ItemData, quantity : int):
 	$UI.pick_up_item(item_data, quantity)
 	pick_up.play()

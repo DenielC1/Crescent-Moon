@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c7e1mdsvqseoc"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_ngq1n"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="2_upbkw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xplwe"]
+atlas = ExtResource("2_upbkw")
+region = Rect2(0, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_ngq1n")
+name = "Corn Seed"
+description = "A packet of corn seeds."
+stackable = true
+texture = SubResource("AtlasTexture_xplwe")
+type = "Seeds"

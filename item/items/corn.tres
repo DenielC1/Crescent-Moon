@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://c4tpdvlvk8tv3"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_4l6y5"]
+[ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="2_tdimr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj7o6"]
+atlas = ExtResource("2_tdimr")
+region = Rect2(16, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_4l6y5")
+name = "Corn"
+description = "To be added."
+stackable = true
+texture = SubResource("AtlasTexture_oj7o6")
+type = "Crop"
