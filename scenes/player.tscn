@@ -2686,6 +2686,11 @@ motion_mode = 1
 floor_stop_on_slope = false
 script = ExtResource("1_7bno7")
 inventory_data = ExtResource("2_xghgu")
+crop_list = {
+"Carrot Seed": 3,
+"Corn Seed": 2,
+"Tomatoe Seed": 1
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
