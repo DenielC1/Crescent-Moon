@@ -61,8 +61,8 @@ item_name = "Tomatoe"
 shape = SubResource("RectangleShape2D_2ndnm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
 texture = SubResource("AtlasTexture_k0km5")
-offset = Vector2(0, -6)
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

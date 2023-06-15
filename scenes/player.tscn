@@ -1,10 +1,13 @@
-[gd_scene load_steps=229 format=3 uid="uid://txqc322ifagl"]
+[gd_scene load_steps=232 format=3 uid="uid://txqc322ifagl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7bno7"]
 [ext_resource type="Resource" uid="uid://ccqmd6n1vowyu" path="res://inventory/inventory.tres" id="2_xghgu"]
+[ext_resource type="PackedScene" uid="uid://0blffjbr158d" path="res://entity/crops/crop_types/tomatoe.tscn" id="3_jcpgt"]
 [ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox/hurtbox.tscn" id="3_lkbqd"]
+[ext_resource type="PackedScene" uid="uid://cplstvajgagxi" path="res://entity/crops/crop_types/corn.tscn" id="4_dcxdg"]
 [ext_resource type="Texture2D" uid="uid://dxlgx141o02ua" path="res://player/player.png" id="4_vgp4s"]
 [ext_resource type="PackedScene" uid="uid://c8kv87niokjx2" path="res://components/hitbox/hitbox.tscn" id="5_d8cli"]
+[ext_resource type="PackedScene" uid="uid://dwa48g2s7nx3d" path="res://entity/crops/crop_types/carrot.tscn" id="5_mvmh3"]
 [ext_resource type="Script" path="res://components/hitbox/hitbox.gd" id="6_usb5e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noquf"]
@@ -2690,6 +2693,11 @@ crop_list = {
 "Carrot Seed": 3,
 "Corn Seed": 2,
 "Tomatoe Seed": 1
+}
+crop_instances = {
+1: ExtResource("3_jcpgt"),
+2: ExtResource("4_dcxdg"),
+3: ExtResource("5_mvmh3")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

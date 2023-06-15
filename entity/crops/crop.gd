@@ -3,7 +3,7 @@ extends StaticBody2D
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
 @onready var player = $"../player"
-
+@onready var tile_map = self.get_parent()
 @export var item_data : ItemData
 
 var count : int = 0
@@ -23,13 +23,11 @@ func _ready():
 	
 func _process(_delta):
 	animation_player.seek(count)
-	if player.current_slot == "null":
-		pass
 
 func _on_timer_timeout():
 	if count < plant_stages:
 		count += 1
-	timer.start()
+		timer.start()
 
 func on_crop_click(crop_pos : Vector2i):
 	if count == plant_stages and get_parent().local_to_map(position) == crop_pos:
@@ -42,7 +40,10 @@ func on_crop_click(crop_pos : Vector2i):
 		elif drop_count <= 0.9:
 			drop_count = 4
 		else: 
-			drop_count = 5	
+			drop_count = 5
 		drop_items.emit(drop_count, position, item_data, 1, true)
+		tile_map.set_cell(2, crop_pos, -1)
 		queue_free()
-		
+
+
+
