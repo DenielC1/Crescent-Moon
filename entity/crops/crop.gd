@@ -6,7 +6,7 @@ extends StaticBody2D
 @onready var tile_map = self.get_parent()
 @export var item_data : ItemData
 
-var count : int = 0
+@export var crop_life : float = 0
 
 @export var plant_stages : int
 @export var item_name : String 
@@ -15,6 +15,10 @@ signal drop_items (drop_count : int, item_position : Vector2, item_data : ItemDa
 
 var rng = RandomNumberGenerator.new() 
 
+@onready var crop_pos = get_parent().local_to_map(position)
+
+@export var crop_growth : float = .6
+
 func _ready():
 	add_to_group("crops")
 	drop_items.connect(get_parent().get_parent().create_drop_items)
@@ -22,15 +26,20 @@ func _ready():
 	animation_player.play("crop_stages")
 	
 func _process(_delta):
-	animation_player.seek(count)
-
+	animation_player.seek(crop_life)
+	
 func _on_timer_timeout():
-	if count < plant_stages:
-		count += 1
+	if crop_life < plant_stages:
+		print(crop_life)
+		crop_life += crop_growth
 		timer.start()
 
-func on_crop_click(crop_pos : Vector2i):
-	if count == plant_stages and get_parent().local_to_map(position) == crop_pos:
+func on_soil_watered(crop_tile_pos : Vector2i):
+	if crop_pos == crop_tile_pos:
+		crop_growth = 1.2
+
+func on_crop_click(crop_tile_pos : Vector2i, layer : int):
+	if crop_life == plant_stages and crop_pos == crop_tile_pos:
 		randomize()
 		var drop_count = rng.randf()
 		if drop_count <= 0.35:
@@ -42,7 +51,7 @@ func on_crop_click(crop_pos : Vector2i):
 		else: 
 			drop_count = 5
 		drop_items.emit(drop_count, position, item_data, 1, true)
-		tile_map.set_cell(2, crop_pos, -1)
+		tile_map.set_cell(layer, crop_pos, -1)
 		queue_free()
 
 
