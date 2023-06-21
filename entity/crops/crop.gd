@@ -17,7 +17,7 @@ var rng = RandomNumberGenerator.new()
 
 @onready var crop_pos = get_parent().local_to_map(position)
 
-@export var crop_growth : float = .6
+@export var crop_growth : float = 0
 
 func _ready():
 	add_to_group("crops")
@@ -39,7 +39,7 @@ func on_soil_watered(crop_tile_pos : Vector2i):
 		crop_growth = 1.2
 
 func on_crop_click(crop_tile_pos : Vector2i, layer : int):
-	if crop_life == plant_stages and crop_pos == crop_tile_pos:
+	if crop_life >= plant_stages and crop_pos == crop_tile_pos:
 		randomize()
 		var drop_count = rng.randf()
 		if drop_count <= 0.35:

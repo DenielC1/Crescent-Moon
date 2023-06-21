@@ -280,8 +280,9 @@ position = Vector2(21, -11)
 shape = SubResource("RectangleShape2D_lqgbq")
 
 [node name="TreeAppleSprites" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
 texture = ExtResource("6_7d3sl")
-offset = Vector2(0, -17)
+offset = Vector2(0, -11)
 hframes = 12
 vframes = 5
 frame = 24
@@ -307,9 +308,11 @@ visible = false
 texture = SubResource("AtlasTexture_6jqwi")
 
 [node name="tree_rustling" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -1)
 stream = ExtResource("9_g4scy")
 
 [node name="axe_hit" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -1)
 stream = ExtResource("10_ratlg")
 
 [connection signal="no_health" from="Health" to="." method="_on_health_no_health"]
