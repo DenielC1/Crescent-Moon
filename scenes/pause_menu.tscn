@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://cap8rcxuo6bhx"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_kaiar"]
+[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="2_rflr8"]
+
+[node name="pause_menu" type="Node2D"]
+process_mode = 2
+script = ExtResource("1_kaiar")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Options" type="CenterContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Options"]
+layout_mode = 2
+
+[node name="Resume_Button" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_rflr8")
+theme_override_font_sizes/font_size = 16
+text = "Resume Game"
+
+[node name="Setting_Button" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_rflr8")
+theme_override_font_sizes/font_size = 16
+text = "Settings"
+
+[node name="Quit_Button" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_rflr8")
+theme_override_font_sizes/font_size = 16
+text = "Quit
+"
+
+[node name="Settings" type="CenterContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Settings"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/PanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_rflr8")
+theme_override_font_sizes/font_size = 16
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_rflr8")
+text = "                 "
+
+[node name="Return_Button" type="Button" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_rflr8")
+text = "Return"
+
+[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Resume_Button" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Setting_Button" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Quit_Button" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Settings/PanelContainer/VBoxContainer/Return_Button" to="." method="_on_return_button_pressed"]

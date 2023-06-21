@@ -69,7 +69,6 @@ func select_slot():
 func _input(event):
 	if event.is_action_pressed("escape"):
 		is_escaped = not is_escaped
-		print(is_escaped)
 		if is_escaped:
 			modulate = Color(0.22745098173618, 0.22745098173618, 0.22745098173618)
 			get_tree().paused = true
