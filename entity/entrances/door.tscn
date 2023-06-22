@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqicl41wlbqrk"]
+
+[ext_resource type="Script" path="res://entity/entrances/door.gd" id="1_de0m7"]
+[ext_resource type="Texture2D" uid="uid://c6u8rpvpv12xh" path="res://tileset/Building parts/door animation sprites.png" id="2_2kqnu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6neiu"]
+size = Vector2(11.25, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htkso"]
+atlas = ExtResource("2_2kqnu")
+region = Rect2(0, 0, 96, 16)
+
+[sub_resource type="Animation" id="Animation_1j1x7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_0v62k"]
+resource_name = "open_door"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_56lde"]
+resource_name = "close_door"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3vocn"]
+_data = {
+"RESET": SubResource("Animation_1j1x7"),
+"close_door": SubResource("Animation_56lde"),
+"open_door": SubResource("Animation_0v62k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msv7n"]
+size = Vector2(20, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0ter"]
+size = Vector2(16, 7)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_de0m7")
+
+[node name="Entrance" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_6neiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(37, 18)
+texture = SubResource("AtlasTexture_htkso")
+offset = Vector2(-37, -18)
+hframes = 6
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3vocn")
+}
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_msv7n")
+
+[node name="Leave" type="Area2D" parent="."]
+collision_layer = 5
+
+[node name="Entrance2" type="CollisionShape2D" parent="Leave"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_k0ter")
+
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Leave" to="." method="_on_leave_area_entered"]
+[connection signal="area_exited" from="Leave" to="." method="_on_leave_area_exited"]

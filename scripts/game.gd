@@ -3,7 +3,6 @@ extends Node2D
 @onready var player = $TileMap/player
 @onready var hotbar_grid = $UI/Hotbar/hotbar_grid
 @onready var inventory_grid = $UI/CenterContainer/Inventory/inventory_grid
-@onready var label = $UI/Label
 @onready var dropped_items = $TileMap/DroppedItems
 @onready var selection = $UI/Hotbar/Selection
 @onready var pick_up = $Audio/Pick_up

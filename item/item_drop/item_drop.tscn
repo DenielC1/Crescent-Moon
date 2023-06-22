@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8wvmd2g46mcy"]
+[gd_scene load_steps=12 format=3 uid="uid://b8wvmd2g46mcy"]
 
 [ext_resource type="Script" path="res://item/item_drop/item_drop.gd" id="1_otpj6"]
 [ext_resource type="Texture2D" uid="uid://bb55pl4f2cwsb" path="res://item/item_sprites/item shadow.png" id="2_l06cc"]
 [ext_resource type="Texture2D" uid="uid://b631fxvbs8pyi" path="res://item/item_sprites/All items.png" id="3_r6b3c"]
 [ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox/hurtbox.tscn" id="4_jgjag"]
+[ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="4_pme2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jsxus"]
 atlas = ExtResource("3_r6b3c")
@@ -101,12 +102,20 @@ libraries = {
 
 [node name="Item" type="Label" parent="."]
 visible = false
-offset_right = 40.0
+offset_right = 9.0
 offset_bottom = 23.0
 
 [node name="Quantity" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+z_index = 2
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = ExtResource("4_pme2s")
+theme_override_font_sizes/font_size = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -0.0942478
