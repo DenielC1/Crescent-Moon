@@ -1397,6 +1397,7 @@ scenes/3/scene = ExtResource("11_g5bj6")
 scenes/7/scene = ExtResource("8_5itha")
 scenes/8/scene = ExtResource("14_2m6b1")
 scenes/9/scene = ExtResource("15_eikxr")
+scenes/10/scene = ExtResource("10_cravh")
 
 [sub_resource type="TileSet" id="TileSet_1molu"]
 physics_layer_0/collision_layer = 1
@@ -1460,19 +1461,19 @@ _data = {
 "RESET": SubResource("Animation_qlhvk")
 }
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkmqr"]
-texture = ExtResource("20_dqncr")
-texture_margin_left = 7.0
-texture_margin_top = 7.0
-texture_margin_right = 7.0
-texture_margin_bottom = 7.0
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_urri2"]
 texture = ExtResource("14_4ktho")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 7.0
 texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkmqr"]
+texture = ExtResource("20_dqncr")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhekf"]
 
@@ -1517,7 +1518,7 @@ layer_4/modulate = Color(1, 1, 1, 1)
 layer_4/y_sort_enabled = true
 layer_4/y_sort_origin = 0
 layer_4/z_index = 1
-layer_4/tile_data = PackedInt32Array(851972, 9, 458752, 1638425, 9, 458752, 983053, 9, 458752, 1638414, 9, 458752, 1179647, 9, 458752, 1703940, 9, 458752, 720917, 9, 458752, 524300, 65540, 0, 524307, 196612, 0, 786444, 65540, 2, 786451, 196612, 2, 524301, 131076, 3, 524302, 131076, 3, 524303, 131076, 3, 524304, 131076, 3, 524305, 131076, 3, 524306, 131076, 3, 589836, 4, 1, 655372, 4, 1, 720908, 4, 1, 589843, 4, 1, 655379, 4, 1, 720915, 4, 1, 786445, 131076, 3, 786446, 131076, 3, 786450, 131076, 3, 786449, 131076, 3, 786447, 9, 524288, 1114132, 9, 589824, 1245205, 4, 1, 1310741, 4, 1, 1376277, 4, 1, 1441813, 65540, 2, 1441814, 196612, 0, 1507350, 65540, 2, 1507351, 131076, 3, 1507352, 131076, 3, 1507353, 131076, 3, 1507354, 131076, 3, 1507355, 131076, 3, 1507356, 131076, 3, 1507357, 131076, 3, 1507358, 196612, 2, 1441822, 65540, 0, 1441823, 196612, 2, 1376287, 4, 1, 1310751, 4, 1, 1245215, 4, 1, 1179679, 4, 1, 1114143, 4, 1, 983062, 131076, 3, 983063, 131076, 3, 983064, 131076, 3, 983065, 131076, 3, 983066, 131076, 3, 983067, 131076, 3, 983068, 131076, 3, 983069, 131076, 3, 983070, 131076, 3, 983071, 196612, 0, 1048607, 4, 1, 983061, 65540, 0, 1048597, 4, 1)
+layer_4/tile_data = PackedInt32Array(851972, 9, 458752, 1638425, 9, 458752, 983053, 9, 458752, 1638414, 9, 458752, 1179647, 9, 458752, 1703940, 9, 458752, 720917, 9, 458752, 524300, 65540, 0, 524307, 196612, 0, 786444, 65540, 2, 786451, 196612, 2, 524301, 131076, 3, 524302, 131076, 3, 524303, 131076, 3, 524304, 131076, 3, 524305, 131076, 3, 524306, 131076, 3, 589836, 4, 1, 655372, 4, 1, 720908, 4, 1, 589843, 4, 1, 655379, 4, 1, 720915, 4, 1, 786445, 131076, 3, 786446, 131076, 3, 786450, 131076, 3, 786449, 131076, 3, 786447, 9, 524288, 1114132, 9, 589824, 1245205, 4, 1, 1310741, 4, 1, 1376277, 4, 1, 1441813, 65540, 2, 1441814, 196612, 0, 1507350, 65540, 2, 1507351, 131076, 3, 1507352, 131076, 3, 1507353, 131076, 3, 1507354, 131076, 3, 1507355, 131076, 3, 1507356, 131076, 3, 1507357, 131076, 3, 1507358, 196612, 2, 1441822, 65540, 0, 1441823, 196612, 2, 1376287, 4, 1, 1310751, 4, 1, 1245215, 4, 1, 1179679, 4, 1, 1114143, 4, 1, 983062, 131076, 3, 983063, 131076, 3, 983064, 131076, 3, 983065, 131076, 3, 983066, 131076, 3, 983067, 131076, 3, 983068, 131076, 3, 983069, 131076, 3, 983070, 131076, 3, 983071, 196612, 0, 1048607, 4, 1, 983061, 65540, 0, 1048597, 4, 1, 1179673, 9, 655360, 1376283, 9, 655360, 655376, 9, 655360)
 layer_5/name = "tile_selector"
 layer_5/enabled = true
 layer_5/modulate = Color(1, 1, 1, 1)
@@ -1536,21 +1537,6 @@ rotation = -0.00039148
 position = Vector2(-3.05176e-05, 1.52588e-05)
 rotation = 0.00039148
 remote_path = NodePath("../../../Camera2D")
-
-[node name="light_cow" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
-use_parent_material = true
-position = Vector2(199.131, 333.922)
-rotation = -0.00039148
-
-[node name="light_cow2" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
-use_parent_material = true
-position = Vector2(292.176, 448.886)
-rotation = -0.00039148
-
-[node name="light_cow3" parent="TileMap" groups=["cows"] instance=ExtResource("10_cravh")]
-use_parent_material = true
-position = Vector2(299.13, 330.883)
-rotation = -0.00039148
 
 [node name="DroppedItems" type="Node2D" parent="TileMap"]
 y_sort_enabled = true
@@ -1571,9 +1557,28 @@ libraries = {
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("11_gsmp5")
 
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" type="PanelContainer" parent="UI/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_urri2")
+
+[node name="inventory_grid" type="GridContainer" parent="UI/CenterContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 5
+
 [node name="Hotbar" type="PanelContainer" parent="UI"]
+offset_left = 100.0
+offset_top = 147.0
 offset_right = 114.0
-offset_bottom = 30.0
+offset_bottom = 161.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wkmqr")
 
 [node name="hotbar_grid" type="HBoxContainer" parent="UI/Hotbar"]
@@ -1584,34 +1589,6 @@ theme_override_constants/separation = 5
 position = Vector2(15, 15)
 texture = ExtResource("13_xkdly")
 offset = Vector2(42, 0)
-
-[node name="Inventory" type="PanelContainer" parent="UI"]
-visible = false
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -16.0
-offset_right = 16.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_urri2")
-
-[node name="inventory_grid" type="GridContainer" parent="UI/Inventory"]
-layout_mode = 2
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 2
-columns = 5
-
-[node name="Label" type="Label" parent="UI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -55.0
-offset_bottom = 14.0
-grow_horizontal = 0
-theme = ExtResource("14_6xt2c")
-theme_override_font_sizes/font_size = 9
-text = "not tabbed"
-horizontal_alignment = 2
 
 [node name="GrabbedSlot" parent="UI" instance=ExtResource("16_x6uoj")]
 visible = false

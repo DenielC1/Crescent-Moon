@@ -58,12 +58,13 @@ plant_stages = 4
 item_name = "Carrot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -6)
 shape = SubResource("RectangleShape2D_2ndnm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, 9)
+position = Vector2(1, -7)
 texture = SubResource("AtlasTexture_k0km5")
-offset = Vector2(-3, -15)
+offset = Vector2(0, 1)
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

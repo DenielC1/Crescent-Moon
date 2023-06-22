@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var player = $TileMap/player
 @onready var hotbar_grid = $UI/Hotbar/hotbar_grid
-@onready var inventory_grid = $UI/Inventory/inventory_grid
+@onready var inventory_grid = $UI/CenterContainer/Inventory/inventory_grid
 @onready var label = $UI/Label
 @onready var dropped_items = $TileMap/DroppedItems
 @onready var selection = $UI/Hotbar/Selection
@@ -50,11 +50,9 @@ func load_inventory():
 func _physics_process(_delta):
 	select_slot()
 	if player.tabbed:
-		label.text = "tabbed"
-		$UI/Inventory.show()
+		$UI/CenterContainer/Inventory.show()
 	else:
-		label.text = "not tabbed"
-		$UI/Inventory.hide()
+		$UI/CenterContainer/Inventory.hide()
 		
 func select_slot():
 	if player.index != -1:

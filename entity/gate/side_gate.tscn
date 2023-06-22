@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1gngjhq5wyyv"]
+[gd_scene load_steps=11 format=3 uid="uid://1gngjhq5wyyv"]
 
 [ext_resource type="Script" path="res://Gate.gd" id="1_1vw62"]
 [ext_resource type="Texture2D" uid="uid://s7407nd0i8tb" path="res://tileset/Building parts/Fence gates animation sprites .png" id="2_xg3hx"]
@@ -65,6 +65,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_30moh"]
 radius = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tb43u"]
+size = Vector2(37, 34)
+
 [node name="Gate" type="StaticBody2D"]
 script = ExtResource("1_1vw62")
 
@@ -94,14 +97,22 @@ libraries = {
 "": SubResource("AnimationLibrary_3vocn")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerDetection"]
 visible = false
 position = Vector2(16, 9)
 shape = SubResource("CircleShape2D_30moh")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="BlockCows" type="Area2D" parent="."]
+collision_layer = 5
+
+[node name="Entrance2" type="CollisionShape2D" parent="BlockCows"]
+position = Vector2(16, 7)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_tb43u")
+
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_area_2d_area_exited"]

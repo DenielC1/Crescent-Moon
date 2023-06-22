@@ -8,11 +8,17 @@ var tabbed : bool = false
 
 var temp : String
 
+var type : String
+
 func _ready():
 	if get_parent().name != "UI":
-		item_clicked.connect(get_parent().get_parent().get_parent().on_item_clicked)
+		if get_parent().name == "inventory_grid":
+			item_clicked.connect(get_parent().get_parent().get_parent().get_parent().on_item_clicked)
+			type = get_parent().get_parent().name
+		elif get_parent().name == "hotbar_grid":
+			item_clicked.connect(get_parent().get_parent().get_parent().on_item_clicked)
+			type = get_parent().get_parent().name
 
-		
 func import_item_data(slot_data : SlotData):
 	if slot_data:
 		var item_data = slot_data.item_data
@@ -29,7 +35,6 @@ func import_item_data(slot_data : SlotData):
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
-		var type = get_parent().get_parent().name
 		item_clicked.emit(get_index(), event.button_index, type)
 
 func _input(event):

@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var inventory_grid = $Inventory/inventory_grid
+@onready var inventory_grid = $CenterContainer/Inventory/inventory_grid
 @onready var grabbed_slot = $GrabbedSlot
 @onready var player = $"../TileMap/player"
 @onready var game = $".."
@@ -27,14 +27,8 @@ func _physics_process(_delta):
 		grabbed_slot.global_position = grabbed_slot.get_global_mouse_position() + Vector2(-2,2)
 	if grabbed_slot_data and !player.tabbed:
 			var item_position = player.position
-			if player.direction.x != 0:
-				item_position.x += player.direction.x * 25
-				item_position.y += 10
-			if player.direction.y != 0:
-				if player.direction.y > 0:
-					item_position.y += player.direction.y * 30
-				else:
-					item_position.y += player.direction.y * 15 
+			item_position.x += player.direction.x * 25
+			item_position.y += player.direction.y * 25
 			game.create_drop_items(1, item_position, grabbed_slot_data.item_data, grabbed_slot_data.quantity, false)
 			grabbed_slot_data = null
 			grabbed_slot.import_item_data(grabbed_slot_data)

@@ -61,8 +61,9 @@ item_name = "Tomatoe"
 shape = SubResource("RectangleShape2D_2ndnm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(11, -5)
 texture = SubResource("AtlasTexture_k0km5")
+offset = Vector2(-11, -1)
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -71,6 +72,6 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 5.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
