@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cap8rcxuo6bhx"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://pause_menu.gd" id="1_kaiar"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_kaiar"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="2_rflr8"]
 
 [node name="pause_menu" type="Node2D"]

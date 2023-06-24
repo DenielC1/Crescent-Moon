@@ -47,11 +47,12 @@ func load_inventory():
 		index += 1
 		
 func _physics_process(_delta):
-	select_slot()
-	if player.tabbed:
-		$UI/CenterContainer/Inventory.show()
-	else:
-		$UI/CenterContainer/Inventory.hide()
+	if not global.is_talking:
+		select_slot()
+		if player.using_inventory:
+			$UI/CenterContainer/Inventory.show()
+		else:
+			$UI/CenterContainer/Inventory.hide()
 		
 func select_slot():
 	if player.index != -1:

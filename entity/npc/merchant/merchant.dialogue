@@ -1,0 +1,17 @@
+~ start
+set global.is_talking = true
+if global.merchant_first_time_chat:
+	Merchant : [[Good morning! |Good afternoon! | Good evening!]]
+	- Who are you?
+		set global.merchant_first_time_chat = false
+		Merchant: I am a local merchant that will buy your goods! Do you have anything to sell?
+		- Yes
+		- No
+	- Goodbye
+else:
+	Merchant : [[Good morning! |Good afternoon! | Good eveing!]] Do you have anything to sell?
+	- Yes
+	- No 
+set global.is_talking = false
+=> END
+
