@@ -1,8 +1,8 @@
 extends CanvasModulate
 
+@onready var timer = $Timer
 @export var time_anim : AnimationPlayer
-var time = global.start_time
-var prev_time : Vector2
+var time : float 
 
 var hour : int 
 var time_period : String
@@ -11,6 +11,8 @@ func _ready():
 	time_anim.play("DayNightCycle")
 	time_anim.seek(global.start_time)
 func _process(_delta):
+	if global.game_paused:
+		global.actual_time = time
 	var temp = int(time)
 	if temp == 0:
 		temp = 1
@@ -25,12 +27,17 @@ func _process(_delta):
 		hour = global.game_time[0]
 		time_period = "AM"
 	$"../Clock/NinePatchRect/HBoxContainer/Label".text = "%02d:%02d" % [hour, global.game_time[1]] + time_period
-
-	time = fmod(global.start_time + (Time.get_ticks_msec()/1000.0)/64, 24)
-	time_anim.seek(time, true)
+	print(global.start_time + (1440-timer.time_left)/60)
+	time = fmod(global.start_time + (1440-timer.time_left)/60, 24)
+	time_anim.seek(time)
 	if time > global.night or time < global.morning:
 		get_tree().call_group("cows", "is_sleeping")
 	elif time >= global.night-0.0025 and time <= global.night:
 		get_tree().call_group("cows", "go_sleep")
 	elif time >= global.morning and time <= (global.morning+0.0025):
 		get_tree().call_group("cows", "wake_up")
+
+
+func _on_timer_timeout():
+	print("24 HOUR PASS")
+	timer.start()

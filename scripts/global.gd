@@ -2,6 +2,7 @@ extends Node
 
 @export var start_time : float = 12
 @onready var game_time = [0,0] 
+var actual_time : float
 @onready var time_state : String = "" 
 
 var coins : int = 0

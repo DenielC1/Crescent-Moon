@@ -1734,6 +1734,10 @@ position = Vector2(924, -358)
 script = ExtResource("13_aisdf")
 time_anim = NodePath("../AnimationPlayer")
 
+[node name="Timer" type="Timer" parent="DayNightCycle"]
+wait_time = 1440.0
+autostart = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wx6f4")
@@ -1943,6 +1947,7 @@ stream = ExtResource("24_ebtwq")
 [node name="Inventory_right_click" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("25_tyxxq")
 
+[connection signal="timeout" from="DayNightCycle/Timer" to="DayNightCycle" method="_on_timer_timeout"]
 [connection signal="finished" from="Audio/Wind" to="Audio" method="_on_wind_finished"]
 [connection signal="finished" from="Audio/Birds" to="Audio" method="_on_birds_finished"]
 [connection signal="finished" from="Audio/Music" to="Audio" method="_on_music_finished"]
