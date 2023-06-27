@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://d0jcl6oybimca"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_kaiar"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="2_rflr8"]
@@ -8,6 +8,16 @@ process_mode = 2
 script = ExtResource("1_kaiar")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.772549)
 
 [node name="Options" type="CenterContainer" parent="CanvasLayer"]
 visible = false

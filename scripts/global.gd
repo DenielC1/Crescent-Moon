@@ -15,7 +15,8 @@ var merchant_first_time_chat = true
 var is_talking = false
 var is_selling_goods = false
 var can_move = true
- 
+var game_paused = false
+
 func _ready():
 	game_time[0] = start_time
 	check_time_state()

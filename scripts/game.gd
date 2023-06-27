@@ -8,6 +8,11 @@ extends Node2D
 @onready var pick_up = $Audio/Pick_up
 @onready var tile_map = $TileMap
 
+@onready var clock = $Clock
+@onready var coins = $Coins
+@onready var ui = $UI
+@onready var debug = $Debug
+
 const Slot = preload("res://item/slot/slot.tscn")
 const ItemDrop = preload("res://item/item_drop/item_drop.tscn")
 
@@ -69,8 +74,10 @@ func _input(event):
 	if event.is_action_pressed("escape") and not global.is_selling_goods and not player.using_inventory:
 		is_escaped = not is_escaped
 		if is_escaped:
-			modulate = Color(0.22745098173618, 0.22745098173618, 0.22745098173618)
+			global.game_paused = true
 			get_tree().paused = true
+		else:
+			global.game_paused = false
 	elif event.is_action_pressed("escape") and player.using_inventory:
 		player.using_inventory = false
 func create_drop_items(drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int, random_pos : bool):
