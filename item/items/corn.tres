@@ -15,3 +15,4 @@ description = "To be added."
 stackable = true
 texture = SubResource("AtlasTexture_oj7o6")
 type = "Crop"
+value = 6

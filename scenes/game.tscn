@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d3uk1lwdkaq6o"]
+[gd_scene load_steps=60 format=3 uid="uid://d3uk1lwdkaq6o"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
 [ext_resource type="PackedScene" uid="uid://txqc322ifagl" path="res://scenes/player.tscn" id="3_ta1jp"]
@@ -36,8 +36,11 @@
 [ext_resource type="AudioStream" uid="uid://mmrfx71l48py" path="res://sfx/music/Ambient Music.wav" id="22_t6cvf"]
 [ext_resource type="AudioStream" uid="uid://c2521aov88lmv" path="res://sfx/item/pick_up.wav" id="23_x4wue"]
 [ext_resource type="AudioStream" uid="uid://d4asqpu1xx3pd" path="res://sfx/item/left_click.wav" id="24_ebtwq"]
+[ext_resource type="Script" path="res://scenes/Coins.gd" id="25_f184e"]
 [ext_resource type="AudioStream" uid="uid://cealgh32vwpx4" path="res://sfx/item/right_click.wav" id="25_tyxxq"]
+[ext_resource type="Texture2D" uid="uid://da0khfteqlx6q" path="res://gui/clock.png" id="31_vm22e"]
 [ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="32_7e5lh"]
+[ext_resource type="Texture2D" uid="uid://btldetdw3ikam" path="res://gui/coin.png" id="32_ckvv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xhgwt"]
 texture = ExtResource("5_yhftx")
@@ -1658,6 +1661,7 @@ process_mode = 1
 y_sort_enabled = true
 position = Vector2(-294, -74)
 script = ExtResource("1_jfmux")
+metadata/_edit_vertical_guides_ = [280.0]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -1737,6 +1741,64 @@ libraries = {
 "": SubResource("AnimationLibrary_wx6f4")
 }
 
+[node name="Clock" type="CanvasLayer" parent="."]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Clock"]
+offset_left = 277.0
+offset_right = 320.0
+offset_bottom = 16.0
+texture = ExtResource("31_vm22e")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Clock/NinePatchRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 15.0
+
+[node name="Label" type="Label" parent="Clock/NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Clock/NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Coins" type="CanvasLayer" parent="."]
+script = ExtResource("25_f184e")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Coins"]
+offset_left = 277.0
+offset_top = 16.0
+offset_right = 320.0
+offset_bottom = 32.0
+texture = ExtResource("32_ckvv5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Coins/NinePatchRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 15.0
+
+[node name="Label" type="Label" parent="Coins/NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 9
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Coins/NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("11_gsmp5")
 
@@ -1758,10 +1820,16 @@ theme_override_constants/v_separation = 2
 columns = 5
 
 [node name="Hotbar" type="PanelContainer" parent="UI"]
-offset_left = 102.0
-offset_top = 147.0
-offset_right = 116.0
-offset_bottom = 161.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -14.0
+offset_right = 7.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wkmqr")
 
 [node name="hotbar_grid" type="HBoxContainer" parent="UI/Hotbar"]
@@ -1788,7 +1856,42 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_yhekf")
 
-[node name="EscapedUI" type="CanvasLayer" parent="."]
+[node name="MerchantUI" type="CanvasLayer" parent="UI"]
+layer = 5
+visible = false
+
+[node name="title" type="Label" parent="UI/MerchantUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -33.0
+offset_right = 27.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 8
+text = "SELLING GOODS"
+
+[node name="Label" type="Label" parent="UI/MerchantUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = 33.0
+offset_right = 27.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 6
+text = "Left Click to Sell
+Escape or M to Exit"
 
 [node name="Debug" type="CanvasLayer" parent="."]
 visible = false
@@ -1837,7 +1940,11 @@ stream = ExtResource("24_ebtwq")
 [node name="Inventory_right_click" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("25_tyxxq")
 
-[node name="pause_menu" parent="." instance=ExtResource("32_7e5lh")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("32_7e5lh")]
+position = Vector2(-294, -74)
 
 [connection signal="finished" from="Audio/Wind" to="Audio" method="_on_wind_finished"]
 [connection signal="finished" from="Audio/Birds" to="Audio" method="_on_birds_finished"]

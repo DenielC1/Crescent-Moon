@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var game = $".."
-@onready var UI = $"../UI"
+@onready var UI = $"../../UI"
+@onready var game = $"../.."
 @onready var canvas_layer = $CanvasLayer
 
 @onready var resume_button = $CanvasLayer/Options/VBoxContainer/Resume_Button

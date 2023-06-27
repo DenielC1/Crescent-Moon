@@ -53,6 +53,15 @@ size_flags_horizontal = 0
 size_flags_vertical = 2
 theme = ExtResource("1_131su")
 
+[node name="Shop" type="Label" parent="Icon/TextureRect/VBoxContainer"]
+visible = false
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme = ExtResource("1_131su")
+theme_override_colors/font_color = Color(0.847059, 0.698039, 0.152941, 1)
+
 [node name="QuantityLabel" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8

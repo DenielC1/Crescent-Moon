@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var game = $".."
 @onready var inventory_left_click = $"../Audio/Inventory_left_click"
 @onready var inventory_right_click = $"../Audio/Inventory_right_click"
+@onready var merchant_ui = $MerchantUI
 
 var grabbed_slot_data : SlotData
 const Slot = preload("res://item/slot/slot.tscn")
@@ -22,18 +23,22 @@ func _ready():
 	inventory_not_full.connect(get_parent().inventory_not_full)
 	return_dropped_items.connect(get_parent().return_dropped_items)
 func _physics_process(_delta):
-	if grabbed_slot.visible:
-		grabbed_slot.tooltip_text = ""
-		grabbed_slot.global_position = grabbed_slot.get_global_mouse_position() + Vector2(-2,2)
-	if grabbed_slot_data and !player.tabbed:
-			var item_position = player.position
-			item_position.x += player.direction.x * 25
-			item_position.y += player.direction.y * 25
-			game.create_drop_items(1, item_position, grabbed_slot_data.item_data, grabbed_slot_data.quantity, false)
-			grabbed_slot_data = null
-			grabbed_slot.import_item_data(grabbed_slot_data)
+	if global.is_selling_goods:
+		merchant_ui.show()
+	else:
+		merchant_ui.hide()
+		if grabbed_slot.visible:
+			grabbed_slot.tooltip_text = ""
+			grabbed_slot.global_position = grabbed_slot.get_global_mouse_position() + Vector2(-2,2)
+		if grabbed_slot_data and !player.using_inventory:
+				var item_position = player.position
+				item_position.x += player.direction.x * 25
+				item_position.y += player.direction.y * 25
+				game.create_drop_items(1, item_position, grabbed_slot_data.item_data, grabbed_slot_data.quantity, false)
+				grabbed_slot_data = null
+				grabbed_slot.import_item_data(grabbed_slot_data)
 func on_item_clicked (index : int, button : int, type: String):
-	if get_parent().player.tabbed:
+	if get_parent().player.using_inventory and not global.is_selling_goods:
 		if type == "Inventory":
 			index += 5
 		#print("Index: %s  | Button: %s | Type: %s" % [index, button, type])
@@ -82,7 +87,18 @@ func on_item_clicked (index : int, button : int, type: String):
 		else: 
 			grabbed_slot.hide()
 		get_parent().load_inventory()
-		
+	else:
+		if type == "Inventory":
+			index += 5
+		if button == MOUSE_BUTTON_LEFT:
+			var selected_slot =  player.inventory_data.slot_datas[index]
+			if selected_slot and selected_slot.item_data.value != 0:
+				selected_slot.quantity -= 1
+				global.coins += selected_slot.item_data.value
+				if selected_slot.quantity <= 0:
+					player.inventory_data.slot_datas[index] = null
+				get_parent().load_inventory()
+				
 func pick_up_item(item_data : ItemData, quantity : int):
 	item_id = item_id
 	if !is_inventory_full(item_data, quantity):
@@ -93,9 +109,7 @@ func pick_up_item(item_data : ItemData, quantity : int):
 				break
 			if slot_data and slot_data.item_data.name == item_data.name and slot_data.quantity != 99 and item_data.stackable:
 				if slot_data.quantity + quantity > 99:
-					print(index)
 					quantity =  slot_data.quantity + quantity - 99
-					print( slot_data.quantity)
 					slot_data.quantity = 99 
 					get_parent().load_inventory()
 				else:
@@ -139,5 +153,3 @@ func is_inventory_full (item_data : ItemData, quantity : int):
 				return false
 		index += 1
 	return true
-
-

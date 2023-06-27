@@ -14,3 +14,4 @@ description = "A sturdy material used in crafting."
 stackable = true
 texture = SubResource("AtlasTexture_jqhxe")
 type = "Material"
+value = 3

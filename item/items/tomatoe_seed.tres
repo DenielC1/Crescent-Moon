@@ -14,3 +14,4 @@ description = "A packet of tomatoe seeds."
 stackable = true
 texture = SubResource("AtlasTexture_8dq5y")
 type = "Seeds"
+value = 0

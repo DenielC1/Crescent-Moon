@@ -14,3 +14,4 @@ description = "A tool used to till the soil."
 stackable = false
 texture = SubResource("AtlasTexture_kvrsq")
 type = "Tool"
+value = 0

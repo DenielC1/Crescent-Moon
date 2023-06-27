@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://homfj533jruv"
-path="res://.godot/imported/Teemo Basic emote animations sprite sheet.png-5900024afc5255c3f99fb01eb50c32a7.ctex"
+uid="uid://5rqywgrke3xt"
+path="res://.godot/imported/dialog box.png-77cd32cee57e0b835934acf0df820f08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/Teemo Basic emote animations sprite sheet.png"
-dest_files=["res://.godot/imported/Teemo Basic emote animations sprite sheet.png-5900024afc5255c3f99fb01eb50c32a7.ctex"]
+source_file="res://entity/npc/dialogue/dialog box.png"
+dest_files=["res://.godot/imported/dialog box.png-77cd32cee57e0b835934acf0df820f08.ctex"]
 
 [params]
 

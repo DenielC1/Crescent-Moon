@@ -14,3 +14,4 @@ description = "A tool used to cut down trees."
 stackable = false
 texture = SubResource("AtlasTexture_xetye")
 type = "Tool"
+value = 0

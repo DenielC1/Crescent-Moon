@@ -14,3 +14,4 @@ description = "A packet of corn seeds."
 stackable = true
 texture = SubResource("AtlasTexture_xplwe")
 type = "Seeds"
+value = 0

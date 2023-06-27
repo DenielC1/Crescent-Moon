@@ -1,7 +1,6 @@
 [gd_scene load_steps=234 format=3 uid="uid://txqc322ifagl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7bno7"]
-[ext_resource type="Shader" path="res://scenes/player.gdshader" id="1_nstl6"]
 [ext_resource type="Resource" uid="uid://ccqmd6n1vowyu" path="res://inventory/inventory.tres" id="2_xghgu"]
 [ext_resource type="PackedScene" uid="uid://0blffjbr158d" path="res://entity/crops/crop_types/tomatoe.tscn" id="3_jcpgt"]
 [ext_resource type="PackedScene" uid="uid://b2kcw66jtgy6f" path="res://components/hurtbox/hurtbox.tscn" id="3_lkbqd"]
@@ -11,8 +10,39 @@
 [ext_resource type="PackedScene" uid="uid://dwa48g2s7nx3d" path="res://entity/crops/crop_types/carrot.tscn" id="5_mvmh3"]
 [ext_resource type="Script" path="res://components/hitbox/hitbox.gd" id="6_usb5e"]
 
+[sub_resource type="Shader" id="Shader_bk3en"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+// Texture must have 'Filter'-flag enabled!
+
+// Automatic smoothing
+// independent of geometry and perspective
+vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
+{
+	vec2 ddx = dFdx(uv);
+	vec2 ddy = dFdy(uv);
+	vec2 lxy = sqrt(ddx * ddx + ddy * ddy);
+	
+	vec2 uv_pixels = uv / pixel_size;
+	
+	vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5f);
+	vec2 uv_dxy_pixels = uv_pixels - uv_pixels_floor;
+	
+	uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5f)) * pixel_size / lxy + vec2(0.5f), 0.0f, 1.0f);
+	
+	uv = uv_pixels_floor * pixel_size;
+	
+	return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
+}
+
+void fragment()
+{
+	COLOR = texturePointSmooth(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vebod"]
-shader = ExtResource("1_nstl6")
+shader = SubResource("Shader_bk3en")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noquf"]
 size = Vector2(12, 6)

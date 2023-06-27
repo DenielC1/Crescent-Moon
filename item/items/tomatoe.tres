@@ -14,3 +14,4 @@ description = "To be added.	"
 stackable = true
 texture = SubResource("AtlasTexture_kmo5i")
 type = "Crop"
+value = 4

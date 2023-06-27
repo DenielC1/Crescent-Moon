@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8pl2e32por87"]
+[gd_scene load_steps=10 format=3 uid="uid://c8pl2e32por87"]
 
 [ext_resource type="Script" path="res://entity/npc/npc.gd" id="1_a04uj"]
 [ext_resource type="Texture2D" uid="uid://ck8u6w07loqj8" path="res://entity/npc/merchant/merchant.png" id="2_lk4bn"]
 [ext_resource type="Resource" uid="uid://cbcb6aat1g361" path="res://entity/npc/merchant/merchant.dialogue" id="2_vfxu0"]
-[ext_resource type="Texture2D" uid="uid://homfj533jruv" path="res://gui/Teemo Basic emote animations sprite sheet.png" id="4_kewq2"]
+[ext_resource type="Texture2D" uid="uid://ctvwte1v8lqkb" path="res://entity/npc/merchant/merchant_icon.png" id="4_lfyui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gc2ao"]
 size = Vector2(14, 5)
@@ -48,10 +48,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_kexvt"]
 radius = 17.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_be6h8"]
-atlas = ExtResource("4_kewq2")
-region = Rect2(5, 2, 23, 30)
-
 [node name="Merchant" type="StaticBody2D"]
 script = ExtResource("1_a04uj")
 dialogue_resource = ExtResource("2_vfxu0")
@@ -80,7 +76,7 @@ shape = SubResource("CircleShape2D_kexvt")
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
-texture = SubResource("AtlasTexture_be6h8")
+texture = ExtResource("4_lfyui")
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_area_exited"]

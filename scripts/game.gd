@@ -47,13 +47,14 @@ func load_inventory():
 		index += 1
 		
 func _physics_process(_delta):
-	if not global.is_talking:
-		select_slot()
-		if player.using_inventory:
-			$UI/CenterContainer/Inventory.show()
-		else:
-			$UI/CenterContainer/Inventory.hide()
-		
+	select_slot()
+	if global.is_selling_goods:
+		player.using_inventory = true
+	if player.using_inventory:
+		$UI/CenterContainer/Inventory.show()
+	else:
+		$UI/CenterContainer/Inventory.hide()
+
 func select_slot():
 	if player.index != -1:
 		selection.offset.x = 21 * player.index
@@ -65,13 +66,13 @@ func select_slot():
 		selection.hide()
 		
 func _input(event):
-	if event.is_action_pressed("escape"):
+	if event.is_action_pressed("escape") and not global.is_selling_goods and not player.using_inventory:
 		is_escaped = not is_escaped
 		if is_escaped:
 			modulate = Color(0.22745098173618, 0.22745098173618, 0.22745098173618)
 			get_tree().paused = true
-			$UI.hide()
-		
+	elif event.is_action_pressed("escape") and player.using_inventory:
+		player.using_inventory = false
 func create_drop_items(drop_count : int, item_position : Vector2, item_data : ItemData, quantity : int, random_pos : bool):
 	while drop_count > 0:
 		var item = ItemDrop.instantiate()
@@ -125,3 +126,5 @@ func return_dropped_items(quantity : int, item_id : int):
 			child.quantity_label.text = str(quantity)
 			child.item_returned = true
 			break
+
+

@@ -7,4 +7,5 @@ class_name ItemData
 @export var stackable: bool 
 @export var texture : AtlasTexture
 @export var type : String
+@export var value : int
 
