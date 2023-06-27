@@ -110,7 +110,7 @@ func _input(event):
 				click = true
 				var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
 				var data = tile_map.get_cell_tile_data(tile_layers.get("Land"), clicked_cell)
-				if data and data.get_custom_data("Farmable") and current_tool_slot == "Hoe":
+				if data and data.get_custom_data("Farmable") and current_tool_slot == "Hoe" and tile_map.get_cell_source_id(tile_layers.get("Objects"), clicked_cell) == -1:
 					if (get_local_mouse_position().x <= 24 and get_local_mouse_position().x >= -24) and (get_local_mouse_position().y <= 24 and get_local_mouse_position().y >= -24): 
 						soil_tiles.append(clicked_cell)
 						tile_map.set_cells_terrain_connect(tile_layers.get("Soil"), soil_tiles, 1, 0)
