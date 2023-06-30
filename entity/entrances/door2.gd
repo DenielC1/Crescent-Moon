@@ -23,6 +23,6 @@ func _on_leave_area_entered(_area):
 
 
 func _on_leave_area_exited(_area):
-	if player.direction.y > 0:
+	if player.direction.y < 0:
 		inside = false
 		tile_map.set_layer_enabled(roof_layer, true)

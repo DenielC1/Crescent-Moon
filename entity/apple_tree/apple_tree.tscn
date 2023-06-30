@@ -280,9 +280,9 @@ position = Vector2(21, -11)
 shape = SubResource("RectangleShape2D_lqgbq")
 
 [node name="TreeAppleSprites" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -3)
 texture = ExtResource("6_7d3sl")
-offset = Vector2(0, -11)
+offset = Vector2(0, -14)
 hframes = 12
 vframes = 5
 frame = 24

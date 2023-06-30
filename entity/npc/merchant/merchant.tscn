@@ -49,6 +49,7 @@ _data = {
 radius = 17.0
 
 [node name="Merchant" type="StaticBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_a04uj")
 dialogue_resource = ExtResource("2_vfxu0")
 
@@ -57,7 +58,9 @@ position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_gc2ao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
 texture = ExtResource("2_lk4bn")
+offset = Vector2(0, -4)
 hframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

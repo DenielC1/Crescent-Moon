@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqicl41wlbqrk"]
+[gd_scene load_steps=11 format=3 uid="uid://dxe1h8wajoeb5"]
 
-[ext_resource type="Script" path="res://entity/entrances/door.gd" id="1_de0m7"]
-[ext_resource type="Texture2D" uid="uid://c6u8rpvpv12xh" path="res://tileset/Building parts/door animation sprites.png" id="2_2kqnu"]
+[ext_resource type="Script" path="res://entity/entrances/door2.gd" id="1_f7prq"]
+[ext_resource type="Texture2D" uid="uid://c6u8rpvpv12xh" path="res://tileset/Building parts/door animation sprites.png" id="2_d8xqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6neiu"]
 size = Vector2(11.25, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htkso"]
-atlas = ExtResource("2_2kqnu")
+atlas = ExtResource("2_d8xqs")
 region = Rect2(0, 0, 96, 16)
 
 [sub_resource type="Animation" id="Animation_1j1x7"]
@@ -66,11 +66,11 @@ _data = {
 size = Vector2(16, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0ter"]
-size = Vector2(16, 5)
+size = Vector2(16, 6)
 
 [node name="Door" type="StaticBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_de0m7")
+script = ExtResource("1_f7prq")
 
 [node name="Entrance" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -101,7 +101,7 @@ shape = SubResource("RectangleShape2D_msv7n")
 collision_layer = 5
 
 [node name="Entrance2" type="CollisionShape2D" parent="Leave"]
-position = Vector2(0, 5.5)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_k0ter")
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_area_2d_area_entered"]
