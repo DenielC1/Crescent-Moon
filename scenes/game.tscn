@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://d3uk1lwdkaq6o"]
+[gd_scene load_steps=60 format=3 uid="uid://fsi5ffiiv6qt"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
 [ext_resource type="PackedScene" uid="uid://txqc322ifagl" path="res://scenes/player.tscn" id="3_ta1jp"]
@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://mmrfx71l48py" path="res://sfx/music/Ambient Music.wav" id="22_t6cvf"]
 [ext_resource type="AudioStream" uid="uid://c2521aov88lmv" path="res://sfx/item/pick_up.wav" id="23_x4wue"]
 [ext_resource type="AudioStream" uid="uid://d4asqpu1xx3pd" path="res://sfx/item/left_click.wav" id="24_ebtwq"]
-[ext_resource type="Script" path="res://scenes/Coins.gd" id="25_f184e"]
+[ext_resource type="Script" path="res://scripts/Coins.gd" id="25_3vd3h"]
 [ext_resource type="AudioStream" uid="uid://cealgh32vwpx4" path="res://sfx/item/right_click.wav" id="25_tyxxq"]
 [ext_resource type="Texture2D" uid="uid://da0khfteqlx6q" path="res://gui/clock.png" id="31_vm22e"]
 [ext_resource type="PackedScene" uid="uid://d0jcl6oybimca" path="res://scenes/pause_menu.tscn" id="32_7e5lh"]
@@ -1713,9 +1713,8 @@ layer_6/z_index = 1
 layer_6/tile_data = PackedInt32Array(1048580, 196619, 0, 1048581, 262155, 0, 1048582, 262155, 0, 1048583, 262155, 0, 1048584, 262155, 0, 1114120, 262155, 1, 1114121, 262155, 1, 1114122, 262155, 1, 1114123, 262155, 1, 1048587, 262155, 0, 1048585, 262155, 0, 1048586, 262155, 0, 1048588, 327691, 0, 1114124, 327691, 1, 1114119, 262155, 1, 1114118, 262155, 1, 1114117, 262155, 1, 1114116, 196619, 1, 1179653, 262155, 1, 1179654, 262155, 1, 1179655, 262155, 1, 1179656, 262155, 1, 1179657, 262155, 1, 1179658, 262155, 1, 1179659, 262155, 1, 1179660, 327691, 1, 1179652, 196619, 1, 1245189, 262155, 2, 1245190, 262155, 2, 1245191, 262155, 2, 1245192, 262155, 2, 1245193, 262155, 2, 1245194, 262155, 2, 1245195, 262155, 2, 1310726, 262155, 3, 1310725, 262155, 3, 1376261, 262155, 3, 1376262, 262155, 3, 1376263, 262155, 3, 1376264, 262155, 3, 1310728, 262155, 3, 1310727, 262155, 3, 1376265, 262155, 3, 1376266, 262155, 3, 1376267, 262155, 3, 1310731, 262155, 3, 1310730, 262155, 3, 1310729, 262155, 3, 1245196, 327691, 2, 1245188, 196619, 2, 1310724, 196619, 3, 1441796, 196619, 4, 1441797, 262155, 4, 1441798, 262155, 4, 1441799, 262155, 4, 1441800, 262155, 4, 1441801, 262155, 4, 1441804, 327691, 4, 1376268, 327691, 3, 1310732, 327691, 3, 1376260, 196619, 3, 1441802, 262155, 4, 1441803, 262155, 4)
 
 [node name="player" parent="TileMap" instance=ExtResource("3_ta1jp")]
-material = null
 use_parent_material = true
-position = Vector2(208, 387)
+position = Vector2(186, 392)
 rotation = -0.00039148
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="TileMap/player"]
@@ -1728,7 +1727,7 @@ y_sort_enabled = true
 use_parent_material = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(924, -358)
+position = Vector2(902, -353)
 
 [node name="DayNightCycle" type="CanvasModulate" parent="." node_paths=PackedStringArray("time_anim")]
 script = ExtResource("13_aisdf")
@@ -1774,7 +1773,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="Coins" type="CanvasLayer" parent="."]
-script = ExtResource("25_f184e")
+script = ExtResource("25_3vd3h")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Coins"]
 offset_left = 277.0

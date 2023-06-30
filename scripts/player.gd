@@ -34,10 +34,8 @@ var watered_tiles = []
 func _ready():
 	use_item_slot.connect(get_parent().get_parent().use_item_slot)
 	Animation_Tree.set_active(true)
-	Animation_Tree.set("parameters/Idle/blend_positdion", starting_pos)
-	Animation_Tree.set("parameters/Axe/blend_position", starting_pos)
-	Animation_Tree.set("parameters/Hoe/blend_position", starting_pos)
-	Animation_Tree.set("parameters/Watering Can/blend_position", starting_pos)
+	Animation_Tree.set("parameters/Idle/blend_position", starting_pos)
+
 
 func _physics_process(_delta):
 	tile_selector()

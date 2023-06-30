@@ -1,4 +1,4 @@
-[gd_scene load_steps=234 format=3 uid="uid://txqc322ifagl"]
+[gd_scene load_steps=232 format=3 uid="uid://txqc322ifagl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7bno7"]
 [ext_resource type="Resource" uid="uid://ccqmd6n1vowyu" path="res://inventory/inventory.tres" id="2_xghgu"]
@@ -9,40 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c8kv87niokjx2" path="res://components/hitbox/hitbox.tscn" id="5_d8cli"]
 [ext_resource type="PackedScene" uid="uid://dwa48g2s7nx3d" path="res://entity/crops/crop_types/carrot.tscn" id="5_mvmh3"]
 [ext_resource type="Script" path="res://components/hitbox/hitbox.gd" id="6_usb5e"]
-
-[sub_resource type="Shader" id="Shader_bk3en"]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-// Texture must have 'Filter'-flag enabled!
-
-// Automatic smoothing
-// independent of geometry and perspective
-vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
-{
-	vec2 ddx = dFdx(uv);
-	vec2 ddy = dFdy(uv);
-	vec2 lxy = sqrt(ddx * ddx + ddy * ddy);
-	
-	vec2 uv_pixels = uv / pixel_size;
-	
-	vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5f);
-	vec2 uv_dxy_pixels = uv_pixels - uv_pixels_floor;
-	
-	uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5f)) * pixel_size / lxy + vec2(0.5f), 0.0f, 1.0f);
-	
-	uv = uv_pixels_floor * pixel_size;
-	
-	return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
-}
-
-void fragment()
-{
-	COLOR = texturePointSmooth(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vebod"]
-shader = SubResource("Shader_bk3en")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noquf"]
 size = Vector2(12, 6)
@@ -1275,62 +1241,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ToolHitbox/CollisionShape2D:disabled")
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ToolHitbox/CollisionShape2D:position")
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(29, -19)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ToolHitbox/CollisionShape2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite2D:animation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"move_right"]
+"values": [&"idle_down"]
 }
 
 [sub_resource type="Animation" id="Animation_trj5h"]
@@ -2615,6 +2545,7 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_x7kpu")
 blend_point_3/pos = Vector2(-1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
+snap = Vector2(0.01, 0.1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gb78d"]
@@ -2702,7 +2633,7 @@ states/Move/position = Vector2(459, 100)
 "states/Watering Can/node" = SubResource("AnimationNodeBlendSpace2D_dtn2m")
 "states/Watering Can/position" = Vector2(459, 195)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_03kp1"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_mv808"), "Idle", "Axe", SubResource("AnimationNodeStateMachineTransition_g77td"), "Idle", "Hoe", SubResource("AnimationNodeStateMachineTransition_22gih"), "Idle", "Watering Can", SubResource("AnimationNodeStateMachineTransition_4302m"), "Axe", "Idle", SubResource("AnimationNodeStateMachineTransition_d4lm3"), "Hoe", "Idle", SubResource("AnimationNodeStateMachineTransition_dcxy1"), "Watering Can", "Idle", SubResource("AnimationNodeStateMachineTransition_im02k")]
-graph_offset = Vector2(0, 72.75)
+graph_offset = Vector2(-269.5, 55.4091)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xipux"]
 
@@ -2718,10 +2649,6 @@ size = Vector2(12, 6)
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_vebod")
-collision_layer = 2
-motion_mode = 1
-floor_stop_on_slope = false
 script = ExtResource("1_7bno7")
 inventory_data = ExtResource("2_xghgu")
 crop_list = {
@@ -2749,10 +2676,10 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_noquf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(11, -8)
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_vo0q4")
-animation = &"move_right"
-offset = Vector2(-11, 0)
+animation = &"idle_down"
+offset = Vector2(0, -7)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -2765,16 +2692,15 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_xipux")
 parameters/Axe/blend_position = Vector2(0, 0)
 parameters/Hoe/blend_position = Vector2(-0.00675678, -0.892216)
-parameters/Idle/blend_position = Vector2(-0.996572, -0.00916672)
+parameters/Idle/blend_position = Vector2(-0.144401, 0.218694)
 parameters/Move/blend_position = Vector2(-0.00639999, 0.994611)
 "parameters/Watering Can/blend_position" = Vector2(0, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_lkbqd")]
-visible = false
 position = Vector2(-19, 17)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(19, -11)
+position = Vector2(19, -20)
 shape = SubResource("RectangleShape2D_ebiil")
 
 [node name="ToolHitbox" parent="." instance=ExtResource("5_d8cli")]
@@ -2786,7 +2712,6 @@ script = ExtResource("6_usb5e")
 [node name="CollisionShape2D" parent="ToolHitbox" index="0"]
 position = Vector2(29, -19)
 shape = SubResource("CapsuleShape2D_mqnw1")
-disabled = true
 
 [node name="Hitbox" parent="." instance=ExtResource("5_d8cli")]
 position = Vector2(0, -1)
@@ -2794,6 +2719,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_new8w")
 
