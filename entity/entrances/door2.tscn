@@ -101,7 +101,7 @@ shape = SubResource("RectangleShape2D_msv7n")
 collision_layer = 5
 
 [node name="Entrance2" type="CollisionShape2D" parent="Leave"]
-position = Vector2(0, -5)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_k0ter")
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_area_2d_area_entered"]

@@ -87,7 +87,7 @@ func on_item_clicked (index : int, button : int, type: String):
 		else: 
 			grabbed_slot.hide()
 		get_parent().load_inventory()
-	else:
+	elif global.is_selling_goods:
 		if type == "Inventory":
 			index += 5
 		if button == MOUSE_BUTTON_LEFT:
