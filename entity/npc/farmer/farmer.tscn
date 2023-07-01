@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://doeh5ylw4yq3o"]
+[gd_scene load_steps=9 format=3 uid="uid://dlqjeld7obou4"]
 
-[ext_resource type="Script" path="res://entity/npc/npc.gd" id="1_rhl36"]
-[ext_resource type="Texture2D" uid="uid://ck8u6w07loqj8" path="res://entity/npc/merchant/merchant.png" id="2_ldcjj"]
+[ext_resource type="Script" path="res://entity/npc/npc.gd" id="1_wktmi"]
+[ext_resource type="Texture2D" uid="uid://ck8u6w07loqj8" path="res://entity/npc/merchant/merchant.png" id="2_0c402"]
+[ext_resource type="Resource" uid="uid://bjgfi0dnnggy3" path="res://entity/npc/farmer/farmer.dialogue" id="2_aa21p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gc2ao"]
 size = Vector2(14, 5)
@@ -48,7 +49,8 @@ radius = 23.0217
 
 [node name="NPC" type="StaticBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_rhl36")
+script = ExtResource("1_wktmi")
+dialogue_resource = ExtResource("2_aa21p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.5)
@@ -57,7 +59,7 @@ shape = SubResource("RectangleShape2D_gc2ao")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 8)
-texture = ExtResource("2_ldcjj")
+texture = ExtResource("2_0c402")
 offset = Vector2(0, -8)
 hframes = 9
 
@@ -67,7 +69,6 @@ libraries = {
 }
 
 [node name="PlayerDetection" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -76,5 +77,9 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_6n25k")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_area_exited"]

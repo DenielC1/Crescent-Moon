@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://4kdgdnxr7yjg"]
+[gd_scene load_steps=2 format=3 uid="uid://uu430r7vnv58"]
 
-[ext_resource type="TileSet" uid="uid://ccs8icoha3srm" path="res://game.tres" id="1_k4cgq"]
+[ext_resource type="TileSet" uid="uid://ccs8icoha3srm" path="res://game.tres" id="1_v6j8j"]
 
 [node name="House" type="TileMap"]
 y_sort_enabled = true
 position = Vector2(-16, 32)
-tile_set = ExtResource("1_k4cgq")
+tile_set = ExtResource("1_v6j8j")
 format = 2
 layer_0/name = "floor"
 layer_0/z_index = -1
@@ -20,10 +20,10 @@ layer_1/tile_data = PackedInt32Array(-65533, 65547, 3, -65532, 9, 655360, -65531
 layer_2/name = "houseobjects"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
-layer_2/y_sort_enabled = false
+layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 2
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(-393215, 131080, 1, -327679, 131080, 2, -196602, 196616, 3, -262138, 262152, 3, -131066, 262152, 3, -196601, 262152, 3, -196603, 262152, 3, -131068, 131080, 5)
 layer_3/name = "roof"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)

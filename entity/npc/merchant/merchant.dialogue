@@ -1,5 +1,5 @@
 ~ start
-if not global.is_selling_goods:
+if not global.is_talking:
 	set global.is_talking = true
 
 	if global.time_state == "Night":

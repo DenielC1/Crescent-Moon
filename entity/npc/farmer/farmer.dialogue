@@ -1,0 +1,32 @@
+~ start
+if not global.is_talking:
+	set global.is_talking = true
+
+	if global.time_state == "Night":
+		Farmer Tim: ZzzzZZzzzzZZzzzZzzzZz.....
+		- ... 
+	else:
+		if global.farmer_first_time_chat:
+			if global.time_state == "Morning":
+				Farmer Tim: Good morning!
+			elif global.time_state == "Afternoon":
+				Farmer Tim: Good afternoon!
+			elif global.time_state == "Evening":
+				Farmer Tim: Good evening!
+			- Who are you?
+				set global.farmer_first_time_chat = false
+				Farmer Tim: I am a local farmer that will sell you seeds of various crops along with cows for your farm.
+				- Yes
+				- No
+			- Goodbye
+		else:
+			if global.time_state == "Morning":
+				Farmer Tim: Good morning! Do you have anything to sell?
+			elif global.time_state == "Afternoon":
+				Farmer Tim: Good afternoon! Do you have anything to sell?
+			elif global.time_state == "Evening":
+				Farmer Tim: Good evening! Do you have anything to sell?
+			- Yes
+			- No 
+	set global.is_talking = false: 
+	=> END

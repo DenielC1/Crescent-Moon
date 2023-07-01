@@ -13,6 +13,7 @@ var evening : float = 17
 var night : float = 21
 
 var merchant_first_time_chat = true
+var farmer_first_time_chat = true
 var is_talking = false
 var is_selling_goods = false
 var can_move = true
