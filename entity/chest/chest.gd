@@ -36,6 +36,5 @@ func _on_player_detection_area_exited(_area):
 	in_range = false
 
 func first_data_load():
-	print("FIRST TIME")
 	global.chest_inventory_datas[id] = chest_data
 

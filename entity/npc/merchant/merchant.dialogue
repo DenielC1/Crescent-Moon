@@ -1,36 +1,23 @@
 ~ start
-if not global.is_talking:
+if not global.is_talking and not global.is_selling_goods:
 	set global.is_talking = true
 
 	if global.time_state == "Night":
 		Merchant Rob: ZzzzZZzzzzZZzzzZzzzZz.....
 		- ... 
 	else:
-		if global.merchant_first_time_chat:
-			if global.time_state == "Morning":
-				Merchant Rob : Good morning!
-			elif global.time_state == "Afternoon":
-				Merchant Rob : Good afternoon!
-			elif global.time_state == "Evening":
-				Merchant Rob: Good evening!
-			- Who are you?
-				set global.merchant_first_time_chat = false
-				Merchant Rob: I am a local merchant that will buy your goods! Do you have anything to sell?
-				- Yes
-					set global.is_selling_goods = true
-				- No
-			- Goodbye
-		else:
-			if global.time_state == "Morning":
-				Merchant Rob : Good morning! Do you have anything to sell?
-			elif global.time_state == "Afternoon":
-				Merchant Rob : Good afternoon! Do you have anything to sell?
-			elif global.time_state == "Evening":
-				Merchant Rob: Good evening! Do you have anything to sell?
+		if global.time_state == "Morning":
+			Merchant Rob : Good morning!
+		elif global.time_state == "Afternoon":
+			Merchant Rob : Good afternoon!
+		elif global.time_state == "Evening":
+			Merchant Rob: Good evening!
+		- Who are you?
+			Merchant Rob: I am a local merchant that will buy your goods! Do you have anything to sell?
 			- Yes
 				set global.is_selling_goods = true
-			- No 
-		
+			- No
+		- Goodbye
 	set global.is_talking = false
 	=> END
 

@@ -39,7 +39,7 @@ func _ready():
 
 func _physics_process(_delta):
 	tile_selector()
-	if not global.is_talking and not using_inventory:
+	if global.can_move and not using_inventory:
 		var input_direction = Vector2(Input.get_action_strength("move_right")-Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down")-Input.get_action_strength("move_up"))
 		
@@ -96,7 +96,7 @@ func anim_ended():
 	click = false
 
 func _input(event):
-	if not global.is_talking:
+	if not global.is_talking and not global.is_buying_goods:
 		if event.is_action_pressed("inventory") and !click:
 			using_inventory = not using_inventory
 			index = -1

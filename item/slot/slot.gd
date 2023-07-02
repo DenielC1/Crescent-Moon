@@ -23,12 +23,22 @@ func _ready():
 		elif get_parent().name == "chest_grid":
 			item_clicked.connect(get_parent().get_parent().get_parent().get_parent().get_parent().on_item_clicked)
 			type = get_parent().get_parent().name
+		elif get_parent().name == "farmer_grid":
+			item_clicked.connect(get_parent().get_parent().get_parent().get_parent().get_parent().on_item_clicked)
+			type = get_parent().get_parent().name
 func _process(_delta):
 	if global.is_selling_goods:
 		tabbed = true
-		$Icon/TextureRect/VBoxContainer/Shop.show()
+		$Icon/TextureRect/VBoxContainer/MerchantShop.show()
 	else:
-		$Icon/TextureRect/VBoxContainer/Shop.hide()
+		$Icon/TextureRect/VBoxContainer/MerchantShop.hide()
+		tabbed = false
+	if global.is_buying_goods and $Icon/TextureRect/VBoxContainer/FarmerShop.text != "":
+		tabbed = true
+		$Icon/TextureRect/VBoxContainer/FarmerShop.show()
+	else:
+		$Icon/TextureRect/VBoxContainer/FarmerShop.hide()
+		tabbed = false
 func import_item_data(slot_data : SlotData):
 	if slot_data:
 		item_data = slot_data.item_data
@@ -37,17 +47,19 @@ func import_item_data(slot_data : SlotData):
 		$Icon/TextureRect/VBoxContainer/item_name.text = item_data.name
 		$Icon/TextureRect/VBoxContainer/Tooltip.text = item_data.description
 		if item_data.value != 0:
-			$Icon/TextureRect/VBoxContainer/Shop.text = "[VALUE: %d PER]" % item_data.value
+			$Icon/TextureRect/VBoxContainer/MerchantShop.text = "[VALUE: %d PER]" % item_data.value
 		else: 
-			$Icon/TextureRect/VBoxContainer/Shop.text = "[UNSELLABLE]"
-	
-		if slot_data.quantity >= 1 and item_data.stackable:
+			$Icon/TextureRect/VBoxContainer/MerchantShop.text = "[UNSELLABLE]"
+		if slot_data.quantity == 100:
+			$Icon/TextureRect/VBoxContainer/FarmerShop.text = "[VALUE: %d PER]" % item_data.buy_value
+		elif slot_data.quantity >= 1 and item_data.stackable:
 			$QuantityLabel.text = "%s" % slot_data.quantity
 	else:
 		$Icon.texture = null
 		$Icon/TextureRect/VBoxContainer/item_name.text = ""
 		$Icon/TextureRect/VBoxContainer/Tooltip.text = ""
-		$Icon/TextureRect/VBoxContainer/Shop.text = ""
+		$Icon/TextureRect/VBoxContainer/MerchantShop.text = ""
+		$Icon/TextureRect/VBoxContainer/FarmerShop.text = ""
 		$QuantityLabel.text = ""
 		
 func _gui_input(event):

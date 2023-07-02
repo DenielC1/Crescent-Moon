@@ -19,5 +19,5 @@ func _process(_delta):
 	+ "\nCurrent Item: %s" % player.current_slot \
 	+ "\nCurrent State: %s" % player.current_state \
 	+ "\nSlot Index: %s" % (player.index + 1) \
-	+ "\nInventory Status: %s" % game.is_inventory_full \
+	+ "\nInventory Status: %s" % global.is_inventory_full \
 	+ "\nTime: %d:%02d" % global.game_time

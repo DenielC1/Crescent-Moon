@@ -14,7 +14,6 @@ var item_returned : bool = false
 var item_id : int
 
 func _ready():
-
 	item_pick_up.connect(game.on_item_pick_up)
 	item.text = item_data.name
 	sprite_2d.texture = item_data.texture
@@ -22,6 +21,6 @@ func _ready():
 	
 func _on_hurtbox_area_entered(_area):
 	item_pick_up.emit(item_data, int(quantity_label.text))
-	if (!game.is_inventory_full and !item_returned) or int(quantity_label.text) == 0 :
+	if (!global.is_inventory_full and !item_returned) or int(quantity_label.text) == 0 :
 		queue_free()
 		

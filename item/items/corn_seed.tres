@@ -15,3 +15,4 @@ stackable = true
 texture = SubResource("AtlasTexture_xplwe")
 type = "Seeds"
 value = 0
+buy_value = 1

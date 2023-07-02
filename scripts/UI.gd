@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var inventory_left_click = $"../Audio/Inventory_left_click"
 @onready var inventory_right_click = $"../Audio/Inventory_right_click"
 @onready var merchant_ui = $MerchantUI
+@onready var farmer_ui = $FarmerUI
 
 var grabbed_slot_data : SlotData
 const Slot = preload("res://item/slot/slot.tscn")
@@ -25,7 +26,10 @@ func _ready():
 func _physics_process(_delta):
 	if global.is_selling_goods:
 		merchant_ui.show()
+	elif global.is_buying_goods:
+		farmer_ui.show()
 	else:
+		farmer_ui.hide()
 		merchant_ui.hide()
 		if grabbed_slot.visible:
 			grabbed_slot.tooltip_text = ""
@@ -38,6 +42,16 @@ func _physics_process(_delta):
 				grabbed_slot_data = null
 				grabbed_slot.import_item_data(grabbed_slot_data)
 func on_item_clicked (index : int, button : int, type: String):
+	if type == "FarmerShop":
+		var farmer_inventor_data = get_parent().FarmerInventory
+		inventory_left_click.play()
+		var slot_data = farmer_inventor_data.slot_datas[index]
+		if slot_data and button == MOUSE_BUTTON_LEFT and not global.is_inventory_full:
+			var bv = slot_data.item_data.buy_value
+			if global.coins - bv >= 0:
+				print("BOUGHT %s" % slot_data.item_data.name)
+				global.coins -= bv
+				pick_up_item(slot_data.item_data, 1)
 	if get_parent().player.using_inventory and not global.is_selling_goods:
 		if type == "Inventory":
 			index += 5
@@ -47,9 +61,9 @@ func on_item_clicked (index : int, button : int, type: String):
 		if button == MOUSE_BUTTON_LEFT and grabbed_slot_data == null:
 			inventory_left_click.play()
 			grabbed_slot_data = player.inventory_data.slot_datas[index]
-			if grabbed_slot_data and game.is_inventory_full:
+			if grabbed_slot_data and global.is_inventory_full:
 				inventory_not_full.emit(item_id)
-			elif !grabbed_slot_data and game.is_inventory_full:
+			elif !grabbed_slot_data and global.is_inventory_full:
 				inventory_full.emit()
 			if grabbed_slot_data: 
 				grabbed_slot.import_item_data(grabbed_slot_data)
@@ -103,6 +117,7 @@ func on_item_clicked (index : int, button : int, type: String):
 					player.inventory_data.slot_datas[index] = null
 				get_parent().load_inventory()
 				
+
 func pick_up_item(item_data : ItemData, quantity : int):
 	item_id = item_id
 	if !is_inventory_full(item_data, quantity):

@@ -17,7 +17,7 @@ func _process(_delta):
 	global.game_time = [int(time), int(fmod(time,temp)*60)]
 	if global.game_time[0] >= 12:
 		if global.game_time[0] == 12:
-			hour = global.game_time[0]/12
+			hour = 12
 		else:
 			hour = int(fmod(global.game_time[0],12))
 		time_period = "PM"
@@ -26,8 +26,6 @@ func _process(_delta):
 		time_period = "AM"
 	$"../Clock/NinePatchRect/HBoxContainer/Label".text = "%02d:%02d" % [hour, global.game_time[1]] + time_period
 	#print(global.start_time + (1440-timer.time_left)/60)
-	if hour == 24:
-		global.day += 1
 	$"../Day/NinePatchRect/HBoxContainer/Label".text = "August %d" % global.day
 	time = fmod(global.start_time + (1440-timer.time_left)/60, 24)
 	global.actual_time = time
@@ -42,4 +40,5 @@ func _process(_delta):
 
 func _on_timer_timeout():
 	print("24 HOUR PASS")
+	global.day += 1
 	timer.start()

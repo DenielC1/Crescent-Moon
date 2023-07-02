@@ -16,7 +16,6 @@ class_name PlayerData
 
 
 func update_data():
-	print(chest_inventory_datas)
 	global.coins = coins
 	global.day = day
 	if global.chest_inventory_datas == {}:

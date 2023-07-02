@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc85tfb4p5k0d"]
+[gd_scene load_steps=11 format=3 uid="uid://cd0j4gvgnw6k"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_mvs53"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="2_rfga0"]
+[ext_resource type="Texture2D" uid="uid://4hpagkkqc3r" path="res://gui/background idk.png" id="2_vbbln"]
 [ext_resource type="Texture2D" uid="uid://b760iy0b4mhx2" path="res://gui/Sprite sheet for Basic Pack.png" id="3_m4msu"]
 [ext_resource type="PackedScene" uid="uid://8mbfjlyh8o6p" path="res://scenes/settings.tscn" id="4_0brn6"]
 [ext_resource type="AudioStream" uid="uid://mmrfx71l48py" path="res://sfx/music/Ambient Music.wav" id="5_72ulw"]
@@ -28,7 +29,12 @@ texture_margin_bottom = 8.0
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_mvs53")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("2_vbbln")
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

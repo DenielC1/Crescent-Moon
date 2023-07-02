@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=9 format=3 uid="uid://b5w2t6de85gpg"]
+
+[ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_6b4lk"]
+[ext_resource type="Resource" uid="uid://3ljqiq56kwkl" path="res://item/items/carrot_seed.tres" id="2_fj3u3"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="3_3iyyn"]
+[ext_resource type="Resource" uid="uid://c7e1mdsvqseoc" path="res://item/items/corn_seed.tres" id="4_p0ky4"]
+[ext_resource type="Resource" uid="uid://bjmamlguk8pjh" path="res://item/items/tomatoe_seed.tres" id="5_hry00"]
+
+[sub_resource type="Resource" id="Resource_ndpht"]
+script = ExtResource("3_3iyyn")
+item_data = ExtResource("2_fj3u3")
+quantity = 100
+
+[sub_resource type="Resource" id="Resource_fuecb"]
+script = ExtResource("3_3iyyn")
+item_data = ExtResource("4_p0ky4")
+quantity = 100
+
+[sub_resource type="Resource" id="Resource_khw40"]
+script = ExtResource("3_3iyyn")
+item_data = ExtResource("5_hry00")
+quantity = 100
+
+[resource]
+script = ExtResource("1_6b4lk")
+slot_datas = Array[ExtResource("3_3iyyn")]([SubResource("Resource_ndpht"), SubResource("Resource_fuecb"), SubResource("Resource_khw40"), null, null, null, null, null, null, null, null, null, null, null, null])

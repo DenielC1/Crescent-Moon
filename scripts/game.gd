@@ -7,6 +7,8 @@ var player_data : PlayerData = PlayerData.new()
 var chest_data : InventoryData
 
 @onready var player = $TileMap/player
+@onready var farmer_shop = $UI/CenterContainer/HBoxContainer/FarmerShop
+@onready var farmer_grid = $UI/CenterContainer/HBoxContainer/FarmerShop/farmer_grid
 @onready var hotbar_grid = $UI/Hotbar/hotbar_grid
 @onready var inventory_grid = $UI/CenterContainer/HBoxContainer/Inventory/inventory_grid
 @onready var chest_grid = $UI/CenterContainer/HBoxContainer/Chest/chest_grid
@@ -26,6 +28,7 @@ var chest_data : InventoryData
 
 const Slot = preload("res://item/slot/slot.tscn")
 const ItemDrop = preload("res://item/item_drop/item_drop.tscn")
+const FarmerInventory = preload("res://inventory/farmer_inventory.tres")
 
 var set_item_id = 0
 var temp : int = -1
@@ -36,10 +39,16 @@ var item_position_x : float
 var item_position_y : float
 
 var has_chest_opened : bool = false
-var is_inventory_full : bool = false
-
 
 func _ready():
+	var index = 0
+	while index < 15:
+		var slot_data = FarmerInventory.slot_datas[index]
+		var slot = Slot.instantiate()
+		if slot_data != null:
+			slot.import_item_data(slot_data)
+		farmer_grid.add_child(slot)
+		index += 1
 	global.data_loaded = false
 	load_inventory()
 	verify_save_directory(save_file_path)
@@ -99,15 +108,20 @@ func load_inventory():
 			slot.import_item_data(slot_data)
 		chest_grid.add_child(slot)
 		index += 1
-func _process(_delta):
-	select_slot()
-	if global.is_selling_goods or has_chest_opened:
-		player.using_inventory = true
 
-	if player.using_inventory:
-		$UI/CenterContainer/HBoxContainer/Inventory.show()
+func _process(_delta):
+	if global.is_buying_goods:
+		farmer_shop.show()
 	else:
-		$UI/CenterContainer/HBoxContainer/Inventory.hide()
+		farmer_shop.hide()
+		select_slot()
+		if global.is_selling_goods or has_chest_opened:
+			player.using_inventory = true
+
+		if player.using_inventory:
+			$UI/CenterContainer/HBoxContainer/Inventory.show()
+		else:
+			$UI/CenterContainer/HBoxContainer/Inventory.hide()
 
 func select_slot():
 	if player.index != -1:
@@ -120,7 +134,7 @@ func select_slot():
 		selection.hide()
 		
 func _input(event):
-	if event.is_action_pressed("escape") and not global.is_selling_goods and not player.using_inventory:
+	if event.is_action_pressed("escape") and not global.is_selling_goods and not global.is_buying_goods and not player.using_inventory:
 		is_escaped = not is_escaped
 		if is_escaped:
 			global.game_paused = true
@@ -168,10 +182,10 @@ func on_item_pick_up(item_data : ItemData, quantity : int):
 	$UI.pick_up_item(item_data, quantity)
 	pick_up.play()
 func inventory_full():
-	is_inventory_full = true
+	global.is_inventory_full = true
 
 func inventory_not_full(item_id : int):
-	is_inventory_full = false
+	global.is_inventory_full = false
 	for child in dropped_items.get_children():
 		if child.item_id == item_id :
 			child.item_returned = false
@@ -203,7 +217,11 @@ func load_chest_datas():
 		for child in tile_map.get_children():
 			if child.is_in_group("chest"):
 				if child.id == id:
-					print(id)
-					print(child.id)
 					child.chest_data = global.chest_inventory_datas.get(id)
 
+
+
+func _on_dropped_item_timer_timeout():
+	for child in $TileMap/DroppedItems.get_children():
+		child.queue_free()
+	$DroppedItemTimer.start()

@@ -8,4 +8,4 @@ class_name ItemData
 @export var texture : AtlasTexture
 @export var type : String
 @export var value : int
-
+@export var buy_value : int
