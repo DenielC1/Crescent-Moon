@@ -43,6 +43,13 @@ func import_item_data(slot_data : SlotData):
 	
 		if slot_data.quantity >= 1 and item_data.stackable:
 			$QuantityLabel.text = "%s" % slot_data.quantity
+	else:
+		$Icon.texture = null
+		$Icon/TextureRect/VBoxContainer/item_name.text = ""
+		$Icon/TextureRect/VBoxContainer/Tooltip.text = ""
+		$Icon/TextureRect/VBoxContainer/Shop.text = ""
+		$QuantityLabel.text = ""
+		
 func _gui_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		item_clicked.emit(get_index(), event.button_index, type)

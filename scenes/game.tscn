@@ -186,6 +186,9 @@ position = Vector2(184, 904)
 [node name="Chest2" parent="TileMap" groups=["chest"] instance=ExtResource("8_ulafq")]
 position = Vector2(191, 947)
 
+[node name="Chest3" parent="TileMap" instance=ExtResource("8_ulafq")]
+position = Vector2(143, 973)
+
 [node name="DroppedItems" type="Node2D" parent="TileMap"]
 y_sort_enabled = true
 use_parent_material = true

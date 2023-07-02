@@ -6,7 +6,7 @@ class_name PlayerData
 @export var chest_inventory_datas : Dictionary
 @export var player_pos : Vector2 = Vector2(118, 947)
 @export var time : float = 12
-@export var day : int 
+@export var day : int = 1
 @export var coins = 0
 
 @export var master_volume = 0
