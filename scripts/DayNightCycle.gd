@@ -11,8 +11,6 @@ func _ready():
 	time_anim.play("DayNightCycle")
 	time_anim.seek(global.start_time)
 func _process(_delta):
-	if global.game_paused:
-		global.actual_time = time
 	var temp = int(time)
 	if temp == 0:
 		temp = 1
@@ -29,6 +27,7 @@ func _process(_delta):
 	$"../Clock/NinePatchRect/HBoxContainer/Label".text = "%02d:%02d" % [hour, global.game_time[1]] + time_period
 	#print(global.start_time + (1440-timer.time_left)/60)
 	time = fmod(global.start_time + (1440-timer.time_left)/60, 24)
+	global.actual_time = time
 	time_anim.seek(time)
 	if time > global.night or time < global.morning:
 		get_tree().call_group("cows", "is_sleeping")

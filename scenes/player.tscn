@@ -2673,6 +2673,7 @@ size = Vector2(12, 6)
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
+position = Vector2(-1, 2)
 script = ExtResource("1_7bno7")
 inventory_data = ExtResource("2_xghgu")
 crop_list = {

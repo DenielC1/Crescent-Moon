@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlqjeld7obou4"]
+[gd_scene load_steps=10 format=3 uid="uid://dlqjeld7obou4"]
 
 [ext_resource type="Script" path="res://entity/npc/npc.gd" id="1_wktmi"]
-[ext_resource type="Texture2D" uid="uid://ck8u6w07loqj8" path="res://entity/npc/merchant/merchant.png" id="2_0c402"]
 [ext_resource type="Resource" uid="uid://bjgfi0dnnggy3" path="res://entity/npc/farmer/farmer.dialogue" id="2_aa21p"]
+[ext_resource type="Texture2D" uid="uid://mutiaj2kig60" path="res://entity/npc/farmer/farmer.png" id="3_ppe2s"]
+[ext_resource type="Texture2D" uid="uid://bwncrbygrpyu" path="res://entity/npc/farmer/farmer_icon.png" id="4_oad1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gc2ao"]
 size = Vector2(14, 5)
@@ -59,7 +60,7 @@ shape = SubResource("RectangleShape2D_gc2ao")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 8)
-texture = ExtResource("2_0c402")
+texture = ExtResource("3_ppe2s")
 offset = Vector2(0, -8)
 hframes = 9
 
@@ -80,6 +81,7 @@ shape = SubResource("CircleShape2D_6n25k")
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("4_oad1j")
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
 [connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_area_exited"]

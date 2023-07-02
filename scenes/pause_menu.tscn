@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0jcl6oybimca"]
+[gd_scene load_steps=11 format=3 uid="uid://eiaxcreinff4"]
 
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_kaiar"]
 [ext_resource type="Theme" uid="uid://ccaj2sh0ljln2" path="res://themes/theme.tres" id="2_rflr8"]
+[ext_resource type="Texture2D" uid="uid://b760iy0b4mhx2" path="res://gui/Sprite sheet for Basic Pack.png" id="3_qfqyt"]
+[ext_resource type="PackedScene" uid="uid://8mbfjlyh8o6p" path="res://scenes/settings.tscn" id="3_uk2bj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbqe1"]
+atlas = ExtResource("3_qfqyt")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lam7"]
+atlas = ExtResource("3_qfqyt")
+region = Rect2(259, 180, 90, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_746vc"]
+atlas = ExtResource("3_qfqyt")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bityn"]
+atlas = ExtResource("3_qfqyt")
+region = Rect2(259, 180, 90, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ximt2"]
+atlas = ExtResource("3_qfqyt")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyh06"]
+atlas = ExtResource("3_qfqyt")
+region = Rect2(259, 180, 90, 25)
 
 [node name="pause_menu" type="Node2D"]
 process_mode = 2
@@ -30,119 +56,94 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Options"]
 layout_mode = 2
 
-[node name="Resume_Button" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
+[node name="Resume_Button" type="TextureButton" parent="CanvasLayer/Options/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 16
-text = "Resume Game"
+texture_normal = SubResource("AtlasTexture_fbqe1")
+texture_pressed = SubResource("AtlasTexture_0lam7")
 
-[node name="Setting_Button" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 16
-text = "Settings"
-
-[node name="Quit_Button" type="Button" parent="CanvasLayer/Options/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 16
-text = "Quit
-"
-
-[node name="Settings" type="CenterContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Label" type="Label" parent="CanvasLayer/Options/VBoxContainer/Resume_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -6.5
+offset_right = 21.5
+offset_bottom = 4.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rflr8")
+theme_override_font_sizes/font_size = 12
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Settings"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/PanelContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/margin_right = 25
-
-[node name="Title" type="Label" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Setting_Button" type="TextureButton" parent="CanvasLayer/Options/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 16
+texture_normal = SubResource("AtlasTexture_746vc")
+texture_pressed = SubResource("AtlasTexture_bityn")
+
+[node name="Label" type="Label" parent="CanvasLayer/Options/VBoxContainer/Setting_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -6.5
+offset_right = 24.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rflr8")
+theme_override_font_sizes/font_size = 12
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/margin_right = 25
-
-[node name="Label3" type="Label" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
+[node name="Quit_Button" type="TextureButton" parent="CanvasLayer/Options/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 8
-text = "Master Volume
-"
+texture_normal = SubResource("AtlasTexture_ximt2")
+texture_pressed = SubResource("AtlasTexture_qyh06")
 
-[node name="Master" type="HSlider" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
+[node name="Label" type="Label" parent="CanvasLayer/Options/VBoxContainer/Quit_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_rflr8")
-min_value = -20.0
-max_value = 0.0
-step = 2.0
-rounded = true
-scrollable = false
-
-[node name="Label2" type="Label" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 8
-text = "Music"
-
-[node name="Music" type="HSlider" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme = ExtResource("2_rflr8")
-min_value = -20.0
-max_value = 0.0
-step = 2.0
-rounded = true
-scrollable = false
-
-[node name="Label" type="Label" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_rflr8")
-theme_override_font_sizes/font_size = 8
-text = "Sound Effects"
-
-[node name="SFX" type="HSlider" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme = ExtResource("2_rflr8")
-min_value = -20.0
-max_value = 0.0
-step = 2.0
-rounded = true
-scrollable = false
-
-[node name="Return_Button" type="Button" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_rflr8")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
-text = "Return"
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("3_uk2bj")]
+
+[node name="Master" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer" index="2"]
+min_value = -30.0
+
+[node name="Music" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer" index="4"]
+min_value = -30.0
+
+[node name="SFX" parent="CanvasLayer/Settings/PanelContainer/VBoxContainer" index="6"]
+min_value = -30.0
 
 [connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Resume_Button" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Setting_Button" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Options/VBoxContainer/Quit_Button" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings/PanelContainer/VBoxContainer/Return_Button" to="." method="_on_return_button_pressed"]
+
+[editable path="CanvasLayer/Settings"]

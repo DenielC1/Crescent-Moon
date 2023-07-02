@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dsqsalftg48dk"]
+[gd_scene load_steps=42 format=3 uid="uid://dsqsalftg48dk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jfmux"]
 [ext_resource type="TileSet" uid="uid://ccs8icoha3srm" path="res://game.tres" id="2_xi62v"]
@@ -13,8 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://dt20gcy6nhxlf" path="res://item/slot/slot.tscn" id="16_x6uoj"]
 [ext_resource type="Theme" uid="uid://bvowd5hq7hxuf" path="res://themes/tooltip_box.tres" id="17_sll8x"]
 [ext_resource type="Script" path="res://scripts/DebugLabel.gd" id="18_apab1"]
+[ext_resource type="Texture2D" uid="uid://b760iy0b4mhx2" path="res://gui/Sprite sheet for Basic Pack.png" id="19_j0aai"]
 [ext_resource type="AudioStream" uid="uid://fi1qy5weq3ci" path="res://sfx/world/14_Wind_loop.wav" id="20_0s2wl"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="20_6klp7"]
 [ext_resource type="Texture2D" uid="uid://b5f7h5iagwmx0" path="res://item/item_sprites/hotbar.png" id="20_dqncr"]
+[ext_resource type="PackedScene" uid="uid://8mbfjlyh8o6p" path="res://scenes/settings.tscn" id="20_o5r5r"]
 [ext_resource type="AudioStream" uid="uid://4lr58wfdf6d4" path="res://sfx/world/13_Birds_loop.wav" id="21_nhey3"]
 [ext_resource type="AudioStream" uid="uid://mmrfx71l48py" path="res://sfx/music/Ambient Music.wav" id="22_t6cvf"]
 [ext_resource type="AudioStream" uid="uid://c2521aov88lmv" path="res://sfx/item/pick_up.wav" id="23_x4wue"]
@@ -25,7 +28,6 @@
 [ext_resource type="AudioStream" uid="uid://cealgh32vwpx4" path="res://sfx/item/right_click.wav" id="25_tyxxq"]
 [ext_resource type="PackedScene" uid="uid://bjpkhc8mqu6aa" path="res://entity/houses/house3.tscn" id="26_ufomt"]
 [ext_resource type="Texture2D" uid="uid://da0khfteqlx6q" path="res://gui/clock.png" id="31_vm22e"]
-[ext_resource type="PackedScene" uid="uid://d0jcl6oybimca" path="res://scenes/pause_menu.tscn" id="32_7e5lh"]
 [ext_resource type="Texture2D" uid="uid://btldetdw3ikam" path="res://gui/coin.png" id="32_ckvv5"]
 
 [sub_resource type="Animation" id="Animation_jt6yu"]
@@ -81,6 +83,30 @@ texture_margin_bottom = 7.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhekf"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbqe1"]
+atlas = ExtResource("19_j0aai")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lam7"]
+atlas = ExtResource("19_j0aai")
+region = Rect2(259, 180, 90, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_746vc"]
+atlas = ExtResource("19_j0aai")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bityn"]
+atlas = ExtResource("19_j0aai")
+region = Rect2(259, 180, 90, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ximt2"]
+atlas = ExtResource("19_j0aai")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyh06"]
+atlas = ExtResource("19_j0aai")
+region = Rect2(259, 180, 90, 25)
+
 [node name="game" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_jfmux")
@@ -132,7 +158,7 @@ layer_5/tile_data = PackedInt32Array()
 
 [node name="player" parent="TileMap" instance=ExtResource("3_ta1jp")]
 use_parent_material = true
-position = Vector2(272, 310)
+position = Vector2(118, 947)
 rotation = -0.00039148
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="TileMap/player"]
@@ -158,7 +184,7 @@ y_sort_enabled = true
 use_parent_material = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(706, -1127)
+position = Vector2(552, -490)
 
 [node name="DayNightCycle" type="CanvasModulate" parent="." node_paths=PackedStringArray("time_anim")]
 script = ExtResource("13_aisdf")
@@ -348,12 +374,126 @@ theme_override_font_sizes/normal_font_size = 5
 scroll_active = false
 script = ExtResource("18_apab1")
 
-[node name="pause_menu" parent="." instance=ExtResource("32_7e5lh")]
-show_behind_parent = true
-position = Vector2(-294, -74)
+[node name="pause_menu" type="Node2D" parent="."]
+process_mode = 2
+script = ExtResource("20_6klp7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="pause_menu"]
+layer = 128
+
+[node name="Background" type="ColorRect" parent="pause_menu/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.772549)
+
+[node name="Options" type="CenterContainer" parent="pause_menu/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_menu/CanvasLayer/Options"]
+layout_mode = 2
+
+[node name="Resume_Button" type="TextureButton" parent="pause_menu/CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_6xt2c")
+texture_normal = SubResource("AtlasTexture_fbqe1")
+texture_pressed = SubResource("AtlasTexture_0lam7")
+
+[node name="Label" type="Label" parent="pause_menu/CanvasLayer/Options/VBoxContainer/Resume_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -6.5
+offset_right = 21.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 12
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Setting_Button" type="TextureButton" parent="pause_menu/CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_6xt2c")
+texture_normal = SubResource("AtlasTexture_746vc")
+texture_pressed = SubResource("AtlasTexture_bityn")
+
+[node name="Label" type="Label" parent="pause_menu/CanvasLayer/Options/VBoxContainer/Setting_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -6.5
+offset_right = 24.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 12
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit_Button" type="TextureButton" parent="pause_menu/CanvasLayer/Options/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_6xt2c")
+texture_normal = SubResource("AtlasTexture_ximt2")
+texture_pressed = SubResource("AtlasTexture_qyh06")
+
+[node name="Label" type="Label" parent="pause_menu/CanvasLayer/Options/VBoxContainer/Quit_Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -6.5
+offset_right = 20.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_6xt2c")
+theme_override_font_sizes/font_size = 12
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" parent="pause_menu/CanvasLayer" instance=ExtResource("20_o5r5r")]
+
+[node name="Master" parent="pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer" index="2"]
+min_value = -30.0
+
+[node name="Music" parent="pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer" index="4"]
+min_value = -30.0
+
+[node name="SFX" parent="pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer" index="6"]
+min_value = -30.0
 
 [node name="Audio" type="Node2D" parent="."]
 script = ExtResource("11_istap")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("22_t6cvf")
+autoplay = true
+bus = &"Music"
 
 [node name="Wind" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("20_0s2wl")
@@ -364,12 +504,6 @@ bus = &"SFX"
 stream = ExtResource("21_nhey3")
 autoplay = true
 bus = &"SFX"
-
-[node name="Music" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("22_t6cvf")
-volume_db = -15.0
-autoplay = true
-bus = &"Music"
 
 [node name="Pick_up" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("23_x4wue")
@@ -383,8 +517,12 @@ bus = &"SFX"
 stream = ExtResource("25_tyxxq")
 bus = &"SFX"
 
+[connection signal="pressed" from="pause_menu/CanvasLayer/Options/VBoxContainer/Resume_Button" to="pause_menu" method="_on_resume_pressed" flags=18]
+[connection signal="pressed" from="pause_menu/CanvasLayer/Options/VBoxContainer/Setting_Button" to="pause_menu" method="_on_setting_button_pressed" flags=18]
+[connection signal="pressed" from="pause_menu/CanvasLayer/Options/VBoxContainer/Quit_Button" to="pause_menu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer/Return_Button" to="pause_menu" method="_on_return_button_pressed" flags=18]
 [connection signal="finished" from="Audio/Wind" to="Audio" method="_on_wind_finished"]
 [connection signal="finished" from="Audio/Birds" to="Audio" method="_on_birds_finished"]
-[connection signal="finished" from="Audio/Music" to="Audio" method="_on_music_finished"]
 
 [editable path="UI/GrabbedSlot"]
+[editable path="pause_menu/CanvasLayer/Settings"]

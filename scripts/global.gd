@@ -1,5 +1,8 @@
 extends Node
 
+var data_loaded = false
+
+var day : int = 0
 @export var start_time : float = 12
 @onready var game_time = [0,0] 
 var actual_time : float
@@ -23,7 +26,7 @@ func _ready():
 	game_time[0] = start_time
 	check_time_state()
 	
-func _physics_process(_delta):
+func _process(_delta):
 	check_time_state()
 
 func check_player_action():

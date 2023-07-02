@@ -1,5 +1,10 @@
 extends Node2D
 
+var save_file_path = "user://save/"
+var save_file_name = "PlayerSave.tres"
+
+var player_data : PlayerData = PlayerData.new()
+
 @onready var player = $TileMap/player
 @onready var hotbar_grid = $UI/Hotbar/hotbar_grid
 @onready var inventory_grid = $UI/CenterContainer/Inventory/inventory_grid
@@ -12,6 +17,10 @@ extends Node2D
 @onready var coins = $Coins
 @onready var ui = $UI
 @onready var debug = $Debug
+
+@onready var master = $pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer/Master
+@onready var music = $pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer/Music
+@onready var sfx = $pause_menu/CanvasLayer/Settings/PanelContainer/VBoxContainer/SFX
 
 const Slot = preload("res://item/slot/slot.tscn")
 const ItemDrop = preload("res://item/item_drop/item_drop.tscn")
@@ -27,7 +36,26 @@ var item_position_y : float
 var is_inventory_full : bool = false
 
 func _ready():
+	global.data_loaded = false
 	load_inventory()
+	verify_save_directory(save_file_path)
+	load_data()
+
+func verify_save_directory(path : String):
+	DirAccess.make_dir_absolute(path)
+	
+func load_data():
+	print("DATA LOADED")
+	player_data = ResourceLoader.load(save_file_path + save_file_name).duplicate(true)
+	player_data.update_audio()
+	player_data.update_data()
+	player.position = player_data.player_pos
+	player.inventory_data = player_data.inventory_data
+	global.start_time = player_data.time
+	load_inventory()
+func save_data():
+	print("DATA SAVED")
+	ResourceSaver.save(player_data, save_file_path + save_file_name)
 	
 func load_inventory():
 	for child in hotbar_grid.get_children():
@@ -51,7 +79,7 @@ func load_inventory():
 		inventory_grid.add_child(slot)
 		index += 1
 		
-func _physics_process(_delta):
+func _process(_delta):
 	select_slot()
 	if global.is_selling_goods:
 		player.using_inventory = true
@@ -133,4 +161,3 @@ func return_dropped_items(quantity : int, item_id : int):
 			child.quantity_label.text = str(quantity)
 			child.item_returned = true
 			break
-
