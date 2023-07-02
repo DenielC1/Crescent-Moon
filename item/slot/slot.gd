@@ -15,10 +15,13 @@ var type : String
 func _ready():
 	if get_parent().name != "UI":
 		if get_parent().name == "inventory_grid":
-			item_clicked.connect(get_parent().get_parent().get_parent().get_parent().on_item_clicked)
+			item_clicked.connect(get_parent().get_parent().get_parent().get_parent().get_parent().on_item_clicked)
 			type = get_parent().get_parent().name
 		elif get_parent().name == "hotbar_grid":
 			item_clicked.connect(get_parent().get_parent().get_parent().on_item_clicked)
+			type = get_parent().get_parent().name
+		elif get_parent().name == "chest_grid":
+			item_clicked.connect(get_parent().get_parent().get_parent().get_parent().get_parent().on_item_clicked)
 			type = get_parent().get_parent().name
 func _process(_delta):
 	if global.is_selling_goods:
@@ -60,7 +63,4 @@ func _on_mouse_exited():
 
 func _on_timer_timeout():
 	$Icon/TextureRect.show()
-	
 
-
-	

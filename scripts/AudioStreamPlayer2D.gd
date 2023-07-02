@@ -13,6 +13,5 @@ func _on_birds_finished():
 func _on_wind_finished():
 	wind.play()
 
-
 func _on_music_finished():
 	music.play()

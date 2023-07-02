@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var inventory_grid = $CenterContainer/Inventory/inventory_grid
+@onready var inventory_grid = $CenterContainer/HBoxContainer/Inventory/inventory_grid
 @onready var grabbed_slot = $GrabbedSlot
 @onready var player = $"../TileMap/player"
 @onready var game = $".."
@@ -41,7 +41,9 @@ func on_item_clicked (index : int, button : int, type: String):
 	if get_parent().player.using_inventory and not global.is_selling_goods:
 		if type == "Inventory":
 			index += 5
-		#print("Index: %s  | Button: %s | Type: %s" % [index, button, type])
+		if type == "Chest":
+			index += 20
+		print("Index: %s  | Button: %s | Type: %s" % [index, button, type])
 		if button == MOUSE_BUTTON_LEFT and grabbed_slot_data == null:
 			inventory_left_click.play()
 			grabbed_slot_data = player.inventory_data.slot_datas[index]
@@ -51,7 +53,7 @@ func on_item_clicked (index : int, button : int, type: String):
 				inventory_full.emit()
 			if grabbed_slot_data: 
 				grabbed_slot.import_item_data(grabbed_slot_data)
-				player.inventory_data.slot_datas[index] = player.inventory_data.slot_datas[20] 
+				player.inventory_data.slot_datas[index] = player.inventory_data.slot_datas[35] 
 		elif button == MOUSE_BUTTON_LEFT and grabbed_slot_data:
 			inventory_left_click.play()
 			var selected_slot = player.inventory_data.slot_datas[index]
@@ -80,6 +82,8 @@ func on_item_clicked (index : int, button : int, type: String):
 				var new_slot_data = grabbed_slot_data.duplicate()
 				new_slot_data.quantity = 1
 				grabbed_slot_data.quantity -=1
+				if grabbed_slot_data.quantity <=0:
+					grabbed_slot_data = null
 				player.inventory_data.slot_datas[index] = new_slot_data
 			grabbed_slot.import_item_data(grabbed_slot_data)
 		if grabbed_slot_data:

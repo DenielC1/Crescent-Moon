@@ -4,10 +4,12 @@ var save_file_path = "user://save/"
 var save_file_name = "PlayerSave.tres"
 
 var player_data : PlayerData = PlayerData.new()
+var chest_data : InventoryData
 
 @onready var player = $TileMap/player
 @onready var hotbar_grid = $UI/Hotbar/hotbar_grid
-@onready var inventory_grid = $UI/CenterContainer/Inventory/inventory_grid
+@onready var inventory_grid = $UI/CenterContainer/HBoxContainer/Inventory/inventory_grid
+@onready var chest_grid = $UI/CenterContainer/HBoxContainer/Chest/chest_grid
 @onready var dropped_items = $TileMap/DroppedItems
 @onready var selection = $UI/Hotbar/Selection
 @onready var pick_up = $Audio/Pick_up
@@ -33,7 +35,9 @@ var rng = RandomNumberGenerator.new()
 var item_position_x : float
 var item_position_y : float
 
+var has_chest_opened : bool = false
 var is_inventory_full : bool = false
+
 
 func _ready():
 	global.data_loaded = false
@@ -45,23 +49,33 @@ func verify_save_directory(path : String):
 	DirAccess.make_dir_absolute(path)
 	
 func load_data():
-	print("DATA LOADED")
 	player_data = ResourceLoader.load(save_file_path + save_file_name).duplicate(true)
 	player_data.update_audio()
 	player_data.update_data()
 	player.position = player_data.player_pos
 	player.inventory_data = player_data.inventory_data
 	global.start_time = player_data.time
+	if player_data.chest_inventory_datas == {}:
+		get_tree().call_group("chest", "first_data_load")
 	load_inventory()
+	load_chest_datas()
+	
 func save_data():
-	print("DATA SAVED")
 	ResourceSaver.save(player_data, save_file_path + save_file_name)
 	
 func load_inventory():
+	if has_chest_opened:
+		var index = 0
+		while index < 15:
+			chest_data.slot_datas[index] = player.inventory_data.slot_datas[index + 20]
+			index += 1
+	for child in chest_grid.get_children():
+		child.queue_free()
 	for child in hotbar_grid.get_children():
 		child.queue_free()
 	for child in inventory_grid.get_children():
 		child.queue_free()
+	
 	var inventory = player.inventory_data
 	var index = 0
 	while index <5:
@@ -78,15 +92,22 @@ func load_inventory():
 			slot.import_item_data(slot_data)
 		inventory_grid.add_child(slot)
 		index += 1
-		
+	while index >= 20 and index < 35:
+		var slot_data = inventory.slot_datas[index]
+		var slot = Slot.instantiate()
+		if slot_data != null:
+			slot.import_item_data(slot_data)
+		chest_grid.add_child(slot)
+		index += 1
 func _process(_delta):
 	select_slot()
-	if global.is_selling_goods:
+	if global.is_selling_goods or has_chest_opened:
 		player.using_inventory = true
+
 	if player.using_inventory:
-		$UI/CenterContainer/Inventory.show()
+		$UI/CenterContainer/HBoxContainer/Inventory.show()
 	else:
-		$UI/CenterContainer/Inventory.hide()
+		$UI/CenterContainer/HBoxContainer/Inventory.hide()
 
 func select_slot():
 	if player.index != -1:
@@ -161,3 +182,28 @@ func return_dropped_items(quantity : int, item_id : int):
 			child.quantity_label.text = str(quantity)
 			child.item_returned = true
 			break
+
+func chest_opened(cd : InventoryData):
+	has_chest_opened = true
+	chest_data = cd
+	var index = 0
+	while index < 15:
+		player.inventory_data.slot_datas[index + 20] = cd.slot_datas[index]
+		index += 1
+	load_inventory()
+	$UI/CenterContainer/HBoxContainer/Chest.show()
+
+func chest_closed():
+	has_chest_opened = false
+	player.using_inventory = false
+	$UI/CenterContainer/HBoxContainer/Chest.hide()
+
+func load_chest_datas():
+	for id in global.chest_inventory_datas:
+		for child in tile_map.get_children():
+			if child.is_in_group("chest"):
+				if child.id == id:
+					print(id)
+					print(child.id)
+					child.chest_data = global.chest_inventory_datas.get(id)
+

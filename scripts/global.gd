@@ -2,13 +2,16 @@ extends Node
 
 var data_loaded = false
 
-var day : int = 0
+var day : int = 1
 @export var start_time : float = 12
 @onready var game_time = [0,0] 
 var actual_time : float
 @onready var time_state : String = "" 
 
+@export var chest_inventory_datas : Dictionary
+
 var coins : int = 0
+var id : int = 0
 
 var morning : float = 5
 var afternoon: float = 12

@@ -18,6 +18,8 @@ var using_settings : bool = false
 
 func _process(_delta):
 	if global.data_loaded:
+		player_data.chest_inventory_datas = global.chest_inventory_datas
+		player_data.day = global.day
 		player_data.time = global.actual_time
 		player_data.inventory_data = get_parent().player.inventory_data
 		player_data.player_pos = get_parent().player.position

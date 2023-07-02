@@ -41,4 +41,4 @@ quantity = 5
 
 [resource]
 script = ExtResource("1_6ovw0")
-slot_datas = Array[ExtResource("3_pb0v7")]([SubResource("Resource_iwyop"), SubResource("Resource_fh1wt"), SubResource("Resource_af4m6"), null, SubResource("Resource_eeguy"), SubResource("Resource_hdypp"), SubResource("Resource_7ei3f"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[ExtResource("3_pb0v7")]([SubResource("Resource_iwyop"), SubResource("Resource_fh1wt"), SubResource("Resource_af4m6"), null, SubResource("Resource_eeguy"), SubResource("Resource_hdypp"), SubResource("Resource_7ei3f"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

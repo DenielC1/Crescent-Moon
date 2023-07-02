@@ -26,6 +26,9 @@ func _process(_delta):
 		time_period = "AM"
 	$"../Clock/NinePatchRect/HBoxContainer/Label".text = "%02d:%02d" % [hour, global.game_time[1]] + time_period
 	#print(global.start_time + (1440-timer.time_left)/60)
+	if hour == 24:
+		global.day += 1
+	$"../Day/NinePatchRect/HBoxContainer/Label".text = "August %d" % global.day
 	time = fmod(global.start_time + (1440-timer.time_left)/60, 24)
 	global.actual_time = time
 	time_anim.seek(time)
